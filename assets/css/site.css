@@ -230,7 +230,9 @@ p:last-child { margin-bottom: 0; }
 .mono--caps { text-transform: uppercase; letter-spacing: 0.1em; }
 
 .section-head { max-width: 60ch; margin-bottom: var(--sp-8); }
-.section-head p { margin-bottom: 0; }
+/* :last-child only. Zeroing every paragraph ran multi-paragraph section
+   intros together with no gap. */
+.section-head > p:last-child { margin-bottom: 0; }
 
 /* 06 · Rules + manifest furniture ========================================= */
 
