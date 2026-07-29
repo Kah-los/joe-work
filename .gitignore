@@ -1,0 +1,14 @@
+# Server secrets. Holds the mailbox password.
+api/config.php
+
+# Captured leads. Never commit customer data.
+_leads/
+_bridgeway_leads/
+*.csv
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/

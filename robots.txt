@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /thanks.html
+
+Sitemap: https://REPLACE-WITH-YOUR-DOMAIN.com/sitemap.xml
