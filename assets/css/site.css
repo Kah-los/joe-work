@@ -85,23 +85,24 @@
   /* Type. Six steps, ~1.33 ratio, generous jump to display so hierarchy
      reads instantly. Body and small are fixed; headings are fluid.
      Every clamp keeps max under 2.5x min. */
-  --t-sm:      0.9375rem;                                        /* 15 */
-  --t-body:    1.0625rem;                                        /* 17 */
-  --t-lead:    clamp(1.1875rem, 1.06rem + 0.5vw, 1.40625rem);    /* 19 → 22.5 */
-  --t-h3:      clamp(1.375rem, 1.16rem + 0.95vw, 1.875rem);      /* 22 → 30 */
-  --t-h2:      clamp(1.875rem, 1.4rem + 2.1vw, 2.5rem);          /* 30 → 40 */
-  --t-display: clamp(2.5rem, 1.65rem + 4.2vw, 4.4375rem);        /* 40 → 71 */
+  --t-xs:      0.8125rem;                                        /* 13 - table meta only */
+  --t-sm:      0.9375rem;                                        /* 15 - tables, secondary copy */
+  --t-body:    1rem;                                             /* 16 - the a11y floor, held */
+  --t-lead:    clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem);       /* 17 → 19 */
+  --t-h3:      clamp(1.125rem, 1.04rem + 0.4vw, 1.3125rem);      /* 18 → 21 */
+  --t-h2:      clamp(1.5rem, 1.25rem + 1.1vw, 2rem);             /* 24 → 32 */
+  --t-display: clamp(2rem, 1.45rem + 2.7vw, 3.25rem);            /* 32 → 52 */
 
   /* Vertical rhythm. Body is 17px at line-height 28px, so 1.75rem is the
      base unit and every vertical space is a multiple of it. */
-  --r:    1.75rem;      /* 28 */
-  --r-q:  0.4375rem;    /* 7  */
-  --r-h:  0.875rem;     /* 14 */
-  --r-2:  3.5rem;       /* 56 */
-  --r-3:  5.25rem;      /* 84 */
-  --r-4:  7rem;         /* 112 */
+  --r:    1.5rem;       /* 24 - body line-height, the rhythm unit */
+  --r-q:  0.375rem;     /* 6  */
+  --r-h:  0.75rem;      /* 12 */
+  --r-2:  2.25rem;      /* 36 */
+  --r-3:  3rem;         /* 48 */
+  --r-4:  4.5rem;       /* 72 */
 
-  --section-y: clamp(3.5rem, 7vw, 7rem);
+  --section-y: clamp(2.25rem, 4vw, 3.5rem);
   --gutter:    clamp(1.25rem, 4vw, 2.5rem);
   --container: 72rem;   /* 1152 */
   --half:      36rem;
@@ -126,7 +127,7 @@ body {
   font-family: var(--ff);
   font-size: var(--t-body);
   font-weight: 400;
-  line-height: 1.647;              /* 28px on 17px */
+  line-height: 1.5;                /* 24px on 16px - the rhythm unit */
   font-kerning: normal;
   font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
@@ -156,7 +157,7 @@ figure { margin: 0; }
 .on-dark {
   background: var(--bond-800);
   color: var(--on-bond);
-  line-height: 1.71;
+  line-height: 1.56;
   letter-spacing: 0.012em;
   font-weight: 450;
   --focus: #FFFFFF;
@@ -177,9 +178,9 @@ figure { margin: 0; }
 
 h1, h2, h3 {
   font-weight: 900;
-  line-height: 1.04;
-  letter-spacing: -0.03em;
-  margin: 0 0 var(--r);
+  line-height: 1.1;
+  letter-spacing: -0.026em;
+  margin: 0 0 var(--r-h);
   text-wrap: balance;
 }
 h1 { font-size: var(--t-h2); }
@@ -195,17 +196,17 @@ h3 { font-size: var(--t-h3); letter-spacing: -0.022em; line-height: 1.12; }
   text-wrap: balance;
 }
 
-p { margin: 0 0 var(--r); max-width: 66ch; text-wrap: pretty; }
+p { margin: 0 0 var(--r); max-width: 72ch; text-wrap: pretty; }
 p:last-child { margin-bottom: 0; }
 
-.lead { font-size: var(--t-lead); line-height: 1.45; max-width: 44ch; }
+.lead { font-size: var(--t-lead); line-height: 1.5; max-width: 62ch; }
 .muted { color: var(--ink-muted); }
 .small { font-size: var(--t-sm); }
 
 /* Numbers align in columns without a monospace family. */
 .nums { font-variant-numeric: tabular-nums; }
 
-.section-head { margin-bottom: var(--r-2); }
+.section-head { margin-bottom: var(--r); }
 .section-head h2 { max-width: 22ch; }
 .section-head .lead { margin-bottom: 0; }
 
@@ -271,7 +272,8 @@ a:hover { color: var(--bond-800); }
 .brand em { font-style: normal; color: var(--bond-800); }
 
 .nav {
-  display: flex; align-items: center; gap: var(--r);
+  display: flex; align-items: center; gap: 0 var(--r);
+  flex-wrap: wrap;              /* five links do not fit one row at 375px */
   border-top: 1px solid var(--rule); margin-top: var(--r-q);
 }
 .nav a {
@@ -307,7 +309,7 @@ a:hover { color: var(--bond-800); }
 .hero { border-bottom: 1px solid var(--rule); }
 .hero__grid { display: grid; }
 
-.hero__copy { padding: var(--r-2) var(--gutter) var(--r-2); }
+.hero__copy { padding: var(--r-3) var(--gutter); }
 .hero__media { order: -1; }              /* image first on mobile */
 .hero__media img { width: 100%; height: clamp(17rem, 58vw, 26rem); object-fit: cover; object-position: 50% 56%; }
 
@@ -317,7 +319,7 @@ a:hover { color: var(--bond-800); }
 @media (min-width: 62rem) {
   .hero__grid { grid-template-columns: 1fr 41%; align-items: stretch; }
   .hero__media { order: 0; }
-  .hero__media img { height: 100%; min-height: 34rem; }
+  .hero__media img { height: 100%; min-height: 27rem; }
   /* Aligns the copy to the shared container edge on wide viewports while
      keeping a plain gutter on narrow ones. */
   .hero__copy {
@@ -335,23 +337,25 @@ a:hover { color: var(--bond-800); }
 .creds { padding-block: var(--section-y); }
 .creds__head { margin-bottom: var(--r-2); }
 .creds__head h2 { max-width: 26ch; margin-bottom: var(--r-h); }
-.creds__grid { display: grid; gap: var(--r-2) var(--r-2); }
+.creds__grid { display: grid; gap: var(--r) var(--r-2); }
 @media (min-width: 40rem) { .creds__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 68rem) { .creds__grid { grid-template-columns: repeat(4, 1fr); gap: var(--r-2) var(--r); } }
 
-/* Reserve two lines so the four body paragraphs start on the same baseline
-   even when one heading wraps ("Bonded and insured" does). Four columns with
-   ragged tops read as an accident. */
-.cred h3 { font-size: var(--t-h3); margin-bottom: var(--r-h); }
-@media (min-width: 68rem) { .cred h3 { min-height: calc(2 * 1.12em); } }
+/* No reserved second line: at the tighter type scale all four headings fit on
+   one line, and the reservation showed up as a gap under every heading. */
+.cred h3 { font-size: var(--t-h3); margin-bottom: var(--r-q); }
 .cred p { font-size: var(--t-sm); line-height: 1.6; margin: 0; max-width: 34ch; }
 
 /* 10 · Services grid ===================================================== */
 /* A two-by-two grid of blocks, two dimensions rather than a one-dimensional
    list, and separated by space rather than hairlines. */
 
-.svc__grid { display: grid; gap: var(--r-2); }
-@media (min-width: 54rem) { .svc__grid { grid-template-columns: repeat(2, 1fr); gap: var(--r-3) var(--r-2); } }
+.svc__grid { display: grid; gap: var(--r); }
+@media (min-width: 48rem) { .svc__grid { grid-template-columns: repeat(2, 1fr); gap: var(--r-2); } }
+@media (min-width: 68rem) { .svc__grid { grid-template-columns: repeat(3, 1fr); } }
+/* Cell count must match item count: four items in a three-column grid leaves
+   an orphan in the second row, which reads as a mistake. */
+@media (min-width: 62rem) { .svc__grid--4 { grid-template-columns: repeat(4, 1fr); } }
 
 .svc h3 { margin-bottom: var(--r-h); max-width: 18ch; }
 .svc p { max-width: 46ch; margin-bottom: var(--r-h); }
@@ -456,7 +460,8 @@ a:hover { color: var(--bond-800); }
 /* Driver standards: a two-column grid of blocks with a large index numeral
    set in the same family. No rules, no numbered eyebrow scaffolding. */
 .std__grid { display: grid; gap: var(--r-2); }
-@media (min-width: 54rem) { .std__grid { grid-template-columns: repeat(2, 1fr); gap: var(--r-3) var(--r-2); } }
+@media (min-width: 48rem) { .std__grid { grid-template-columns: repeat(2, 1fr); gap: var(--r-2); } }
+@media (min-width: 68rem) { .std__grid { grid-template-columns: repeat(3, 1fr); } }
 .std h3 { margin-bottom: var(--r-h); max-width: 24ch; }
 .std p { font-size: var(--t-sm); line-height: 1.6; margin: 0; max-width: 44ch; }
 
@@ -503,3 +508,86 @@ a:hover { color: var(--bond-800); }
 /* Small utilities, so markup carries no inline style attributes. */
 .mt-2 { margin-top: var(--r-2); }
 .site-foot__legal--bare { margin-top: 0; border-top: 0; padding-top: 0; }
+
+/* ==========================================================================
+   17 · Dense components
+
+   A real data table is the correct component for genuinely tabular content.
+   That is a different thing from the hairline-ruled fake lists the earlier
+   build used for prose: those had no columns and no header row, they were
+   just decoration. Coverage zones and temperature classes ARE tables.
+   ========================================================================== */
+
+/* Horizontal scroll is contained here so the page body never scrolls
+   sideways on a phone. */
+.tscroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--rule); border-radius: 2px; }
+.tscroll:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+.dtable { width: 100%; border-collapse: collapse; font-size: var(--t-sm); }
+.dtable caption { text-align: left; padding: var(--r-h) var(--r); font-size: var(--t-sm); color: var(--ink-muted); border-bottom: 1px solid var(--rule); }
+.dtable th, .dtable td { padding: var(--r-h) var(--r); text-align: left; vertical-align: top; }
+.dtable thead th {
+  background: var(--band); color: var(--ink);
+  font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.01em;
+  border-bottom: 1px solid var(--rule-strong);
+  white-space: nowrap; position: sticky; top: 0;
+}
+.dtable tbody tr + tr { border-top: 1px solid var(--rule); }
+.dtable tbody th { font-weight: 700; color: var(--ink); white-space: nowrap; }
+.dtable td { color: var(--ink-muted); }
+.dtable .num { font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ink); font-weight: 700; }
+.dtable .pending { color: var(--ink-muted); font-weight: 400; font-style: italic; }
+.tnote { margin-top: var(--r-h); font-size: var(--t-sm); color: var(--ink-muted); max-width: 80ch; }
+
+/* Dense definition grid, for reference material with a short term and a
+   longer explanation. Two columns of content, not a decorative rule per row. */
+.spec { display: grid; gap: var(--r) var(--r-2); margin: 0; }
+@media (min-width: 46rem) { .spec { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 72rem) { .spec--4 { grid-template-columns: repeat(4, 1fr); } }
+.spec__item > h3 { margin-bottom: var(--r-q); }
+.spec__item > p { font-size: var(--t-sm); margin: 0; max-width: 46ch; }
+.spec__meta {
+  display: block; font-size: var(--t-xs); font-weight: 700;
+  font-variant-numeric: tabular-nums; color: var(--bond-600);
+  margin-bottom: var(--r-q);
+}
+.on-dark .spec__meta { color: var(--on-bond-muted); }
+
+/* Regulatory framework. The citation is real and public; what Bridgeway does
+   about it is a separate, tagged claim. */
+.reg { display: grid; gap: var(--r); margin: 0; }
+@media (min-width: 52rem) { .reg { grid-template-columns: repeat(2, 1fr); gap: var(--r) var(--r-2); } }
+.reg__cite {
+  display: block; font-size: var(--t-xs); font-weight: 700;
+  font-variant-numeric: tabular-nums; letter-spacing: 0.01em;
+  color: var(--bond-600); margin-bottom: var(--r-q);
+}
+.reg__item h3 { margin-bottom: var(--r-q); }
+.reg__item p { font-size: var(--t-sm); margin: 0 0 var(--r-q); max-width: 52ch; }
+.reg__does { font-size: var(--t-sm); color: var(--ink); font-weight: 600; }
+
+/* Compact two-column prose, for the hero scope strip and short factual runs */
+/* Grid, not wrapping flex: as flex the fourth item dropped to its own row
+   with dead space beside the third. */
+.scope {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--r-h) var(--r-2);
+  padding-top: var(--r); margin-top: var(--r);
+  border-top: 1px solid var(--rule);
+  font-size: var(--t-sm);
+}
+@media (min-width: 34rem) { .scope { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.scope dt { font-size: var(--t-xs); font-weight: 700; color: var(--ink-muted); margin-bottom: 0.1rem; }
+.scope dd { margin: 0; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+/* Vendor packet checklist. A list of documents is a list; it gets list
+   semantics and no rules. */
+.packet { display: grid; gap: var(--r-h) var(--r-2); margin: 0; padding: 0; list-style: none; }
+@media (min-width: 46rem) { .packet { grid-template-columns: repeat(2, 1fr); } }
+.packet li { font-size: var(--t-sm); padding-inline-start: 1.15rem; position: relative; color: var(--ink); }
+.packet li::before {
+  content: ''; position: absolute; left: 0; top: 0.55em;
+  width: 0.4rem; height: 0.4rem; background: var(--bond-600);
+}
+.on-dark .packet li { color: var(--on-bond); }
+.on-dark .packet li::before { background: var(--on-bond-muted); }

@@ -32,7 +32,12 @@
     email:    { label: 'Work email',    test: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); },
                 msg: 'Enter a valid email address.' },
     phone:    { label: 'Phone',         test: function (v) { return (v.replace(/\D/g, '').length >= 10); },
-                msg: 'Enter a phone number with at least 10 digits.' }
+                msg: 'Enter a phone number with at least 10 digits.' },
+    /* Both ends are required: a courier run cannot be quoted from one address. */
+    pickup:   { label: 'Pickup address',   test: function (v) { return v.length >= 4; },
+                msg: 'Enter the pickup address.' },
+    dropoff:  { label: 'Delivery address', test: function (v) { return v.length >= 4; },
+                msg: 'Enter the delivery address.' }
   };
 
   function setError(field, message) {

@@ -28,7 +28,7 @@ Find them all:
 grep -rn 'data-verify' index.html about.html
 ```
 
-There are 18. For each one:
+There are 30. For each one:
 
 - **True?** Delete the `data-verify="pending"` attribute. Nothing else changes.
 - **Not true?** Delete the whole element (the `<div class="cred">`,
@@ -39,16 +39,38 @@ There are 18. For each one:
 
 | Where | Claim | Confirm |
 |---|---|---|
-| Home, "What you are vetting" | HIPAA trained, annual re-training, certificates available | ☐ |
+| Home, "What you are vetting" | HIPAA trained, annual re-training, certificates, will sign a BAA | ☐ |
 | Home, "What you are vetting" | Bonded and insured: commercial auto, general liability, cargo | ☐ |
 | Home, "What you are vetting" | Background checks and MVR review before first specimen | ☐ |
-| Home, "What you are vetting" | Cold-chain: validated containers, temperature logged | ☐ |
-| Home, Services | The cold-chain pharma service line exists at all | ☐ |
-| Home, Coverage | Coverage area: five boroughs, western Long Island, northern NJ | ☐ |
-| Home, Coverage | Zone 1/2/3 borough and county lists are correct | ☐ |
+| Home, "What you are vetting" | Cold chain: validated containers, temperature logged | ☐ |
+| Home, Services | Cold-chain and biologics line exists | ☐ |
+| Home, Services | Pharmacy and infusion delivery line exists | ☐ |
+| Home, Coverage | Every area and corridor listed, all nine zones | ☐ |
+| Home, Coverage | The nine STAT pickup windows (all currently say "Confirm") | ☐ |
+| Home, Handling | Ambient offered | ☐ |
+| Home, Handling | Refrigerated offered | ☐ |
+| Home, Handling | Frozen at -20 C offered | ☐ |
+| Home, Handling | Dry ice offered | ☐ |
+| Home, Compliance | Signs BAAs, annual PHI training | ☐ |
+| Home, Compliance | Exposure control plan, annual training, spill kit per vehicle | ☐ |
+| Home, Compliance | Carries compliant UN 3373 outer containers | ☐ |
+| Home, Compliance | Reports excursions and delays on the manifest | ☐ |
+| Home, Procurement file | All ten documents you can actually supply | ☐ |
 | Home + About | "Dispatch line, seven days a week" | ☐ |
 | About, founder | Two placeholder paragraphs, see section 6 | ☐ |
 | About, Driver standards | All six items | ☐ |
+
+### What is NOT a claim, and needs no confirmation
+
+The regulatory citations (45 CFR 164, 29 CFR 1910.1030, 49 CFR 173.199, 42 CFR
+493), the temperature-class definitions, the UN 3373 packaging description and
+the geography are all independently verifiable facts about the work. They are
+true whatever Bridgeway does, so they ship as written. Only the bolded
+"Bridgeway does X" line under each regulation is a claim about you.
+
+Nothing on the site states an insurance dollar figure, a certification number,
+a response time or a temperature reading. Those are the numbers a procurement
+file holds you to, and none of them have been confirmed.
 
 ### Also replace before launch
 

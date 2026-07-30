@@ -130,9 +130,12 @@ $data = [
     'name'          => bw_single_line(bw_field('name')),
     'email'         => bw_single_line(bw_field('email')),
     'phone'         => bw_single_line(bw_field('phone')),
+    'pickup'        => bw_single_line(bw_field('pickup')),
+    'dropoff'       => bw_single_line(bw_field('dropoff')),
     'facility_type' => bw_single_line(bw_field('facility_type')),
     'service'       => bw_single_line(bw_field('service')),
-    'pickup'        => bw_single_line(bw_field('pickup')),
+    'temperature'   => bw_single_line(bw_field('temperature')),
+    'frequency'     => bw_single_line(bw_field('frequency')),
     'details'       => bw_field('details'),
 ];
 
@@ -145,6 +148,9 @@ if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
 if (strlen(preg_replace('/\D/', '', $data['phone']) ?? '') < 10) {
     $errors['phone'] = 'Enter a phone number with at least 10 digits.';
 }
+// Both addresses are required: a courier run cannot be quoted from one end.
+if (mb_strlen($data['pickup']) < 4)  $errors['pickup']  = 'Enter the pickup address.';
+if (mb_strlen($data['dropoff']) < 4) $errors['dropoff'] = 'Enter the delivery address.';
 if ($errors) {
     bw_respond(false, 422, 'Please correct the highlighted fields.', $errors);
 }
@@ -193,12 +199,14 @@ if ($fh) {
            default, and '' is the RFC 4180 behaviour spreadsheets expect. */
         if ($isNew) {
             fputcsv($fh, ['received_utc', 'facility', 'name', 'email', 'phone',
-                          'facility_type', 'service', 'pickup', 'details', 'ip'], ',', '"', '');
+                          'pickup', 'dropoff', 'facility_type', 'service',
+                          'temperature', 'frequency', 'details', 'ip'], ',', '"', '');
         }
         fputcsv($fh, [
             gmdate('Y-m-d H:i:s'),
             $data['facility'], $data['name'], $data['email'], $data['phone'],
-            $data['facility_type'], $data['service'], $data['pickup'],
+            $data['pickup'], $data['dropoff'], $data['facility_type'],
+            $data['service'], $data['temperature'], $data['frequency'],
             $data['details'], $ip,
         ], ',', '"', '');
         fflush($fh);
@@ -216,6 +224,7 @@ if (!$logged) {
 $to = (string)($cfg['notify_to'] ?? '');
 $subject = 'Quote request: ' . $data['facility'];
 
+$opt = fn(string $v): string => $v !== '' ? $v : '(not given)';
 $lines = [
     'New quote request from the Bridgeway website.',
     '',
@@ -223,11 +232,16 @@ $lines = [
     'Contact:       ' . $data['name'],
     'Email:         ' . $data['email'],
     'Phone:         ' . $data['phone'],
-    'Facility type: ' . ($data['facility_type'] !== '' ? $data['facility_type'] : '(not given)'),
-    'Service:       ' . ($data['service'] !== '' ? $data['service'] : '(not given)'),
-    'Pickup:        ' . ($data['pickup'] !== '' ? $data['pickup'] : '(not given)'),
     '',
-    'Details:',
+    'PICKUP:        ' . $data['pickup'],
+    'DELIVERY:      ' . $data['dropoff'],
+    '',
+    'Facility type: ' . $opt($data['facility_type']),
+    'Service:       ' . $opt($data['service']),
+    'Temperature:   ' . $opt($data['temperature']),
+    'Volume/freq:   ' . $opt($data['frequency']),
+    '',
+    'Handling notes:',
     $data['details'] !== '' ? $data['details'] : '(none)',
     '',
     str_repeat('-', 56),
