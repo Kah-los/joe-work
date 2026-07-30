@@ -375,36 +375,54 @@ a:hover { color: var(--bond-800); }
 
 /* 12 · Quote form ======================================================== */
 
-.quote__grid { display: grid; gap: var(--r-2); align-items: start; }
-@media (min-width: 62rem) { .quote__grid { grid-template-columns: 0.8fr 1.2fr; gap: var(--r-3); } }
+/* Header band, then a full-width form. The old two-column split parked the
+   heading and phone in a column that ran out of content 580px before the form
+   did, and that empty ground is what made the section feel oversized. */
+.quote__head { display: grid; gap: var(--r); align-items: end; margin-bottom: var(--r-2); }
+@media (min-width: 52rem) {
+  .quote__head { grid-template-columns: 1fr auto; gap: var(--r-2); }
+  .quote__call { text-align: right; }
+}
+.quote__head h2 { margin-bottom: var(--r-q); }
+.quote__head .lead { margin-bottom: 0; }
+.quote__call p { margin: 0; }
+.form__note { margin: 0; max-width: 74ch; }
+/* Frequency is short, notes want room: 1 to 2 rather than an even split. */
+@media (min-width: 52rem) { .form__row--split { grid-template-columns: 1fr 2fr; gap: 1.25rem; } }
 
 .quote__tel {
-  display: inline-block;
-  font-size: clamp(2rem, 1.3rem + 2.6vw, 3rem);
-  font-weight: 900; letter-spacing: -0.032em;
+  display: inline-block; margin-block: 0 var(--r-q);
+  font-size: clamp(1.75rem, 1.2rem + 2vw, 2.375rem);
+  font-weight: 900; letter-spacing: -0.032em; line-height: 1.1;
   font-variant-numeric: tabular-nums;
   color: #fff; text-decoration: none;
   margin-block: var(--r-h) var(--r-q);
 }
 .quote__tel:hover { text-decoration: underline; text-underline-offset: 0.12em; }
 
-.form { display: grid; gap: var(--r); }
-.form__row { display: grid; gap: var(--r); }
-@media (min-width: 40rem) { .form__row--2 { grid-template-columns: 1fr 1fr; } }
+/* 20px between field rows. Nine fields on the 24px rhythm made the form
+   panel taller than everything else in the section combined. */
+.form { display: grid; gap: 1.25rem; }
+.form__row { display: grid; gap: 1.25rem; align-items: start; }
+@media (min-width: 40rem) { .form__row--2 { grid-template-columns: 1fr 1fr; gap: 1.25rem; } }
+/* Three short selects share one row on wide viewports, saving a whole row of
+   height in a nine-field form. */
+@media (min-width: 62rem) { .form__row--3 { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; } }
+@media (min-width: 40rem) and (max-width: 61.99rem) { .form__row--3 { grid-template-columns: 1fr 1fr; gap: 1.25rem; } }
 
-.field { display: grid; gap: var(--r-q); }
+.field { display: grid; gap: 0.3rem; align-content: start; }
 /* Sentence case, not tracked small caps. */
 .field label { font-size: var(--t-sm); font-weight: 600; color: #fff; letter-spacing: 0; }
 .field__hint { font-size: var(--t-sm); color: var(--on-bond-muted); }
 
 .field input, .field select, .field textarea {
-  width: 100%; min-height: 3.25rem;
-  padding: var(--r-h) var(--r);
+  width: 100%; min-height: 2.875rem;   /* 46px, still over the 44px minimum */
+  padding: 0.6rem var(--r-h);
   background: #fff; border: 1px solid var(--rule-strong); border-radius: 2px;
   color: var(--ink); font-family: inherit; font-size: 1rem; font-weight: 400;
   line-height: 1.5; letter-spacing: 0;
 }
-.field textarea { min-height: 8rem; resize: vertical; }
+.field textarea { min-height: 5.5rem; resize: vertical; }
 .field select { appearance: none; }
 .field input::placeholder, .field textarea::placeholder { color: #5E6D65; }  /* 5.5:1 */
 .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
@@ -419,7 +437,7 @@ a:hover { color: var(--bond-800); }
 .form__legal { font-size: var(--t-sm); color: var(--on-bond-muted); margin: 0; max-width: 40ch; }
 
 .form__status {
-  padding: var(--r) var(--r);
+  padding: var(--r-h) var(--r);
   border: 2px solid var(--on-bond-rule); border-radius: 2px;
   font-size: var(--t-body);
 }
@@ -431,17 +449,20 @@ a:hover { color: var(--bond-800); }
 
 /* 13 · Footer ============================================================ */
 
-.site-foot { background: var(--bond-900); color: var(--on-bond-muted); padding-block: var(--r-3) var(--r-2); line-height: 1.71; }
-.site-foot__grid { display: grid; gap: var(--r-2); }
+.site-foot { background: var(--bond-900); color: var(--on-bond-muted); padding-block: var(--r-2) var(--r); line-height: 1.5; }
+.site-foot__grid { display: grid; gap: var(--r); }
 @media (min-width: 48rem) { .site-foot__grid { grid-template-columns: 1.5fr 1fr 1fr; gap: var(--r-2); } }
-.site-foot h2 { font-size: var(--t-sm); font-weight: 700; letter-spacing: 0; color: var(--on-bond-muted); margin-bottom: var(--r-h); }
+.site-foot h2 { font-size: var(--t-sm); font-weight: 700; letter-spacing: 0; color: var(--on-bond-muted); margin-bottom: var(--r-q); }
+/* Two columns for the longer link list, so the footer is not as tall as its
+   longest stack. */
 .site-foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+@media (min-width: 30rem) { .site-foot ul.ul--split { grid-template-columns: repeat(2, 1fr); column-gap: var(--r); } }
 .site-foot a { color: #fff; text-decoration: none; }
 .site-foot a:hover { text-decoration: underline; }
-.site-foot ul a { display: inline-flex; align-items: center; min-height: 2.75rem; }
+.site-foot ul a { display: inline-flex; align-items: center; min-height: 2.25rem; }
 .site-foot__brand { font-size: 1.25rem; font-weight: 900; letter-spacing: -0.038em; color: #fff; margin-bottom: var(--r-q); }
 .site-foot__legal {
-  margin-top: var(--r-2); padding-top: var(--r); border-top: 1px solid var(--on-bond-rule);
+  margin-top: var(--r); padding-top: var(--r-h); border-top: 1px solid var(--on-bond-rule);
   font-size: var(--t-sm); display: flex; flex-wrap: wrap; gap: var(--r-q) var(--r-2);
 }
 .site-foot__legal p { margin: 0; max-width: none; }

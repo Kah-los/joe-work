@@ -184,13 +184,11 @@
   </section>
 
   <!-- Coverage ========================================================== -->
-  <section class="section section--band" id="coverage" aria-labelledby="cov-h">
+  <!-- No visible heading here by request. The section keeps an aria-label so
+       it is still an identifiable region for screen readers, and the table's
+       own <caption> names the data. -->
+  <section class="section section--band" id="coverage" aria-label="Coverage and service zones">
     <div class="wrap">
-      <div class="section-head">
-        <h2 id="cov-h">Coverage and service zones</h2>
-        <p class="lead muted">Where we drive, and the laboratory and hospital corridors inside each zone.</p>
-      </div>
-
       <div class="tscroll" tabindex="0" role="region" aria-label="Service zone table">
         <table class="dtable">
           <caption>Service zones. Location names describe service geography and are not a statement of client relationships.</caption>
@@ -409,136 +407,140 @@
     </div>
   </section>
 
-  <!-- Quote ============================================================= -->
+  <!-- Quote =============================================================
+       Header band across the full width, then the form across the full
+       width in three columns. The previous two-column split left roughly
+       580px of empty ground beside a tall form, which is what made the
+       section feel oversized.
+       ================================================================== -->
   <section class="section on-dark" id="quote" aria-labelledby="quote-h">
-    <div class="wrap quote__grid">
-      <div>
-        <h2 id="quote-h">Request a quote</h2>
-        <p class="lead muted">
-          If a specimen is sitting out right now, call. The line is answered by a
-          person who can dispatch, not a menu.
-        </p>
-        <a class="quote__tel" href="tel:+15165541252">(516) 554-1252</a>
-        <p class="small muted" data-verify="pending">Dispatch line, seven days a week.</p>
-        <p class="small muted">
-          A quote needs both addresses. Distance, river crossing and time of day
-          all change the number, so a pickup ZIP on its own cannot be priced.
-        </p>
+    <div class="wrap">
+      <div class="quote__head">
+        <div>
+          <h2 id="quote-h">Request a quote</h2>
+          <p class="lead muted">
+            If a specimen is sitting out right now, call. The line is answered
+            by a person who can dispatch, not a menu.
+          </p>
+        </div>
+        <div class="quote__call">
+          <a class="quote__tel" href="tel:+15165541252">(516) 554-1252</a>
+          <p class="small muted" data-verify="pending">Dispatch line, seven days a week.</p>
+        </div>
       </div>
 
-      <div>
-        <form class="form" id="quote-form" method="post" action="/api/quote.php" novalidate>
-          <div class="honey" aria-hidden="true">
-            <label for="website">Website</label>
-            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      <form class="form" id="quote-form" method="post" action="/api/quote.php" novalidate>
+        <div class="honey" aria-hidden="true">
+          <label for="website">Website</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <input type="hidden" name="rendered_at" value="">
+
+        <p class="form__req small muted"><span aria-hidden="true">*</span> Required</p>
+
+        <div class="form__row form__row--3">
+          <div class="field">
+            <label for="facility">Facility name <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="facility" name="facility" required autocomplete="organization" aria-describedby="facility-err">
+            <span class="field__error" id="facility-err" role="alert"></span>
           </div>
-          <input type="hidden" name="rendered_at" value="">
-
-          <p class="form__req small muted"><span aria-hidden="true">*</span> Required</p>
-
-          <div class="form__row form__row--2">
-            <div class="field">
-              <label for="facility">Facility name <span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="facility" name="facility" required autocomplete="organization" aria-describedby="facility-err">
-              <span class="field__error" id="facility-err" role="alert"></span>
-            </div>
-            <div class="field">
-              <label for="name">Your name and title <span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="name" name="name" required autocomplete="name" aria-describedby="name-err">
-              <span class="field__error" id="name-err" role="alert"></span>
-            </div>
+          <div class="field">
+            <label for="name">Your name and title <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="name" name="name" required autocomplete="name" aria-describedby="name-err">
+            <span class="field__error" id="name-err" role="alert"></span>
           </div>
-
-          <div class="form__row form__row--2">
-            <div class="field">
-              <label for="email">Work email <span class="req" aria-hidden="true">*</span></label>
-              <input type="email" id="email" name="email" required autocomplete="email" inputmode="email" aria-describedby="email-err">
-              <span class="field__error" id="email-err" role="alert"></span>
-            </div>
-            <div class="field">
-              <label for="phone">Direct phone <span class="req" aria-hidden="true">*</span></label>
-              <input type="tel" id="phone" name="phone" required autocomplete="tel" inputmode="tel" aria-describedby="phone-err">
-              <span class="field__error" id="phone-err" role="alert"></span>
-            </div>
+          <div class="field">
+            <label for="email">Work email <span class="req" aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" required autocomplete="email" inputmode="email" aria-describedby="email-err">
+            <span class="field__error" id="email-err" role="alert"></span>
           </div>
+        </div>
 
-          <div class="form__row form__row--2">
-            <div class="field">
-              <label for="pickup">Pickup address <span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="pickup" name="pickup" required placeholder="Street, town, and dock or suite" aria-describedby="pickup-err">
-              <span class="field__error" id="pickup-err" role="alert"></span>
-            </div>
-            <div class="field">
-              <label for="dropoff">Delivery address <span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="dropoff" name="dropoff" required placeholder="Street, town, and receiving department" aria-describedby="dropoff-err">
-              <span class="field__error" id="dropoff-err" role="alert"></span>
-            </div>
+        <div class="form__row form__row--3">
+          <div class="field">
+            <label for="phone">Direct phone <span class="req" aria-hidden="true">*</span></label>
+            <input type="tel" id="phone" name="phone" required autocomplete="tel" inputmode="tel" aria-describedby="phone-err">
+            <span class="field__error" id="phone-err" role="alert"></span>
           </div>
-
-          <div class="form__row form__row--2">
-            <div class="field">
-              <label for="facility_type">Facility type</label>
-              <select id="facility_type" name="facility_type">
-                <option value="">Select one</option>
-                <option>Clinical or reference laboratory</option>
-                <option>Hospital or health system</option>
-                <option>Physician practice or clinic</option>
-                <option>Pharmacy or infusion</option>
-                <option>Dental or specialty practice</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="service">Service needed</label>
-              <select id="service" name="service">
-                <option value="">Select one</option>
-                <option>STAT or emergency run</option>
-                <option>Scheduled lab route</option>
-                <option>Cold-chain or biologics</option>
-                <option>Pharmacy or infusion delivery</option>
-                <option>Records or imaging</option>
-                <option>Equipment or supply transfer</option>
-                <option>More than one, or not sure</option>
-              </select>
-            </div>
+          <div class="field">
+            <label for="pickup">Pickup address <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="pickup" name="pickup" required placeholder="Street, town, dock or suite" aria-describedby="pickup-err">
+            <span class="field__error" id="pickup-err" role="alert"></span>
           </div>
-
-          <div class="form__row form__row--2">
-            <div class="field">
-              <label for="temperature">Temperature class</label>
-              <select id="temperature" name="temperature">
-                <option value="">Select one</option>
-                <option>Ambient, 15 to 25 C</option>
-                <option>Refrigerated, 2 to 8 C</option>
-                <option>Frozen, -20 C</option>
-                <option>Dry ice</option>
-                <option>Not sure</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="frequency">Volume and frequency</label>
-              <input type="text" id="frequency" name="frequency" placeholder="e.g. two pickups daily, one tote each">
-            </div>
+          <div class="field">
+            <label for="dropoff">Delivery address <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="dropoff" name="dropoff" required placeholder="Street, town, receiving department" aria-describedby="dropoff-err">
+            <span class="field__error" id="dropoff-err" role="alert"></span>
           </div>
+        </div>
 
+        <p class="form__note small muted">
+          Both addresses are required. Distance, river crossing and time of day
+          all change the price, so a pickup ZIP on its own cannot be quoted.
+        </p>
+
+        <div class="form__row form__row--3">
+          <div class="field">
+            <label for="facility_type">Facility type</label>
+            <select id="facility_type" name="facility_type">
+              <option value="">Select one</option>
+              <option>Clinical or reference laboratory</option>
+              <option>Hospital or health system</option>
+              <option>Physician practice or clinic</option>
+              <option>Pharmacy or infusion</option>
+              <option>Dental or specialty practice</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="service">Service needed</label>
+            <select id="service" name="service">
+              <option value="">Select one</option>
+              <option>STAT or emergency run</option>
+              <option>Scheduled lab route</option>
+              <option>Cold-chain or biologics</option>
+              <option>Pharmacy or infusion delivery</option>
+              <option>Records or imaging</option>
+              <option>Equipment or supply transfer</option>
+              <option>More than one, or not sure</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="temperature">Temperature class</label>
+            <select id="temperature" name="temperature">
+              <option value="">Select one</option>
+              <option>Ambient, 15 to 25 C</option>
+              <option>Refrigerated, 2 to 8 C</option>
+              <option>Frozen, -20 C</option>
+              <option>Dry ice</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form__row form__row--split">
+          <div class="field">
+            <label for="frequency">Volume and frequency</label>
+            <input type="text" id="frequency" name="frequency" placeholder="e.g. two pickups daily, one tote each">
+          </div>
           <div class="field">
             <label for="details">Handling notes</label>
-            <textarea id="details" name="details" rows="3"
+            <textarea id="details" name="details" rows="2"
               placeholder="Time windows, dock access, container type, after-hours contact."></textarea>
             <span class="field__hint">Please do not include any patient information here.</span>
           </div>
+        </div>
 
-          <div class="form__status" id="form-status" role="status" aria-live="polite" hidden></div>
+        <div class="form__status" id="form-status" role="status" aria-live="polite" hidden></div>
 
-          <div class="form__submit">
-            <button class="btn btn--ghost" type="submit" id="quote-submit">Send request</button>
-            <p class="form__legal">
-              This form is not a secure channel for protected health information.
-              For anything urgent, call dispatch.
-            </p>
-          </div>
-        </form>
-      </div>
+        <div class="form__submit">
+          <button class="btn btn--ghost" type="submit" id="quote-submit">Send request</button>
+          <p class="form__legal">
+            This form is not a secure channel for protected health information.
+            For anything urgent, call dispatch.
+          </p>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -560,7 +562,7 @@
       </div>
       <div>
         <h2>Site</h2>
-        <ul>
+        <ul class="ul--split">
           <li><a href="#services">Services</a></li>
           <li><a href="#coverage">Coverage</a></li>
           <li><a href="#handling">Handling classes</a></li>
