@@ -244,6 +244,10 @@ a:hover { color: var(--bond-800); }
   .btn--call:hover { background: var(--seal-red-dark); border-color: var(--seal-red-dark); color: #fff; }
 }
 
+.btn--solid { background: var(--bond-800); border-color: var(--bond-800); color: #fff; }
+@media (hover: hover) and (pointer: fine) {
+  .btn--solid:hover { background: var(--bond-900); border-color: var(--bond-900); color: #fff; }
+}
 .btn--ghost { background: transparent; border-color: var(--ink); color: var(--ink); }
 @media (hover: hover) and (pointer: fine) {
   .btn--ghost:hover { background: var(--ink); color: #fff; }
@@ -404,8 +408,11 @@ a:hover { color: var(--bond-800); }
 /* Frequency is short, notes want room: 1 to 2 rather than an even split. */
 @media (min-width: 52rem) { .form__row--split { grid-template-columns: 1fr 2fr; gap: 1.25rem; } }
 
+/* Padding to clear the 44px target: at the clamp minimum the line box is only
+   31px, and this is a primary tap target. */
 .quote__tel {
   display: inline-block; margin-block: 0 var(--r-q);
+  padding-block: 0.35rem; min-height: 2.75rem;
   font-size: clamp(1.75rem, 1.2rem + 2vw, 2.375rem);
   font-weight: 900; letter-spacing: -0.032em; line-height: 1.1;
   font-variant-numeric: tabular-nums;
@@ -620,6 +627,9 @@ a:hover { color: var(--bond-800); }
   font-variant-numeric: tabular-nums; letter-spacing: 0.01em;
   color: var(--bond-600); margin-bottom: var(--r-q);
 }
+/* bond-600 is 7.4:1 on white but only 1.71:1 on the dark ground. The
+   citations live on dark, so they need the light green. */
+.on-dark .reg__cite { color: #8FC7A9; }   /* 6.6:1 */
 .reg__item h3 { margin-bottom: var(--r-q); }
 .reg__item p { font-size: var(--t-sm); margin: 0 0 var(--r-q); max-width: 52ch; }
 .reg__does { font-size: var(--t-sm); color: var(--ink); font-weight: 600; }
@@ -708,3 +718,175 @@ a:hover { color: var(--bond-800); }
   color: var(--ink-muted);
   max-width: 48ch;
 }
+
+/* ==========================================================================
+   19 · Icons, badges, eyebrows
+
+   Icons are Tabler outline (MIT), inlined as one <symbol> sprite at the top
+   of <body>. No extra request, no hand-rolled paths, no icon font.
+
+   Three badge tints, each semantically earned rather than decorative:
+   brand green by default, seal red for urgency, cold blue for temperature.
+   ========================================================================== */
+
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+.i {
+  width: 1.25em; height: 1.25em;
+  flex: none;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Circular tinted badge behind an icon */
+.badge {
+  display: inline-grid; place-items: center;
+  width: 2.75rem; height: 2.75rem;
+  border-radius: 50%;
+  background: #E4EFE9;
+  color: var(--bond-800);
+  flex: none;
+}
+.badge .i { width: 1.375rem; height: 1.375rem; }
+.badge--stat { background: #FBE7E6; color: var(--seal-red); }
+.badge--cold { background: #E2EDF4; color: #1C5A7A; }   /* 6.7:1 on its tint */
+.badge--sm   { width: 2rem; height: 2rem; }
+.badge--sm .i { width: 1rem; height: 1rem; }
+
+/* On the dark ground the badge is a ring rather than a filled disc */
+.on-dark .badge {
+  background: rgba(255,255,255,0.07);
+  color: #BFE0CE;
+  box-shadow: inset 0 0 0 1px var(--on-bond-rule);
+}
+
+/* Section eyebrow: icon plus a short label. One per section, and the label
+   always names the section rather than numbering it. */
+.eyebrow {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: var(--t-xs); font-weight: 700;
+  letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--bond-600);
+  margin: 0 0 var(--r-h);
+}
+.eyebrow .i { width: 1rem; height: 1rem; }
+.on-dark .eyebrow { color: #8FC7A9; }
+
+/* Service card */
+.svc {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: var(--r);
+  display: flex; flex-direction: column;
+}
+.section--band .svc { background: var(--paper); }
+.svc__head { display: flex; align-items: center; gap: var(--r-h); margin-bottom: var(--r-h); }
+.svc__head h3 { margin: 0; }
+.svc p { flex: 1; }
+.svc__turn {
+  display: flex; align-items: center; gap: 0.45rem;
+  margin: var(--r-h) 0 0;
+  padding-top: var(--r-h);
+  border-top: 1px solid var(--rule);
+  font-size: var(--t-sm); font-weight: 700; color: var(--bond-600);
+}
+.svc__turn--stat { color: var(--seal-red); }
+.on-dark .svc { background: rgba(255,255,255,0.04); border-color: var(--on-bond-rule); }
+.on-dark .svc__turn { border-top-color: var(--on-bond-rule); color: #8FC7A9; }
+
+/* Regulation card */
+.reg__item {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--on-bond-rule);
+  border-radius: 4px;
+  padding: var(--r);
+}
+.reg__head { display: flex; align-items: flex-start; gap: var(--r-h); margin-bottom: var(--r-h); }
+.reg__head h3 { margin: 0 0 0.1rem; }
+.reg__does {
+  display: flex; align-items: flex-start; gap: 0.45rem;
+  color: #BFE0CE; font-weight: 600; font-size: var(--t-sm);
+}
+.reg__does .i { margin-top: 0.15em; width: 1.05rem; height: 1.05rem; flex: none; }
+
+/* Trust bar */
+.trust { border-top: 1px solid var(--rule); }
+.trust__grid { display: grid; gap: var(--r); padding-block: var(--r); }
+@media (min-width: 40rem) { .trust__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 64rem) { .trust__grid { grid-template-columns: repeat(4, 1fr); gap: var(--r-2); } }
+.trust__item { display: flex; align-items: flex-start; gap: var(--r-h); }
+.trust__item h3 { font-size: var(--t-body); margin: 0 0 0.1rem; }
+.trust__item p { font-size: var(--t-sm); color: var(--ink-muted); margin: 0; max-width: 30ch; }
+
+/* Table cells that carry an icon */
+.cell { display: flex; align-items: center; gap: 0.5rem; }
+.cell--ok   { color: var(--bond-600); font-weight: 700; }
+.cell--wait { color: var(--ink-muted); font-weight: 600; }
+.dtable thead th { background: var(--bond-800); color: #fff; border-bottom: 0; }
+.dtable .range { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dtable tbody tr:nth-child(odd) { background: rgba(14,58,44,0.022); }
+
+/* ==========================================================================
+   20 · Coverage map
+   ========================================================================== */
+
+.map__head { display: grid; gap: var(--r); align-items: end; margin-bottom: var(--r-2); }
+@media (min-width: 56rem) { .map__head { grid-template-columns: 1fr auto; gap: var(--r-3); } }
+.map__head h2 { margin-bottom: var(--r-q); }
+.map__head .lead { margin-bottom: 0; }
+
+/* ZIP check */
+.zipcheck label { display: block; font-size: var(--t-sm); font-weight: 700; margin-bottom: var(--r-q); }
+.zipcheck__row { display: flex; gap: var(--r-h); }
+.zipcheck input {
+  width: 8.5rem; min-height: 2.875rem;
+  padding: 0.6rem var(--r-h);
+  background: #fff; border: 1px solid var(--rule-strong); border-radius: 2px;
+  font-family: inherit; font-size: 1rem; font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.zipcheck .btn { min-height: 2.875rem; padding-inline: var(--r); }
+.zipcheck__out {
+  margin: var(--r-h) 0 0; font-size: var(--t-sm); font-weight: 600;
+  max-width: 34ch; min-height: 1.2em;
+}
+.zipcheck__out--ok   { color: var(--bond-600); }
+.zipcheck__out--warn { color: var(--seal-red); }
+
+.map__grid { display: grid; gap: var(--r-2); align-items: start; }
+@media (min-width: 62rem) { .map__grid { grid-template-columns: 1.45fr 1fr; gap: var(--r-2); } }
+
+.map__fig { margin: 0; }
+.map__svg {
+  width: 100%; height: auto; display: block;
+  border: 1px solid var(--rule); border-radius: 4px;
+  background: #DCE7EC;
+}
+.map__fig figcaption { margin-top: var(--r-h); font-size: var(--t-xs); color: var(--ink-muted); max-width: 52ch; }
+
+.map__water { fill: #DCE7EC; }
+.map__ctx   { fill: #E4E9E5; stroke: #CBD5CE; stroke-width: 1.1; }
+.map__zone  { fill: #2F7A5E; fill-opacity: 0.9; stroke: var(--bond-900); stroke-width: 1.3; }
+.map__dot   { fill: #fff; stroke: var(--bond-900); stroke-width: 2.5; }
+.map__leader{ stroke: var(--bond-900); stroke-width: 1.2; stroke-dasharray: 3 3; }
+.map__label {
+  font-family: var(--ff); font-size: 30px; font-weight: 700;
+  fill: #fff; paint-order: stroke; stroke: var(--bond-900); stroke-width: 6;
+  stroke-linejoin: round;
+}
+
+/* Zone rail */
+.zrail__region {
+  font-size: var(--t-sm); font-weight: 700; letter-spacing: 0;
+  color: var(--ink-muted); margin: 0 0 var(--r-h);
+  padding-bottom: var(--r-q); border-bottom: 1px solid var(--rule);
+}
+.zrail__region + .zrail { margin-bottom: var(--r-2); }
+.zrail { margin: 0; display: grid; gap: var(--r-h); }
+.zrow { display: flex; align-items: flex-start; gap: var(--r-h); }
+.zrail dt { font-weight: 700; color: var(--ink); letter-spacing: -0.012em; }
+.zrail dd { margin: 0; font-size: var(--t-sm); color: var(--ink-muted); line-height: 1.5; max-width: 40ch; }
