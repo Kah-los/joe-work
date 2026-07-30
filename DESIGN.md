@@ -125,9 +125,10 @@ between rows anywhere, no pill badges, no eyebrows at all.
 3. **Services.** A two-by-two grid of blocks. Two dimensions rather than a
    one-dimensional list, separated by space rather than hairlines. Turnaround
    is bold text, not a bordered pill.
-4. **Coverage.** A full-width typographic statement ("Five boroughs. Western
-   Long Island. Northern New Jersey.") that *is* the heading, then three zone
-   columns. No table, no rules.
+4. **Coverage.** A classic directory: region label over a hanging-indent list
+   of zones, each with its areas as a run of prose, set in two columns. This is
+   how a gazetteer or a reference book's place index sets, and it fits the
+   content far better than the nine-row bordered table it replaced.
 5. **Quote.** Form split on the green. Labels are sentence case, not tracked
    small caps.
 6. **Footer.**
@@ -154,6 +155,19 @@ The coverage section lists zones rather than drawing a map. An accurate map need
 real boundary data; an inaccurate one is worse than a list to a reader who knows
 these counties better than we do. An earlier concentric-circle diagram was cut
 for exactly this reason, since the zones are not radial.
+
+### Why coverage is not a table
+
+It was one, and it was wrong. Nine rows of wrapping cells at 77px each, a
+bordered slab 789px tall, plus nine repeated "Confirm" placeholders that read as
+an unfinished form rather than a design. A table earns its borders when a reader
+compares values across columns; this content is place names grouped by zone, so
+there is nothing to compare. The corridors column was also the thinnest content
+on the page, and the neighbourhood runs already say where we drive. Directory
+setting: 484px, no borders, no placeholders, same nine zones.
+
+The handling-classes table stays a table, because temperature, cargo and
+container genuinely are compared across columns.
 
 ## Imagery
 

@@ -649,3 +649,62 @@ a:hover { color: var(--bond-800); }
 }
 .on-dark .packet li { color: var(--on-bond); }
 .on-dark .packet li::before { background: var(--on-bond-muted); }
+
+/* ==========================================================================
+   18 · Coverage directory
+
+   Classic directory setting: a region label over a hanging-indent list of
+   zones, each with its areas as a run of prose. This is how a gazetteer or
+   the back matter of a reference book sets a place index, and it suits the
+   content far better than a nine-row bordered table did.
+   ========================================================================== */
+
+.dir__grid { display: grid; gap: var(--r-2); }
+@media (min-width: 56rem) { .dir__grid { grid-template-columns: 1.15fr 1fr; gap: var(--r-3); } }
+
+.dir__region {
+  font-size: var(--t-sm);
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--ink-muted);
+  margin: 0 0 var(--r-h);
+  padding-bottom: var(--r-q);
+  border-bottom: 1px solid var(--rule);
+}
+
+.dir { margin: 0; display: grid; gap: var(--r-h); }
+.dir__row { display: grid; gap: 0.1rem; }
+/* Hanging indent once there is room for it: the zone name sits in its own
+   measure and the areas align to a common left edge, which is what makes a
+   printed index scannable. */
+@media (min-width: 34rem) {
+  .dir__row { grid-template-columns: 8.5rem 1fr; gap: 0 var(--r); align-items: baseline; }
+}
+.dir dt {
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.012em;
+}
+.dir dd {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: var(--t-sm);
+  line-height: 1.5;
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+.dir__sla {
+  display: inline-block;
+  margin-inline-start: 0.4ch;
+  font-weight: 700;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.dir__note {
+  margin-top: var(--r);
+  padding-top: var(--r-h);
+  border-top: 1px solid var(--rule);
+  font-size: var(--t-sm);
+  color: var(--ink-muted);
+  max-width: 48ch;
+}

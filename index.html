@@ -183,92 +183,75 @@
     </div>
   </section>
 
-  <!-- Coverage ========================================================== -->
-  <!-- No visible heading here by request. The section keeps an aria-label so
-       it is still an identifiable region for screen readers, and the table's
-       own <caption> names the data. -->
+  <!-- Coverage ==========================================================
+       Set as a directory rather than a table. The content is place names
+       grouped by zone, not data anyone needs to compare across columns, so a
+       nine-row bordered table was carrying weight it did not earn. The
+       corridors column was the thinnest content on the page and is gone; the
+       neighbourhood runs already say where we drive. Nine repeated "Confirm"
+       cells are replaced by one honest sentence.
+       ================================================================== -->
   <section class="section section--band" id="coverage" aria-label="Coverage and service zones">
-    <div class="wrap">
-      <div class="tscroll" tabindex="0" role="region" aria-label="Service zone table">
-        <table class="dtable">
-          <caption>Service zones. Location names describe service geography and are not a statement of client relationships.</caption>
-          <thead>
-            <tr>
-              <th scope="col">Zone</th>
-              <th scope="col">Areas covered</th>
-              <th scope="col">Laboratory and hospital corridors</th>
-              <th scope="col">STAT pickup window</th>
-            </tr>
-          </thead>
-          <tbody data-verify="pending">
-            <tr>
-              <th scope="row">Manhattan</th>
-              <td>Midtown, Upper East and West Sides, Chelsea, Financial District, Washington Heights</td>
-              <td>East 60s medical corridor, First Avenue at 30th, 168th Street, West 59th</td>
-              <td class="pending">Confirm</td>
-            </tr>
-            <tr>
-              <th scope="row">Brooklyn</th>
-              <td>Downtown Brooklyn, Park Slope, Borough Park, Bay Ridge, Williamsburg, Flatbush</td>
-              <td>Tenth Avenue at Fort Hamilton Parkway, DeKalb Avenue, Clarkson Avenue</td>
-              <td class="pending">Confirm</td>
-            </tr>
-            <tr>
-              <th scope="row">Queens</th>
-              <td>Long Island City, Astoria, Flushing, Forest Hills, Jamaica, Fresh Meadows</td>
-              <td>Booth Memorial corridor, 164th Street, Main Street Flushing</td>
-              <td class="pending">Confirm</td>
-            </tr>
-            <tr>
-              <th scope="row">The Bronx</th>
-              <td>Norwood, Bedford Park, Pelham Parkway, Morris Park, Concourse</td>
-              <td>Gun Hill Road, Eastchester Road, Morris Park Avenue</td>
-              <td class="pending">Confirm</td>
-            </tr>
-            <tr>
-              <th scope="row">Staten Island</th>
-              <td>St George, Castleton Corners, Ocean Breeze, Prince's Bay</td>
-              <td>Seaview Avenue, Bay Street</td>
-              <td class="pending">Confirm</td>
-            </tr>
-            <tr>
-              <th scope="row">Nassau County</th>
-              <td>Great Neck, Mineola, Garden City, Hempstead, Rockville Centre, Valley Stream</td>
-              <td>First Street Mineola, Community Drive, Oceanside</td>
-              <td class="pending">Confirm</td>
-            </tr>
-            <tr>
-              <th scope="row">Hudson County, NJ</th>
-              <td>Jersey City, Hoboken, Bayonne, Secaucus, Union City</td>
-              <td>Secaucus reference laboratory cluster, Grand Street, Clifton Place</td>
-              <td class="pending">Confirm</td>
-            </tr>
-            <tr>
-              <th scope="row">Bergen County, NJ</th>
-              <td>Hackensack, Englewood, Teaneck, Paramus, Ridgewood, Fort Lee</td>
-              <td>Second Street Hackensack, Engle Street, North Van Dien Avenue</td>
-              <td class="pending">Confirm</td>
-            </tr>
-            <tr>
-              <th scope="row">Essex County, NJ</th>
-              <td>Newark, Belleville, Livingston, Montclair, West Orange</td>
-              <td>Bergen Street Newark, South Orange Avenue, Old Short Hills Road</td>
-              <td class="pending">Confirm</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="wrap dir__grid">
+
+      <div>
+        <h3 class="dir__region">New York</h3>
+        <dl class="dir">
+          <div class="dir__row">
+            <dt>Manhattan</dt>
+            <dd>Midtown, Upper East and Upper West Sides, Chelsea, the Financial District, Washington Heights</dd>
+          </div>
+          <div class="dir__row">
+            <dt>Brooklyn</dt>
+            <dd>Downtown Brooklyn, Park Slope, Borough Park, Bay Ridge, Williamsburg, Flatbush</dd>
+          </div>
+          <div class="dir__row">
+            <dt>Queens</dt>
+            <dd>Long Island City, Astoria, Flushing, Forest Hills, Jamaica, Fresh Meadows</dd>
+          </div>
+          <div class="dir__row">
+            <dt>The Bronx</dt>
+            <dd>Norwood, Bedford Park, Pelham Parkway, Morris Park, the Concourse</dd>
+          </div>
+          <div class="dir__row">
+            <dt>Staten Island</dt>
+            <dd>St George, Castleton Corners, Ocean Breeze, Prince's Bay</dd>
+          </div>
+          <div class="dir__row">
+            <dt>Nassau County</dt>
+            <dd>Great Neck, Mineola, Garden City, Hempstead, Rockville Centre, Valley Stream</dd>
+          </div>
+        </dl>
       </div>
 
-      <p class="tnote">
-        Cross-river runs between the boroughs and New Jersey depend on Hudson
-        crossing conditions, so those windows are quoted per address pair rather
-        than published as one number. Give dispatch the two addresses and you get
-        a window you can hold us to.
-      </p>
-      <!-- STAT WINDOWS: replace each "Confirm" cell with a real committed
-           window, e.g. <td class="num">30-60 min</td>. Only publish what you
-           can hold. If you would rather not publish windows at all, delete the
-           fourth <th> and every fourth <td>; the table still reads. -->
+      <div>
+        <h3 class="dir__region">New Jersey</h3>
+        <dl class="dir">
+          <div class="dir__row">
+            <dt>Hudson</dt>
+            <dd>Jersey City, Hoboken, Bayonne, Union City, and the Secaucus reference laboratory cluster</dd>
+          </div>
+          <div class="dir__row">
+            <dt>Bergen</dt>
+            <dd>Hackensack, Englewood, Teaneck, Paramus, Ridgewood, Fort Lee</dd>
+          </div>
+          <div class="dir__row">
+            <dt>Essex</dt>
+            <dd>Newark, Belleville, Livingston, Montclair, West Orange</dd>
+          </div>
+        </dl>
+
+        <p class="dir__note" data-verify="pending">
+          Response windows are quoted per address pair, not published as one
+          number. A Midtown to Bergen County run and a run between two Brooklyn
+          addresses are not the same job. Give dispatch both addresses and you
+          get a window you can hold us to.
+        </p>
+        <!-- To publish a committed window for a zone, append it to that zone's
+             <dd>, e.g. <span class="dir__sla">60-90 min STAT</span>. Only
+             publish what you can hold. -->
+      </div>
+
     </div>
   </section>
 
