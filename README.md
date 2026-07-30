@@ -31,8 +31,9 @@ grep -rn 'data-verify' index.html about.html
 There are 18. For each one:
 
 - **True?** Delete the `data-verify="pending"` attribute. Nothing else changes.
-- **Not true?** Delete the whole element (the `<li>`, `<div class="creds__item">`
-  or `<p>`). The layout is built to close up cleanly with fewer items.
+- **Not true?** Delete the whole element (the `<div class="cred">`,
+  `<div class="svc">`, `<li class="cov__zone">` or `<p>`). Every grid on the
+  site closes up cleanly with fewer items.
 
 ### The claims currently on the page
 
@@ -42,7 +43,7 @@ There are 18. For each one:
 | Home, "What you are vetting" | Bonded and insured: commercial auto, general liability, cargo | ☐ |
 | Home, "What you are vetting" | Background checks and MVR review before first specimen | ☐ |
 | Home, "What you are vetting" | Cold-chain: validated containers, temperature logged | ☐ |
-| Home, Services | The `COLD` cold-chain service line exists at all | ☐ |
+| Home, Services | The cold-chain pharma service line exists at all | ☐ |
 | Home, Coverage | Coverage area: five boroughs, western Long Island, northern NJ | ☐ |
 | Home, Coverage | Zone 1/2/3 borough and county lists are correct | ☐ |
 | Home + About | "Dispatch line, seven days a week" | ☐ |
@@ -63,9 +64,9 @@ There are 18. For each one:
   two or three real ones, that section is worth adding.
 - **Company history and milestones.** Same reason. An empty timeline is worse
   than no timeline.
-- **Published response times.** The coverage table says "Quoted per site"
-  rather than a number. See section 5 for how to add real windows. Publishing a
-  window you cannot hold is worse than publishing none.
+- **Published response times.** Coverage states the areas served and explains
+  that windows are quoted per pickup site. See section 5 for how to publish real
+  windows. Publishing one you cannot hold is worse than publishing none.
 
 ---
 
@@ -190,47 +191,46 @@ structured data. Change all of them:
 grep -rn '5165541252\|554-1252' *.html api/*.php assets/js/site.js
 ```
 
-**Publishing real response windows.** In `index.html`, find the coverage list
-and replace the placeholder:
+**Publishing real response windows.** In `index.html`, add a line under each
+zone name in the coverage section:
 
 ```html
-<span class="zone__time">Quoted per site</span>
-<!-- becomes, for example -->
-<span class="zone__time">60-90 min STAT</span>
+<li class="cov__zone">
+  <h3>Zone 1</h3>
+  <p>Manhattan, Brooklyn, Queens</p>
+  <p class="nums"><strong>60-90 min STAT</strong></p>   <!-- add this -->
+</li>
 ```
 
 Real numbers convert far better than "fast". Only publish a window you can hold.
 
-**Adding a service.** Copy a `<li class="ledger__row">` block in `index.html`
-and edit the four parts: the short mono code, the name, the description, and the
-turnaround badge. Add `turn--stat` to the badge to make it red; that colour is
-reserved for urgency and should stay rare.
+**Adding a service.** Copy a `<div class="svc">` block in `index.html` and edit
+the three parts: the heading, the description, and the turnaround line. Add
+`svc__turn--stat` to the turnaround to make it red; that colour is reserved for
+urgency and should stay rare. The grid is two columns, so services work best in
+even numbers.
 
-**Adding testimonials later.** Use the same ruled pattern as the credentials
-list rather than cards. Keep quotes to three lines, and always include name,
-role and facility.
+**Adding testimonials later.** Reuse the `svc__grid` two-column block pattern
+rather than adding cards or rules. Keep quotes to three lines, and always
+include name, role and facility.
 
 ---
 
 ## 6. Founder photo and story
 
-The About page has a dashed placeholder where your photo goes. It was left empty
-on purpose: a generated portrait presented as you would misrepresent a real
-person to buyers who are specifically trying to find out who you are.
+The About page currently carries an operations photograph beside the founder
+text. There is no portrait of you, on purpose: a generated one presented as you
+would misrepresent a real person to buyers who are specifically trying to find
+out who you are.
 
 A phone photo is fine and better than a stock image. Stand near a window, plain
 background, no sunglasses, look at the camera. Save it as
-`assets/img/joseph-henry.jpg`, roughly 800x1000, then replace the placeholder:
+`assets/img/joseph-henry.jpg`, roughly 800x1000.
 
-```html
-<div class="photo-slot" data-verify="pending"> ... </div>
-```
-
-with:
+Then swap the `<picture>` block inside `<figure class="founder__figure">` for:
 
 ```html
 <img src="/assets/img/joseph-henry.jpg" width="800" height="1000"
-     style="border-radius:2px"
      alt="Joseph Henry, founder of Bridgeway Medical Logistics.">
 ```
 
@@ -272,17 +272,16 @@ redirects, caching headers and clean URLs only take effect on the real host.
 
 ## 9. Fonts
 
-Self-hosted, no third-party CDN, no external requests, 88KB total.
+One family, self-hosted, no third-party CDN, no external requests, 29KB total.
 
 | Font | Use | Licence |
 |---|---|---|
-| Archivo | Headings, buttons, wordmark | SIL Open Font License 1.1 |
-| Atkinson Hyperlegible | Body text | SIL Open Font License 1.1 |
-| Azeret Mono | Phone numbers, codes, timestamps | SIL Open Font License 1.1 |
+| Libre Franklin | Everything. Weights 400/600/900 from one variable file. | SIL Open Font License 1.1 |
 
-All three permit self-hosting and commercial use. Atkinson Hyperlegible was
-drawn by the Braille Institute specifically for legibility, which is a
-deliberate choice for readers scanning compliance details.
+Franklin Gothic is the American institutional and public-signage lineage, which
+is the register this brand borrows authority from. Hierarchy comes from weight
+contrast (400 body against 900 display) rather than a second typeface, and
+numbers use the family's tabular figures instead of a monospace face.
 
 ---
 

@@ -106,7 +106,7 @@
   --container: 72rem;   /* 1152 */
   --half:      36rem;
 
-  --z-base: 0; --z-raised: 10; --z-sticky: 20; --z-nav: 30; --z-overlay: 40;
+  --z-nav: 30; --z-overlay: 40;   /* only two layers exist on this site */
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 
   color-scheme: light;
@@ -171,6 +171,7 @@ figure { margin: 0; }
   margin-inline: auto; padding-inline: var(--gutter);
 }
 .section { padding-block: var(--section-y); }
+.section--band { background: var(--band); }
 
 /* 05 · Type ============================================================== */
 
@@ -246,7 +247,14 @@ a:hover { color: var(--bond-800); }
 
 /* 07 · Header ============================================================ */
 
+/* Sticky from 48rem up, where the header is a single 72px row. Below that it
+   is two rows and pinning it would eat too much of a phone viewport. Keeping
+   the dispatch number permanently reachable is the point: it is the
+   conversion, and a buyer should never have to scroll back up for it. */
 .site-head { border-bottom: 1px solid var(--rule); background: var(--paper); }
+@media (min-width: 48rem) {
+  .site-head { position: sticky; top: 0; z-index: var(--z-nav); }
+}
 .site-head__inner {
   display: flex; flex-wrap: wrap; align-items: center;
   column-gap: var(--r); padding-block: var(--r-q);
@@ -491,3 +499,7 @@ a:hover { color: var(--bond-800); }
    legend gives the asterisk meaning for everyone else. */
 .req { color: #FFC9C6; font-weight: 700; }
 .form__req { margin: 0; }
+
+/* Small utilities, so markup carries no inline style attributes. */
+.mt-2 { margin-top: var(--r-2); }
+.site-foot__legal--bare { margin-top: 0; border-top: 0; padding-top: 0; }
