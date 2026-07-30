@@ -5,27 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>About | Bridgeway Medical Logistics</title>
-<meta name="description" content="Bridgeway Medical Logistics is a medical courier founded by Joseph Henry, serving labs, clinics, hospital systems and pharmacies across New York City and northern New Jersey. Driver standards, training and insurance.">
+<meta name="description" content="Bridgeway Medical Logistics is a medical courier founded by Joseph Henry, serving labs, clinics, hospital systems and pharmacies across New York City and northern New Jersey. Chain of custody, driver standards, training and insurance.">
 <link rel="canonical" href="https://REPLACE-WITH-YOUR-DOMAIN.com/about.html">
 
 <!-- ==========================================================================
      UNWRITTEN CONTENT ON THIS PAGE
 
-     The founder section needs Joseph's actual background. Everything that is
-     still a placeholder is tagged data-verify="pending". Find them with:
+     The founder section needs Joseph's actual background. Placeholders are
+     tagged data-verify="pending". Find them with:
 
          grep -rn 'data-verify' *.html
 
-     This page is the highest-leverage page on the site. A practice manager
+     This is the highest-leverage page on the site. A practice manager
      choosing between two couriers picks the one whose founder clearly
      understands why a specimen has a stability window. Generic founder copy
      wastes that.
+
+     FOUNDER PHOTO: replace the <img> in the founder section with a real
+     photograph of Joseph when you have one. See README section 6. A phone
+     photo near a window beats stock. Until then the section carries an
+     operations photograph rather than an empty placeholder box.
      ========================================================================== -->
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Bridgeway Medical Logistics">
 <meta property="og:title" content="About | Bridgeway Medical Logistics">
-<meta property="og:description" content="Who runs Bridgeway, how couriers are vetted and trained, and what is on file for your vendor packet.">
+<meta property="og:description" content="Who runs Bridgeway, how a run is documented end to end, and what stays on file for your vendor packet.">
 <meta property="og:url" content="https://REPLACE-WITH-YOUR-DOMAIN.com/about.html">
 <meta property="og:image" content="https://REPLACE-WITH-YOUR-DOMAIN.com/assets/img/og-cover.jpg">
 <meta property="og:image:width" content="1200">
@@ -36,8 +41,7 @@
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <meta name="theme-color" content="#0E3A2C">
 
-<link rel="preload" href="/assets/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/atkinson-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/librefranklin-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
 </head>
 <body>
@@ -46,44 +50,31 @@
 
 <header class="site-head">
   <div class="wrap site-head__inner">
-    <a class="brand" href="/">
-      <span><span class="brand__mark">Bridgeway</span> Medical</span>
-      <span class="brand__sub">Logistics</span>
-    </a>
-    <a class="nav__tel" href="tel:+15165541252"
-       aria-label="Call dispatch at (516) 554-1252">
-      <span class="nav__tel-label">Dispatch</span>(516) 554-1252
-    </a>
+    <a class="brand" href="/"><em>Bridgeway</em>&nbsp;Medical Logistics</a>
+    <a class="headtel" href="tel:+15165541252" aria-label="Call dispatch at (516) 554-1252">(516) 554-1252</a>
     <nav class="nav" aria-label="Main">
-      <a class="nav__link" href="/#services">Services</a>
-      <a class="nav__link" href="/#coverage">Coverage</a>
-      <a class="nav__link" href="/about.html" aria-current="page">About</a>
-</nav>
+      <a href="/#services">Services</a>
+      <a href="/#coverage">Coverage</a>
+      <a href="/about.html" aria-current="page">About</a>
+    </nav>
   </div>
 </header>
 
 <main id="main">
 
-  <!-- Page head ========================================================= -->
   <section class="page-head">
     <div class="wrap">
-      <h1>Who is carrying it.</h1>
+      <h1 class="display">Who is carrying it.</h1>
       <p class="lead">
-        You are handing a stranger something that cannot be replaced. It is
-        fair to ask who that is.
+        You are handing a stranger something that cannot be replaced. It is fair
+        to ask who that is.
       </p>
     </div>
   </section>
 
-  <!-- Founder =========================================================== -->
+  <!-- Founder ============================================================ -->
   <section class="section" aria-labelledby="founder-h">
-    <div class="wrap founder__grid">
-
-      <div class="photo-slot" data-verify="pending">
-        <span class="photo-slot__title">Photograph of Joseph</span>
-        <p>Replace this block with a real photo. See the README, "Founder photo".</p>
-      </div>
-
+    <div class="wrap founder">
       <div class="founder__prose">
         <h2 id="founder-h">Joseph Henry, founder</h2>
 
@@ -96,102 +87,120 @@
 
         <p data-verify="pending">
           REPLACE THIS PARAGRAPH. Why you started Bridgeway. The most
-          persuasive version of this is one specific thing you watched go
-          wrong at a previous job and decided to run differently.
+          persuasive version is one specific thing you watched go wrong at a
+          previous job and decided to run differently.
         </p>
 
         <p>
           Bridgeway exists because medical freight is not parcel freight. A
-          general courier optimises for stops per hour, which is the correct
-          way to move packages and the wrong way to move a specimen with a
-          stability window. Consolidating a cooler onto a multi-stop van adds
-          hours, hand-offs and an unrecorded gap in the custody trail.
+          general courier optimises for stops per hour, which is the right way
+          to move packages and the wrong way to move a specimen with a stability
+          window. Consolidating a cooler onto a multi-stop van adds hours,
+          hand-offs, and an unrecorded gap in the custody trail.
         </p>
 
         <p>
-          So the model here is narrow on purpose. One courier owns a run start
-          to finish. Nothing is consolidated with unrelated freight. The
-          manifest closes with a signature and a timestamp, and you can have a
-          copy the same day. That is the whole product.
+          So the model is narrow on purpose. One courier owns a run start to
+          finish. Nothing rides with unrelated freight. The manifest closes with
+          a signature and a timestamp, and you can have a copy the same day.
+          That is the whole product.
         </p>
+      </div>
+
+      <figure class="founder__figure">
+        <picture>
+          <source type="image/webp" srcset="/assets/img/custody-band.webp">
+          <img src="/assets/img/custody-band.jpg" width="868" height="500" loading="lazy"
+               alt="A chain-of-custody form on a clipboard resting on the lid of a sealed specimen transport cooler.">
+        </picture>
+        <figcaption>The manifest travels with the container, not separately.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Chain of custody. A real four-step sequence. ======================= -->
+  <section class="section on-dark" aria-labelledby="cus-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="cus-h">How a run is documented</h2>
+        <p class="lead muted">The same four points on every job, whether it is a STAT run or a Tuesday route.</p>
+      </div>
+
+      <div class="svc__grid">
+        <div class="svc">
+          <h3>Pickup</h3>
+          <p>Timestamped at the collection point. The container is sealed and the seal number is written to the manifest before the vehicle moves.</p>
+        </div>
+        <div class="svc">
+          <h3>Transit</h3>
+          <p>One courier, start to finish. No hand-offs, no shared load, no warehouse stop where a cooler waits for a second van.</p>
+        </div>
+        <div class="svc">
+          <h3>Delivery</h3>
+          <p>Signature captured at the receiving department and timestamped against the pickup, so elapsed time is on the record rather than estimated later.</p>
+        </div>
+        <div class="svc">
+          <h3>Record</h3>
+          <p>The closed manifest is retained and sent to you on request, same day. If an inspector asks what happened to a specimen, there is an answer.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Driver standards ================================================== -->
-  <section class="section section--band" aria-labelledby="std-h">
+  <!-- Driver standards ==================================================== -->
+  <section class="section" aria-labelledby="std-h">
     <div class="wrap">
       <div class="section-head">
         <h2 id="std-h">Driver standards</h2>
-        <p>
+        <p class="lead muted">
           What every courier clears before they carry anything, and what stays
           on file for your vendor packet.
         </p>
       </div>
 
-      <ol class="standards">
-        <li class="standards__item" data-verify="pending">
-          <span class="standards__num">01</span>
-          <div class="standards__body">
-            <h3>Criminal background check and driving record</h3>
-            <p>Run before a courier is assigned a first pickup, not after. Motor vehicle records are reviewed for moving violations and licence status, and re-checked annually.</p>
-          </div>
-        </li>
-        <li class="standards__item" data-verify="pending">
-          <span class="standards__num">02</span>
-          <div class="standards__body">
-            <h3>HIPAA training, with a certificate on file</h3>
-            <p>Covering protected health information in transit: what may be discussed, what may not be photographed, and how a document case is handled when a vehicle is left. Repeated annually. Certificates go to your compliance file on request.</p>
-          </div>
-        </li>
-        <li class="standards__item" data-verify="pending">
-          <span class="standards__num">03</span>
-          <div class="standards__body">
-            <h3>Bloodborne pathogen and spill handling</h3>
-            <p>Containment and reporting procedure for a leaking or damaged container, including what gets sealed, who gets called and in what order.</p>
-          </div>
-        </li>
-        <li class="standards__item" data-verify="pending">
-          <span class="standards__num">04</span>
-          <div class="standards__body">
-            <h3>Cold-chain handling</h3>
-            <p>Correct container for each temperature range, how long a validated cooler holds under real conditions, and what to do when a reading drifts out of range mid-run.</p>
-          </div>
-        </li>
-        <li class="standards__item" data-verify="pending">
-          <span class="standards__num">05</span>
-          <div class="standards__body">
-            <h3>Employees, not subcontractors</h3>
-            <p>No gig platform drivers and no brokered runs. The person who arrives at your facility works for Bridgeway and has cleared everything above.</p>
-          </div>
-        </li>
-        <li class="standards__item" data-verify="pending">
-          <span class="standards__num">06</span>
-          <div class="standards__body">
-            <h3>Insurance certificate issued to you</h3>
-            <p>Commercial auto, general liability and cargo coverage. We issue a certificate of insurance naming your facility, and send a renewal copy before it lapses without waiting to be asked.</p>
-          </div>
-        </li>
-      </ol>
+      <div class="std__grid">
+        <div class="std" data-verify="pending">
+          <h3>Background check and driving record</h3>
+          <p>Run before a courier is assigned a first pickup, not after. Motor vehicle records are reviewed for moving violations and licence status, then re-checked annually.</p>
+        </div>
+        <div class="std" data-verify="pending">
+          <h3>HIPAA training, certificate on file</h3>
+          <p>What may be discussed, what may not be photographed, and how a document case is handled when a vehicle is left unattended. Repeated annually, certificates available to your compliance file.</p>
+        </div>
+        <div class="std" data-verify="pending">
+          <h3>Bloodborne pathogen and spill handling</h3>
+          <p>Containment and reporting for a leaking or damaged container: what gets sealed, who gets called, and in what order.</p>
+        </div>
+        <div class="std" data-verify="pending">
+          <h3>Cold-chain handling</h3>
+          <p>The correct container for each temperature range, how long a validated cooler actually holds under real conditions, and what to do when a reading drifts out of range mid-run.</p>
+        </div>
+        <div class="std" data-verify="pending">
+          <h3>Employees, not subcontractors</h3>
+          <p>No gig platform drivers and no brokered runs. The person who arrives at your facility works for Bridgeway and has cleared everything above.</p>
+        </div>
+        <div class="std" data-verify="pending">
+          <h3>Insurance certificate issued to you</h3>
+          <p>Commercial auto, general liability and cargo coverage. We name your facility on the certificate and send a renewal copy before it lapses, without being asked.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Closing CTA ======================================================= -->
-  <section class="section quote on-bond closing" aria-labelledby="close-h">
-    <div class="wrap">
-     <div class="closing__inner">
+  <!-- Closing =========================================================== -->
+  <section class="section on-dark" aria-labelledby="close-h">
+    <div class="wrap closing">
       <h2 id="close-h">Ask the hard questions on the phone.</h2>
-      <p class="lead">
+      <p class="lead muted">
         Insurance limits, training records, how a missed pickup gets handled.
         Call and ask. If the answers work for your compliance file, we can talk
         about a route.
       </p>
-      <a class="quote__dispatch" href="tel:+15165541252">(516) 554-1252</a>
-      <p class="quote__hours" data-verify="pending">Dispatch line, seven days a week.</p>
-      <div class="btn-row" style="margin-top: var(--sp-6)">
+      <a class="quote__tel" href="tel:+15165541252">(516) 554-1252</a>
+      <p class="small muted" data-verify="pending">Dispatch line, seven days a week.</p>
+      <div class="btn-row" style="margin-top: var(--r-2)">
         <a class="btn btn--ghost" href="/#quote">Request a quote</a>
       </div>
-     </div>
     </div>
   </section>
 
@@ -207,7 +216,7 @@
       <div>
         <h2>Dispatch</h2>
         <ul>
-          <li><a class="mono" href="tel:+15165541252">(516) 554-1252</a></li>
+          <li><a class="nums" href="tel:+15165541252">(516) 554-1252</a></li>
           <li><a href="mailto:josephhenry@gmail.com">josephhenry@gmail.com</a></li>
         </ul>
       </div>
@@ -223,7 +232,7 @@
     </div>
     <div class="site-foot__legal">
       <p>&copy; <span id="year">2026</span> Bridgeway Medical Logistics</p>
-      <p>New York City &middot; Northern New Jersey</p>
+      <p>New York City and northern New Jersey</p>
     </div>
   </div>
 </footer>

@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Request received | Bridgeway Medical Logistics</title>
-<meta name="description" content="Your quote request has been received by Bridgeway Medical Logistics.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#0E3A2C">
+<link rel="preload" href="/assets/fonts/librefranklin-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
 </head>
 <body>
@@ -16,37 +16,28 @@
 
 <header class="site-head">
   <div class="wrap site-head__inner">
-    <a class="brand" href="/">
-      <span><span class="brand__mark">Bridgeway</span> Medical</span>
-      <span class="brand__sub">Logistics</span>
-    </a>
-    <a class="nav__tel" href="tel:+15165541252"
-       aria-label="Call dispatch at (516) 554-1252">
-      <span class="nav__tel-label">Dispatch</span>(516) 554-1252
-    </a>
+    <a class="brand" href="/"><em>Bridgeway</em>&nbsp;Medical Logistics</a>
+    <a class="headtel" href="tel:+15165541252" aria-label="Call dispatch at (516) 554-1252">(516) 554-1252</a>
     <nav class="nav" aria-label="Main">
-      <a class="nav__link" href="/#services">Services</a>
-      <a class="nav__link" href="/#coverage">Coverage</a>
-      <a class="nav__link" href="/about.html">About</a>
-</nav>
+      <a href="/#services">Services</a>
+      <a href="/#coverage">Coverage</a>
+      <a href="/about.html">About</a>
+    </nav>
   </div>
 </header>
 
 <main id="main">
   <section class="section">
     <div class="wrap">
-     <div class="closing__inner">
-      <h1>Request received.</h1>
-      <p class="lead">
-        Joseph will follow up shortly. If a specimen is waiting right now, do
-        not wait on email.
-      </p>
-      <div class="btn-row" style="margin-top: var(--sp-6)">
-        <a class="btn btn--call" href="tel:+15165541252"
-           aria-label="Call dispatch at (516) 554-1252">(516) 554-1252</a>
-        <a class="btn btn--ghost" href="/">Back to the site</a>
+      <div class="closing">
+        <h1 class="display">Request received.</h1>
+        <p class="lead muted">Joseph will follow up shortly. If a specimen is waiting right now, do not wait on email.</p>
+        <div class="btn-row" style="margin-top: var(--r-2)">
+          <a class="btn btn--call" href="tel:+15165541252"
+             aria-label="Call dispatch at (516) 554-1252">(516) 554-1252</a>
+          <a class="btn btn--ghost" href="/">Back to the site</a>
+        </div>
       </div>
-     </div>
     </div>
   </section>
 </main>
@@ -55,7 +46,7 @@
   <div class="wrap">
     <div class="site-foot__legal" style="margin-top:0;border-top:0;padding-top:0">
       <p>&copy; <span id="year">2026</span> Bridgeway Medical Logistics</p>
-      <p>New York City &middot; Northern New Jersey</p>
+      <p>New York City and northern New Jersey</p>
     </div>
   </div>
 </footer>
