@@ -108,7 +108,12 @@
   --half:      36rem;
 
   --z-nav: 30; --z-overlay: 40;   /* only two layers exist on this site */
-  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Curves cited in review-animations/STANDARDS.md. Built-in CSS easings are
+     too weak to read as intentional. Hover and colour changes use plain
+     `ease` per the decision order; entering elements use the strong ease-out. */
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease: var(--ease-out);
 
   color-scheme: light;
 }
@@ -224,20 +229,29 @@ a:hover { color: var(--bond-800); }
   font-family: inherit; font-size: var(--t-body); font-weight: 700;
   letter-spacing: -0.005em; text-decoration: none; cursor: pointer;
   white-space: nowrap;
-  transition: background-color 170ms var(--ease), border-color 170ms var(--ease), color 170ms var(--ease);
+  transition: background-color 170ms ease, border-color 170ms ease, color 170ms ease,
+              transform 160ms var(--ease-out);
 }
-.btn:active { transform: translateY(1px); }
+/* scale, not a 1px nudge: the standard press feedback, and it scales the
+   label with it so the whole control reads as pressed. */
+.btn:active { transform: scale(0.97); }
 
 .btn--call {
   background: var(--seal-red); border-color: var(--seal-red); color: #fff;
   font-weight: 700; font-variant-numeric: tabular-nums;
 }
-.btn--call:hover { background: var(--seal-red-dark); border-color: var(--seal-red-dark); color: #fff; }
+@media (hover: hover) and (pointer: fine) {
+  .btn--call:hover { background: var(--seal-red-dark); border-color: var(--seal-red-dark); color: #fff; }
+}
 
 .btn--ghost { background: transparent; border-color: var(--ink); color: var(--ink); }
-.btn--ghost:hover { background: var(--ink); color: #fff; }
+@media (hover: hover) and (pointer: fine) {
+  .btn--ghost:hover { background: var(--ink); color: #fff; }
+}
 .on-dark .btn--ghost { border-color: #fff; color: #fff; }
-.on-dark .btn--ghost:hover { background: #fff; color: var(--bond-800); }
+@media (hover: hover) and (pointer: fine) {
+  .on-dark .btn--ghost:hover { background: #fff; color: var(--bond-800); }
+}
 
 .btn-row { display: flex; flex-wrap: wrap; gap: var(--r-h) var(--r); align-items: center; }
 /* Stacked buttons of different widths read as untidy on a phone. Full width
@@ -441,7 +455,18 @@ a:hover { color: var(--bond-800); }
   border: 2px solid var(--on-bond-rule); border-radius: 2px;
   font-size: var(--t-body);
 }
-.form__status[hidden] { display: none; }
+/* Appearing with no transition reads as broken. This is state indication on
+   an occasional event, so it earns a standard-length entry. allow-discrete
+   lets it animate out of display:none; browsers without it just snap. */
+.form__status {
+  opacity: 1; transform: none;
+  transition: opacity 220ms ease, transform 220ms var(--ease-out),
+              display 220ms allow-discrete;
+}
+.form__status[hidden] { display: none; opacity: 0; transform: translateY(-0.25rem); }
+@starting-style {
+  .form__status:not([hidden]) { opacity: 0; transform: translateY(-0.25rem); }
+}
 .form__status--ok  { border-color: #A9C4B8; background: rgba(255,255,255,0.08); }
 .form__status--err { border-color: #FFC9C6; background: rgba(176,34,29,0.24); color: #FFE3E1; }
 
@@ -494,17 +519,29 @@ a:hover { color: var(--bond-800); }
    added only when it is welcome, so a headless renderer or a background tab
    never ships a blank hero. */
 
-@media (prefers-reduced-motion: no-preference) {
-  @keyframes bw-rise { from { opacity: 0; transform: translateY(0.625rem); } to { opacity: 1; transform: none; } }
-  @keyframes bw-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes bw-rise { from { opacity: 0; transform: translateY(0.625rem); } to { opacity: 1; transform: none; } }
+@keyframes bw-fade { from { opacity: 0; } to { opacity: 1; } }
 
+@media (prefers-reduced-motion: no-preference) {
+  /* Stagger sits in the 30-80ms band. The previous 110ms and 90ms gaps read
+     as slow. Duration is 480ms, not 620: this brand is precise, and the
+     cohesion rule is to match motion to the mood. */
   .hero .display,
   .hero__lead,
-  .hero .btn-row { animation: bw-rise 620ms var(--ease) both; }
-  .hero .display  { animation-delay: 60ms; }
-  .hero__lead     { animation-delay: 170ms; }
-  .hero .btn-row  { animation-delay: 260ms; }
-  .hero__media    { animation: bw-fade 800ms var(--ease) both; }
+  .hero .btn-row { animation: bw-rise 480ms var(--ease-out) both; }
+  .hero .display  { animation-delay: 40ms; }
+  .hero__lead     { animation-delay: 110ms; }
+  .hero .btn-row  { animation-delay: 180ms; }
+  .hero__media    { animation: bw-fade 480ms var(--ease-out) 40ms both; }
+}
+
+/* Reduced motion means fewer and gentler animations, not zero. The opacity
+   fade aids comprehension and stays; only the positional movement goes. */
+@media (prefers-reduced-motion: reduce) {
+  .hero .display,
+  .hero__lead,
+  .hero .btn-row,
+  .hero__media { animation: bw-fade 260ms ease both; }
 }
 
 /* 16 · Print ============================================================= */
