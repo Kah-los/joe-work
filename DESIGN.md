@@ -28,8 +28,28 @@ not the clinic world.
 
 ## Colour
 
-Committed strategy: green carries the hero-adjacent bands and the quote section
-outright; white carries the content. Ratios were computed, not estimated.
+**Navy + medical blue** (pivoted from the original bond-green at the client's
+request, to match supplied photography and their brief). Navy carries the dark
+bands, medical blue the buttons and links, emerald is a success accent, and
+seal red is held back for STAT/urgency and errors. Every pair was recomputed
+and verified before applying.
+
+| Token | Hex | Role |
+|---|---|---|
+| `--bond-800` | `#0B3C5D` | navy, dark bands + hero scrim (12:1 w/ white) |
+| `--bond-900` | `#072A44` | deepest navy, footer |
+| `--blue` | `#0A74DA` | primary buttons (white on it 4.64:1) |
+| `--blue-dark` / `--bond-600` | `#0A63BC` | links (5.4:1 on band, 6:1 on white) |
+| `--emerald` | `#1F7A4D` | success: 'Yes', in-zone |
+| `--seal-red` | `#B0221D` | STAT tags, errors, focus ring on light |
+| `--band` | `#F1F5FA` | section band |
+| light blue `#7FB4E8` | | eyebrow/accent on navy |
+
+The original green rationale ("bonded instrument", anti-healthcare-blue) is
+kept below for the record, but the client chose the conventional medical
+palette because their photography is navy/blue-cross and coherence won.
+
+### Original green strategy (superseded)
 
 | Token | Hex | Role | Contrast |
 |---|---|---|---|
@@ -116,22 +136,25 @@ is most of why the page read as machine-made.
 Sections are now separated by colour, whitespace and composition. No rules
 between rows anywhere, no pill badges, no eyebrows at all.
 
-1. **Hero.** Asymmetric, and the photograph bleeds to the right viewport edge
-   rather than sitting in a tidy half. The copy column carries its own padding
-   via `max(gutter, 50vw - half + gutter)` so it still aligns with every
-   section below while the image escapes the container.
-2. **Credentials.** Four columns on the green, held apart by space alone.
-   Headings reserve two lines so the paragraphs share a baseline.
-3. **Services.** A two-by-two grid of blocks. Two dimensions rather than a
-   one-dimensional list, separated by space rather than hairlines. Turnaround
-   is bold text, not a bordered pill.
-4. **Coverage.** A classic directory: region label over a hanging-indent list
-   of zones, each with its areas as a run of prose, set in two columns. This is
-   how a gazetteer or a reference book's place index sets, and it fits the
-   content far better than the nine-row bordered table it replaced.
-5. **Quote.** Form split on the green. Labels are sentence case, not tracked
-   small caps.
-6. **Footer.**
+1. **Hero.** Full-bleed banner: the lab-delivery photograph fills the section
+   behind a navy gradient scrim, headline and buttons overlaid in white. The
+   scrim is near-opaque on the left so legibility never depends on the photo.
+2. **Credentials** ("What you are vetting"). Four columns on navy.
+3. **Services.** A three-column card grid, icon badge per card, coloured
+   turnaround line.
+4. **Why choose us.** Equipment photo left, four differentiators right.
+5. **How it works.** Four-step numbered timeline with connector line.
+6. **Coverage.** Real Census-derived SVG map + zone directory + live ZIP check.
+7. **Handling classes.** Temperature table beside the cold-chain cooler photo.
+8. **Compliance.** Four regulation cards on navy with icon badges.
+9. **Vendor packet.** Two-column document checklist.
+10. **FAQ.** Native `<details>` accordion, six questions.
+11. **Quote.** Full-width header band + form.
+12. **Footer.**
+
+Icons are inlined Tabler (MIT) as one sprite. Photography is the client's
+supplied imagery (navy/blue-cross), used as representative; the vans read
+"Medical Courier Services" rather than "Bridgeway" until real photos exist.
 
 Container `72rem`, gutter `clamp(1.25rem, 4vw, 2.5rem)`, section padding
 `clamp(3.5rem, 7vw, 7rem)`. All vertical space is a multiple of the `1.75rem`

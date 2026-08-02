@@ -46,7 +46,7 @@
 
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
-<meta name="theme-color" content="#0E3A2C">
+<meta name="theme-color" content="#0B3C5D">
 
 <link rel="preload" href="/assets/fonts/librefranklin-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
@@ -67,6 +67,7 @@
     <nav class="nav" aria-label="Main">
       <a href="#services">Services</a>
       <a href="#coverage">Coverage</a>
+      <a href="#how">Process</a>
       <a href="#handling">Handling</a>
       <a href="#compliance">Compliance</a>
       <a href="/about.html">About</a>
@@ -76,43 +77,36 @@
 
 <main id="main">
 
-  <!-- Hero =============================================================== -->
-  <section class="hero">
-    <div class="hero__grid">
+  <!-- Hero ===============================================================
+       Full-bleed banner. The photograph is a real <img> behind a navy
+       gradient scrim; white text sits on the dark left side. Content is in
+       normal flow so it renders with or without the image, and the scrim
+       guarantees contrast even where the photo is light (the white van).
+       ==================================================================== -->
+  <section class="hero" aria-labelledby="hero-h">
+    <picture class="hero__bg">
+      <source type="image/webp" srcset="/assets/img/lab-delivery-900.webp 900w, /assets/img/lab-delivery.webp 1536w"
+              sizes="100vw">
+      <img src="/assets/img/lab-delivery.jpg"
+           srcset="/assets/img/lab-delivery-900.jpg 900w, /assets/img/lab-delivery.jpg 1536w"
+           sizes="100vw" width="1536" height="1024" fetchpriority="high"
+           alt="A Bridgeway courier in gloves carrying a sealed specimen cooler toward a clinical laboratory receiving entrance, a marked delivery van at the kerb.">
+    </picture>
+    <div class="hero__inner wrap">
       <div class="hero__copy">
-        <h1 class="display">Every run holds up to an audit.</h1>
+        <p class="eyebrow eyebrow--on-photo"><svg class="i" aria-hidden="true"><use href="#i-shield-check"></use></svg>Medical courier &middot; NYC and New Jersey</p>
+        <h1 class="display" id="hero-h">Every run holds up to an audit.</h1>
         <p class="lead hero__lead">
-          Dedicated point-to-point medical transport for laboratories, clinics,
-          hospital systems and pharmacies. One courier per run, sealed at pickup,
-          signed and timestamped at delivery.
+          Dedicated point-to-point transport for laboratories, clinics, hospital
+          systems and pharmacies. One courier per run, sealed at pickup, signed
+          and timestamped at delivery.
         </p>
         <div class="btn-row">
           <a class="btn btn--call" href="tel:+15165541252"
-             aria-label="Call dispatch at (516) 554-1252">(516) 554-1252</a>
-          <a class="btn btn--ghost" href="#quote">Request a quote</a>
+             aria-label="Call dispatch at (516) 554-1252"><svg class="i" aria-hidden="true"><use href="#i-phone"></use></svg>(516) 554-1252</a>
+          <a class="btn btn--onphoto" href="#quote">Request a quote</a>
         </div>
-
-        <!-- Factual scope only. No response times, insurance figures or
-             certification numbers: none of those are confirmed. -->
-        <dl class="scope">
-          <div><dt>Coverage</dt><dd>NYC, Nassau, northern NJ</dd></div>
-          <div><dt>Service lines</dt><dd>Six</dd></div>
-          <div><dt>Consolidation</dt><dd>None, ever</dd></div>
-          <div><dt>Custody record</dt><dd>Every run</dd></div>
-        </dl>
       </div>
-
-      <figure class="hero__media">
-        <picture>
-          <source type="image/webp" srcset="/assets/img/hero-seal-640.webp 640w, /assets/img/hero-seal.webp 928w"
-                  sizes="(min-width: 62rem) 41vw, 100vw">
-          <img src="/assets/img/hero-seal.jpg"
-               srcset="/assets/img/hero-seal-640.jpg 640w, /assets/img/hero-seal.jpg 928w"
-               sizes="(min-width: 62rem) 41vw, 100vw"
-               width="928" height="1060" fetchpriority="high"
-               alt="A courier's gloved hands fastening a numbered security seal onto the latch of a sealed specimen transport cooler, a chain-of-custody form on a clipboard resting on the lid.">
-        </picture>
-      </figure>
     </div>
   </section>
 
@@ -188,6 +182,47 @@
     </div>
   </section>
 
+  <!-- Why choose us ==================================================== -->
+  <section class="section section--band" id="why" aria-labelledby="why-h">
+    <div class="wrap why__grid">
+      <figure class="why__fig">
+        <picture>
+          <source type="image/webp" srcset="/assets/img/equipment.webp">
+          <img src="/assets/img/equipment.jpg" width="760" height="507" loading="lazy"
+               alt="A Bridgeway courier wheeling shrink-wrapped medical equipment on a dolly toward a hospital patient care unit entrance, a marked delivery van alongside.">
+        </picture>
+      </figure>
+      <div class="why__body">
+        <p class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-shield-check"></use></svg>Why facilities choose us</p>
+        <h2 id="why-h">Built for medical freight, not parcels</h2>
+        <p class="lead muted">A general courier optimises for stops per hour. That is the wrong instinct for a specimen with a stability window.</p>
+        <ul class="why__list">
+          <li><svg class="i" aria-hidden="true"><use href="#i-route"></use></svg><div><h3>One courier per run</h3><p>No consolidation, no hand-offs, no warehouse stop where a cooler waits for a second van.</p></div></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-thermometer"></use></svg><div><h3>Temperature controlled</h3><p>Validated containers with the reading logged for the run and reported with the manifest.</p></div></li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-clipboard-check"></use></svg><div><h3>Chain of custody</h3><p>Sealed at pickup, signed and timestamped at delivery, the record retained and sent on request.</p></div></li>
+          <li data-verify="pending"><svg class="i" aria-hidden="true"><use href="#i-shield-check"></use></svg><div><h3>Bonded and insured</h3><p>Certificate of insurance issued to your facility, named to your entity, renewed before it lapses.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works ====================================================== -->
+  <section class="section" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-route"></use></svg>How it works</p>
+        <h2 id="how-h">From call to proof of delivery</h2>
+        <p class="lead muted">Four steps on every run, whether it is a STAT dispatch or a standing daily route.</p>
+      </div>
+      <ol class="steps">
+        <li class="step"><span class="step__num">1</span><span class="step__ic badge"><svg class="i" aria-hidden="true"><use href="#i-phone"></use></svg></span><h3>Schedule a pickup</h3><p>Call dispatch or send the two addresses. You get a window quoted for that specific run.</p></li>
+        <li class="step"><span class="step__num">2</span><span class="step__ic badge"><svg class="i" aria-hidden="true"><use href="#i-truck-delivery"></use></svg></span><h3>Courier dispatched</h3><p>One named courier is assigned. Nothing else rides with your specimen.</p></li>
+        <li class="step"><span class="step__num">3</span><span class="step__ic badge"><svg class="i" aria-hidden="true"><use href="#i-shield-check"></use></svg></span><h3>Secure transport</h3><p>Sealed and logged at pickup, held at temperature, driven direct with no route deviation.</p></li>
+        <li class="step"><span class="step__num">4</span><span class="step__ic badge"><svg class="i" aria-hidden="true"><use href="#i-file-check"></use></svg></span><h3>Proof of delivery</h3><p>Signed and timestamped at the receiving department. The closed manifest is yours on request.</p></li>
+      </ol>
+    </div>
+  </section>
+
   <!-- Coverage ==========================================================
        The map is real geography, not a schematic: county boundaries come from
        US Census cartographic data (500k), projected to Web Mercator and
@@ -241,22 +276,30 @@
     </div>
   </section>
 
-  <!-- Trust bar ========================================================= -->
-  <section class="trust">
-    <div class="wrap trust__grid">
-      <div class="trust__item"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-clock-hour-4"></use></svg></span><div><h3>Time-definite delivery</h3><p>Windows quoted per address pair, then held.</p></div></div><div class="trust__item"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-shield-check"></use></svg></span><div><h3>Compliance on file</h3><p>Certificates and agreements sent to your vendor packet.</p></div></div><div class="trust__item"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-thermometer"></use></svg></span><div><h3>Temperature controlled</h3><p>Logged for the run and reported with the manifest.</p></div></div><div class="trust__item"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-headset"></use></svg></span><div><h3>A person answers</h3><p>Dispatch is a human who can move a vehicle.</p></div></div>
-    </div>
-  </section>
-
   <!-- Handling classes ================================================== -->
   <section class="section" id="handling" aria-labelledby="hand-h">
     <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-thermometer"></use></svg>Temperature controlled transport</p><h2 id="hand-h">Handling classes</h2>
-        <p class="lead muted">
-          The four temperature ranges medical transport runs in, and what each is
-          for. These are the standard industry definitions, not our own.
-        </p>
+      <div class="hand__intro">
+        <div class="section-head">
+          <p class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-thermometer"></use></svg>Temperature controlled transport</p><h2 id="hand-h">Handling classes</h2>
+          <p class="lead muted">
+            The four temperature ranges medical transport runs in, and what each is
+            for. These are the standard industry definitions, not our own.
+          </p>
+          <p class="muted">
+            Refrigerated specimens travel in a validated cooler with a monitored
+            reading, so a temperature excursion is on the record rather than
+            discovered at the receiving lab.
+          </p>
+        </div>
+        <figure class="hand__fig">
+          <picture>
+            <source type="image/webp" srcset="/assets/img/coldchain.webp">
+            <img src="/assets/img/coldchain.jpg" width="760" height="507" loading="lazy"
+                 alt="An open transport cooler on a laboratory bench holding colour-capped specimen tubes and a cold pack, with a digital readout showing 3.2 degrees Celsius against a monitored 2 to 8 degree range.">
+          </picture>
+          <figcaption>Representative cooler. Monitored 2 to 8&nbsp;&deg;C, logged for the run.</figcaption>
+        </figure>
       </div>
 
       <div class="tscroll" tabindex="0" role="region" aria-label="Temperature class table">
@@ -376,6 +419,43 @@
         If your facility needs something not on this list, tell dispatch and we
         will get it to you rather than saying it is not standard.
       </p>
+    </div>
+  </section>
+
+  <!-- FAQ =============================================================== -->
+  <section class="section section--band" id="faq" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-file-check"></use></svg>Common questions</p>
+        <h2 id="faq-h">What labs ask before they switch</h2>
+        <p class="lead muted">If your question is not here, call dispatch and ask.</p>
+      </div>
+      <div class="faq">
+        <details class="faq__item">
+          <summary>How fast can you pick up a STAT run?<span class="faq__mark" aria-hidden="true"><svg class="i" aria-hidden="true"><use href="#i-circle-check"></use></svg></span></summary>
+          <div class="faq__a"><p>Response windows are quoted per address pair rather than published as one number, because a Midtown to Bergen County run is not the same job as a run between two Brooklyn addresses. Call dispatch with both addresses for a window you can hold us to.</p></div>
+        </details>
+        <details class="faq__item" data-verify="pending">
+          <summary>Will you sign our business associate agreement?<span class="faq__mark" aria-hidden="true"><svg class="i" aria-hidden="true"><use href="#i-circle-check"></use></svg></span></summary>
+          <div class="faq__a"><p>Yes. A courier handling protected health information is generally a business associate under HIPAA, so we sign your BAA and train every courier on PHI in transit annually.</p></div>
+        </details>
+        <details class="faq__item" data-verify="pending">
+          <summary>Can you issue a certificate of insurance to our facility?<span class="faq__mark" aria-hidden="true"><svg class="i" aria-hidden="true"><use href="#i-circle-check"></use></svg></span></summary>
+          <div class="faq__a"><p>The certificate of insurance is issued directly to your facility, named to your entity, and a renewal copy is sent before it lapses.</p></div>
+        </details>
+        <details class="faq__item">
+          <summary>Do you handle cross-river runs between the boroughs and New Jersey?<span class="faq__mark" aria-hidden="true"><svg class="i" aria-hidden="true"><use href="#i-circle-check"></use></svg></span></summary>
+          <div class="faq__a"><p>Yes. Cross-Hudson runs depend on crossing conditions, so those windows are quoted per address pair. Coverage spans the five boroughs, Nassau County, and Hudson, Bergen and Essex counties in New Jersey.</p></div>
+        </details>
+        <details class="faq__item" data-verify="pending">
+          <summary>What temperature ranges can you carry?<span class="faq__mark" aria-hidden="true"><svg class="i" aria-hidden="true"><use href="#i-circle-check"></use></svg></span></summary>
+          <div class="faq__a"><p>Ambient and refrigerated 2 to 8 degrees Celsius are standard. Frozen and dry-ice transport are available on confirmation. The reading is logged for the run and reported with the manifest.</p></div>
+        </details>
+        <details class="faq__item">
+          <summary>Do you offer scheduled daily routes as well as on-call runs?<span class="faq__mark" aria-hidden="true"><svg class="i" aria-hidden="true"><use href="#i-circle-check"></use></svg></span></summary>
+          <div class="faq__a"><p>Yes. Recurring pickups run in a fixed daily window on the days you choose, with the same courier on your route wherever possible.</p></div>
+        </details>
+      </div>
     </div>
   </section>
 
@@ -537,7 +617,10 @@
         <ul class="ul--split">
           <li><a href="#services">Services</a></li>
           <li><a href="#coverage">Coverage</a></li>
+          <li><a href="#why">Why us</a></li>
+          <li><a href="#how">How it works</a></li>
           <li><a href="#handling">Handling classes</a></li>
+          <li><a href="#faq">FAQ</a></li>
           <li><a href="#compliance">Compliance</a></li>
           <li><a href="/about.html">About</a></li>
           <li><a href="#quote">Request a quote</a></li>

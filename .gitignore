@@ -12,3 +12,9 @@ Thumbs.db
 *.swp
 .vscode/
 .idea/
+
+# raw supplied source images (kept locally in _src/originals, not deployed)
+/8997c5a*.png
+/e033ea6*.png
+/fb9640*.png
+/Image.png
