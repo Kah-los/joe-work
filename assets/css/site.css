@@ -369,17 +369,13 @@ a:hover { color: var(--bond-800); }
 /* A two-by-two grid of blocks, two dimensions rather than a one-dimensional
    list, and separated by space rather than hairlines. */
 
-.svc__grid { display: grid; gap: var(--r); }
-@media (min-width: 48rem) { .svc__grid { grid-template-columns: repeat(2, 1fr); gap: var(--r-2); } }
+.svc__grid { display: grid; gap: 0.875rem; }
+@media (min-width: 48rem) { .svc__grid { grid-template-columns: repeat(2, 1fr); gap: 0.875rem; } }
 @media (min-width: 68rem) { .svc__grid { grid-template-columns: repeat(3, 1fr); } }
 /* Cell count must match item count: four items in a three-column grid leaves
    an orphan in the second row, which reads as a mistake. */
 @media (min-width: 62rem) { .svc__grid--4 { grid-template-columns: repeat(4, 1fr); } }
 
-.svc h3 { margin-bottom: var(--r-h); max-width: 18ch; }
-.svc p { max-width: 46ch; margin-bottom: var(--r-h); }
-.svc__turn { font-size: var(--t-sm); font-weight: 700; color: var(--ink); }
-.svc__turn--stat { color: var(--seal-red); }
 
 /* 11 · Coverage statement ================================================ */
 /* Full width, no columns and no list furniture. The zone names carry the
@@ -697,29 +693,36 @@ a:hover { color: var(--bond-800); }
 .eyebrow .i { width: 1rem; height: 1rem; }
 .on-dark .eyebrow { color: #7FB4E8; }
 
-/* Service card */
+/* Service card. Compact: the badge, padding and leading are all a step down
+   from the page defaults so six cards do not dominate the page. */
 .svc {
   background: var(--paper);
   border: 1px solid var(--rule);
   border-radius: 4px;
-  padding: var(--r);
+  padding: 0.875rem 1rem;
   display: flex; flex-direction: column;
 }
 .section--band .svc { background: var(--paper); }
-.svc__head { display: flex; align-items: center; gap: var(--r-h); margin-bottom: var(--r-h); }
-.svc__head h3 { margin: 0; }
-.svc p { flex: 1; }
+.svc__head { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem; }
+.svc__head h3 { margin: 0; font-size: 0.9375rem; line-height: 1.25; letter-spacing: -0.015em; max-width: 20ch; }
+.svc__head .badge { width: 1.75rem; height: 1.75rem; }
+.svc__head .badge .i { width: 0.9375rem; height: 0.9375rem; }
+/* Only the description flexes. Previously `.svc p` matched the turnaround
+   line too, so both grew and left dead space under it in equal-height rows. */
+.svc > p { font-size: 0.875rem; line-height: 1.4; margin: 0; max-width: 44ch; }
+.svc > p:not(.svc__turn) { flex: 1; }
 .svc__turn {
-  display: flex; align-items: center; gap: 0.45rem;
-  margin: var(--r-h) 0 0;
-  padding-top: var(--r-h);
+  flex: none;
+  display: flex; align-items: center; gap: 0.4rem;
+  margin: 0.5rem 0 0;
+  padding-top: 0.5rem;
   border-top: 1px solid var(--rule);
-  font-size: var(--t-sm); font-weight: 700; color: var(--bond-600);
+  font-size: 0.8125rem; font-weight: 700; color: var(--bond-600);
 }
+.svc__turn .i { width: 0.875rem; height: 0.875rem; }
 .svc__turn--stat { color: var(--seal-red); }
 .on-dark .svc { background: rgba(255,255,255,0.04); border-color: var(--on-bond-rule); }
 .on-dark .svc__turn { border-top-color: var(--on-bond-rule); color: #7FB4E8; }
-.reg__does .i { margin-top: 0.15em; width: 1.05rem; height: 1.05rem; flex: none; }
 
 /* ==========================================================================
    20 · Coverage map
@@ -861,12 +864,12 @@ a:hover { color: var(--bond-800); }
 .svc__intro .section-head { position: relative; z-index: 1; max-width: 40ch; margin-bottom: 0; }
 .svc__photo { display: none; }
 @media (min-width: 60rem) {
-  .svc__intro { min-height: 13rem; overflow: hidden; }
+  .svc__intro { min-height: 23rem; overflow: hidden; }
   .svc__photo {
     display: block; position: absolute; inset: 0 0 0 auto;
-    width: 46%; z-index: 0; pointer-events: none;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 60%);
-            mask-image: linear-gradient(90deg, transparent, #000 60%);
+    width: 60%; z-index: 0; pointer-events: none;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 42%);
+            mask-image: linear-gradient(90deg, transparent, #000 42%);
     opacity: 0.85;
   }
   .svc__photo picture, .svc__photo img { width: 100%; height: 100%; }
