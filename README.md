@@ -28,7 +28,7 @@ Find them all:
 grep -rn 'data-verify' index.html about.html
 ```
 
-There are 18. (A plain `grep` also matches the two instruction comments in
+There are 17. (A plain `grep` also matches the two instruction comments in
 each `<head>`; those are not claims.) For each one:
 
 - **True?** Delete the `data-verify="pending"` attribute. Nothing else changes.
@@ -44,7 +44,6 @@ each `<head>`; those are not claims.) For each one:
 | Home, Services | Pharmacy and infusion delivery line exists | ☐ |
 | Home, Why choose us | Bonded and insured, certificate issued to the facility | ☐ |
 | Home, Coverage | Every area listed, all nine zones | ☐ |
-| Home, Compliance | Training certificates, COI and written procedures supplied on request | ☐ |
 | Home, FAQ | Will sign a BAA, annual PHI training | ☐ |
 | Home, FAQ | Can issue a certificate of insurance to the facility | ☐ |
 | Home, FAQ | Temperature ranges carried (frozen / dry ice on confirmation) | ☐ |
