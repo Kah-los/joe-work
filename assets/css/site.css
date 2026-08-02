@@ -27,14 +27,13 @@
      06  Buttons + links
      07  Header
      08  Hero
-     09  Credentials band
-     10  Services grid
-     11  Coverage statement
-     12  Quote form
-     13  Footer
-     14  About
-     15  Motion
-     16  Print
+     09  Services grid
+     10  Quote form
+     11  Footer
+     12  About
+     13  Motion
+     14  Print
+     15+ Icons, badges, map, why/how/FAQ, mockup-matched sections
    ========================================================================== */
 
 /* 01 · Font ============================================================== */
@@ -354,11 +353,6 @@ a:hover { color: var(--bond-800); }
   .btn--onphoto:hover { background: #fff; color: var(--bond-800); border-color: #fff; }
 }
 
-/* Scope strip on the photo: light hairline, light text */
-.scope--hero { border-top-color: rgba(255,255,255,0.25); }
-.scope--hero dt { color: #AFC6DA; }
-.scope--hero dd { color: #fff; }
-
 @media (min-width: 40rem) {
   .hero__inner { min-height: clamp(30rem, 60vh, 40rem); display: flex; align-items: center; }
 }
@@ -371,22 +365,6 @@ a:hover { color: var(--bond-800); }
   }
   .hero__bg img { object-position: 62% 50%; }
 }
-
-/* 09 · Credentials band ================================================== */
-/* Four columns held apart by space and a colour change. No rules, no cards,
-   no badges. */
-
-.creds { padding-block: var(--section-y); }
-.creds__head { margin-bottom: var(--r-2); }
-.creds__head h2 { max-width: 26ch; margin-bottom: var(--r-h); }
-.creds__grid { display: grid; gap: var(--r) var(--r-2); }
-@media (min-width: 40rem) { .creds__grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 68rem) { .creds__grid { grid-template-columns: repeat(4, 1fr); gap: var(--r-2) var(--r); } }
-
-/* No reserved second line: at the tighter type scale all four headings fit on
-   one line, and the reservation showed up as a gap under every heading. */
-.cred h3 { font-size: var(--t-h3); margin-bottom: var(--r-q); }
-.cred p { font-size: var(--t-sm); line-height: 1.6; margin: 0; max-width: 34ch; }
 
 /* 10 · Services grid ===================================================== */
 /* A two-by-two grid of blocks, two dimensions rather than a one-dimensional
@@ -597,90 +575,11 @@ a:hover { color: var(--bond-800); }
 /* Small utilities, so markup carries no inline style attributes. */
 .mt-2 { margin-top: var(--r-2); }
 .site-foot__legal--bare { margin-top: 0; border-top: 0; padding-top: 0; }
-
-/* ==========================================================================
-   17 · Dense components
-
-   A real data table is the correct component for genuinely tabular content.
-   That is a different thing from the hairline-ruled fake lists the earlier
-   build used for prose: those had no columns and no header row, they were
-   just decoration. Coverage zones and temperature classes ARE tables.
-   ========================================================================== */
-
-/* Horizontal scroll is contained here so the page body never scrolls
-   sideways on a phone. */
-.tscroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--rule); border-radius: 2px; }
-.tscroll:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
-
-.dtable { width: 100%; border-collapse: collapse; font-size: var(--t-sm); }
-.dtable caption { text-align: left; padding: var(--r-h) var(--r); font-size: var(--t-sm); color: var(--ink-muted); border-bottom: 1px solid var(--rule); }
-.dtable th, .dtable td { padding: var(--r-h) var(--r); text-align: left; vertical-align: top; }
-.dtable thead th {
-  background: var(--band); color: var(--ink);
-  font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.01em;
-  border-bottom: 1px solid var(--rule-strong);
-  white-space: nowrap; position: sticky; top: 0;
-}
-.dtable tbody tr + tr { border-top: 1px solid var(--rule); }
-.dtable tbody th { font-weight: 700; color: var(--ink); white-space: nowrap; }
-.dtable td { color: var(--ink-muted); }
-.dtable .num { font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ink); font-weight: 700; }
-.dtable .pending { color: var(--ink-muted); font-weight: 400; font-style: italic; }
-.tnote { margin-top: var(--r-h); font-size: var(--t-sm); color: var(--ink-muted); max-width: 80ch; }
-
-/* Dense definition grid, for reference material with a short term and a
-   longer explanation. Two columns of content, not a decorative rule per row. */
-.spec { display: grid; gap: var(--r) var(--r-2); margin: 0; }
-@media (min-width: 46rem) { .spec { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 72rem) { .spec--4 { grid-template-columns: repeat(4, 1fr); } }
-.spec__item > h3 { margin-bottom: var(--r-q); }
-.spec__item > p { font-size: var(--t-sm); margin: 0; max-width: 46ch; }
-.spec__meta {
-  display: block; font-size: var(--t-xs); font-weight: 700;
-  font-variant-numeric: tabular-nums; color: var(--bond-600);
-  margin-bottom: var(--r-q);
-}
 .on-dark .spec__meta { color: var(--on-bond-muted); }
-
-/* Regulatory framework. The citation is real and public; what Bridgeway does
-   about it is a separate, tagged claim. */
-.reg { display: grid; gap: var(--r); margin: 0; }
-@media (min-width: 52rem) { .reg { grid-template-columns: repeat(2, 1fr); gap: var(--r) var(--r-2); } }
-.reg__cite {
-  display: block; font-size: var(--t-xs); font-weight: 700;
-  font-variant-numeric: tabular-nums; letter-spacing: 0.01em;
-  color: var(--bond-600); margin-bottom: var(--r-q);
-}
 /* bond-600 is 7.4:1 on white but only 1.71:1 on the dark ground. The
    citations live on dark, so they need the light green. */
 .on-dark .reg__cite { color: #7FB4E8; }   /* 6.6:1 */
 .reg__item h3 { margin-bottom: var(--r-q); }
-.reg__item p { font-size: var(--t-sm); margin: 0 0 var(--r-q); max-width: 52ch; }
-.reg__does { font-size: var(--t-sm); color: var(--ink); font-weight: 600; }
-
-/* Compact two-column prose, for the hero scope strip and short factual runs */
-/* Grid, not wrapping flex: as flex the fourth item dropped to its own row
-   with dead space beside the third. */
-.scope {
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--r-h) var(--r-2);
-  padding-top: var(--r); margin-top: var(--r);
-  border-top: 1px solid var(--rule);
-  font-size: var(--t-sm);
-}
-@media (min-width: 34rem) { .scope { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-.scope dt { font-size: var(--t-xs); font-weight: 700; color: var(--ink-muted); margin-bottom: 0.1rem; }
-.scope dd { margin: 0; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
-
-/* Vendor packet checklist. A list of documents is a list; it gets list
-   semantics and no rules. */
-.packet { display: grid; gap: var(--r-h) var(--r-2); margin: 0; padding: 0; list-style: none; }
-@media (min-width: 46rem) { .packet { grid-template-columns: repeat(2, 1fr); } }
-.packet li { font-size: var(--t-sm); padding-inline-start: 1.15rem; position: relative; color: var(--ink); }
-.packet li::before {
-  content: ''; position: absolute; left: 0; top: 0.55em;
-  width: 0.4rem; height: 0.4rem; background: var(--bond-600);
-}
 .on-dark .packet li { color: var(--on-bond); }
 .on-dark .packet li::before { background: var(--on-bond-muted); }
 
@@ -821,38 +720,7 @@ a:hover { color: var(--bond-800); }
 .svc__turn--stat { color: var(--seal-red); }
 .on-dark .svc { background: rgba(255,255,255,0.04); border-color: var(--on-bond-rule); }
 .on-dark .svc__turn { border-top-color: var(--on-bond-rule); color: #7FB4E8; }
-
-/* Regulation card */
-.reg__item {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--on-bond-rule);
-  border-radius: 4px;
-  padding: var(--r);
-}
-.reg__head { display: flex; align-items: flex-start; gap: var(--r-h); margin-bottom: var(--r-h); }
-.reg__head h3 { margin: 0 0 0.1rem; }
-.reg__does {
-  display: flex; align-items: flex-start; gap: 0.45rem;
-  color: #CFE0F2; font-weight: 600; font-size: var(--t-sm);
-}
 .reg__does .i { margin-top: 0.15em; width: 1.05rem; height: 1.05rem; flex: none; }
-
-/* Trust bar */
-.trust { border-top: 1px solid var(--rule); }
-.trust__grid { display: grid; gap: var(--r); padding-block: var(--r); }
-@media (min-width: 40rem) { .trust__grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 64rem) { .trust__grid { grid-template-columns: repeat(4, 1fr); gap: var(--r-2); } }
-.trust__item { display: flex; align-items: flex-start; gap: var(--r-h); }
-.trust__item h3 { font-size: var(--t-body); margin: 0 0 0.1rem; }
-.trust__item p { font-size: var(--t-sm); color: var(--ink-muted); margin: 0; max-width: 30ch; }
-
-/* Table cells that carry an icon */
-.cell { display: flex; align-items: center; gap: 0.5rem; }
-.cell--ok   { color: var(--emerald); font-weight: 700; }
-.cell--wait { color: var(--ink-muted); font-weight: 600; }
-.dtable thead th { background: var(--bond-800); color: #fff; border-bottom: 0; }
-.dtable .range { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.dtable tbody tr:nth-child(odd) { background: rgba(14,58,44,0.022); }
 
 /* ==========================================================================
    20 · Coverage map
@@ -914,16 +782,7 @@ a:hover { color: var(--bond-800); }
 .zrow { display: flex; align-items: flex-start; gap: var(--r-h); }
 .zrail dt { font-weight: 700; color: var(--ink); letter-spacing: -0.012em; }
 .zrail dd { margin: 0; font-size: var(--t-sm); color: var(--ink-muted); line-height: 1.5; max-width: 40ch; }
-
-/* ==========================================================================
-   21 · Handling intro with photo
-   ========================================================================== */
-.hand__intro { display: grid; gap: var(--r-2); align-items: center; margin-bottom: var(--r-2); }
-@media (min-width: 56rem) { .hand__intro { grid-template-columns: 1fr 1fr; gap: var(--r-3); } }
 .hand__intro .section-head { margin-bottom: 0; }
-.hand__fig { margin: 0; }
-.hand__fig img { width: 100%; border-radius: 4px; border: 1px solid var(--rule); }
-.hand__fig figcaption { margin-top: var(--r-h); font-size: var(--t-xs); color: var(--ink-muted); }
 
 /* ==========================================================================
    22 · Why choose us / How it works / FAQ

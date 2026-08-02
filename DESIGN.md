@@ -139,18 +139,21 @@ between rows anywhere, no pill badges, no eyebrows at all.
 1. **Hero.** Full-bleed banner: the lab-delivery photograph fills the section
    behind a navy gradient scrim, headline and buttons overlaid in white. The
    scrim is near-opaque on the left so legibility never depends on the photo.
-2. **Credentials** ("What you are vetting"). Four columns on navy.
-3. **Services.** A three-column card grid, icon badge per card, coloured
-   turnaround line.
-4. **Why choose us.** Equipment photo left, four differentiators right.
-5. **How it works.** Four-step numbered timeline with connector line.
-6. **Coverage.** Real Census-derived SVG map + zone directory + live ZIP check.
-7. **Handling classes.** Temperature table beside the cold-chain cooler photo.
-8. **Compliance.** Four regulation cards on navy with icon badges.
-9. **Vendor packet.** Two-column document checklist.
-10. **FAQ.** Native `<details>` accordion, six questions.
-11. **Quote.** Full-width header band + form.
-12. **Footer.**
+2. **Services.** Three-column card grid, icon badge per card, coloured
+   turnaround line, faded photo contained in the header block.
+3. **Why choose us.** Equipment photo left, four differentiators right.
+4. **How it works.** Four-step numbered timeline with connector line.
+5. **Coverage.** Real Census-derived SVG map + county cards + live ZIP check.
+6. **Compliance.** Compact four-column band, CFR citations, shield watermark.
+7. **FAQ.** Native `<details>` accordion, six questions.
+8. **Quote.** Full-width header band + form.
+9. **Footer.**
+
+Three sections were removed at the client's request to cut height: the
+handling-classes temperature table, the vendor-packet checklist, and the
+"What you are vetting" credentials band. Their content is covered by the
+Cold-chain service card, the FAQ, the Compliance section and "Why choose us".
+About 7.5KB of CSS for those components was deleted with them.
 
 Icons are inlined Tabler (MIT) as one sprite. Photography is the client's
 supplied imagery (navy/blue-cross), used as representative; the vans read

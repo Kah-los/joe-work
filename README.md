@@ -28,7 +28,8 @@ Find them all:
 grep -rn 'data-verify' index.html about.html
 ```
 
-There are 30. For each one:
+There are 18. (A plain `grep` also matches the two instruction comments in
+each `<head>`; those are not claims.) For each one:
 
 - **True?** Delete the `data-verify="pending"` attribute. Nothing else changes.
 - **Not true?** Delete the whole element (the `<div class="cred">`,
@@ -39,23 +40,14 @@ There are 30. For each one:
 
 | Where | Claim | Confirm |
 |---|---|---|
-| Home, "What you are vetting" | HIPAA trained, annual re-training, certificates, will sign a BAA | ☐ |
-| Home, "What you are vetting" | Bonded and insured: commercial auto, general liability, cargo | ☐ |
-| Home, "What you are vetting" | Background checks and MVR review before first specimen | ☐ |
-| Home, "What you are vetting" | Cold chain: validated containers, temperature logged | ☐ |
 | Home, Services | Cold-chain and biologics line exists | ☐ |
 | Home, Services | Pharmacy and infusion delivery line exists | ☐ |
-| Home, Coverage | Every area and corridor listed, all nine zones | ☐ |
-| Home, Coverage | The nine STAT pickup windows (all currently say "Confirm") | ☐ |
-| Home, Handling | Ambient offered | ☐ |
-| Home, Handling | Refrigerated offered | ☐ |
-| Home, Handling | Frozen at -20 C offered | ☐ |
-| Home, Handling | Dry ice offered | ☐ |
-| Home, Compliance | Signs BAAs, annual PHI training | ☐ |
-| Home, Compliance | Exposure control plan, annual training, spill kit per vehicle | ☐ |
-| Home, Compliance | Carries compliant UN 3373 outer containers | ☐ |
-| Home, Compliance | Reports excursions and delays on the manifest | ☐ |
-| Home, Procurement file | All ten documents you can actually supply | ☐ |
+| Home, Why choose us | Bonded and insured, certificate issued to the facility | ☐ |
+| Home, Coverage | Every area listed, all nine zones | ☐ |
+| Home, Compliance | Training certificates, COI and written procedures supplied on request | ☐ |
+| Home, FAQ | Will sign a BAA, annual PHI training | ☐ |
+| Home, FAQ | Can issue a certificate of insurance to the facility | ☐ |
+| Home, FAQ | Temperature ranges carried (frozen / dry ice on confirmation) | ☐ |
 | Home + About | "Dispatch line, seven days a week" | ☐ |
 | About, founder | Two placeholder paragraphs, see section 6 | ☐ |
 | About, Driver standards | All six items | ☐ |
@@ -89,6 +81,13 @@ file holds you to, and none of them have been confirmed.
 - **Published response times.** Coverage states the areas served and explains
   that windows are quoted per pickup site. See section 5 for how to publish real
   windows. Publishing one you cannot hold is worse than publishing none.
+- **Handling classes table, vendor packet list, and the "What you are vetting"
+  band.** Removed at your request to cut page height. The content they carried
+  is covered elsewhere: temperature capability in the Cold-chain service card
+  and the FAQ, compliance documentation in the Compliance section, and the
+  trust points in "Why choose us". Your cold-chain cooler photo went with the
+  handling section and now sits unused in `_src/unused/` if you want it placed
+  somewhere else.
 
 ---
 
