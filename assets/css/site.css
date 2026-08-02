@@ -982,3 +982,93 @@ a:hover { color: var(--bond-800); }
 @media (prefers-reduced-motion: no-preference) {
   .faq__a { animation: bw-rise 240ms var(--ease-out) both; }
 }
+
+/* ==========================================================================
+   23 · Mockup-matched sections: heading accent, zone cards, compact
+        compliance, faded services photo
+   ========================================================================== */
+
+/* Blue underline accent under a section heading (mockup shows it on Services
+   and Compliance). */
+.section-head--rule > h2::after,
+.map__head h2.has-rule::after {
+  content: ''; display: block; width: 3rem; height: 4px; border-radius: 2px;
+  background: var(--blue); margin-top: var(--r-h);
+}
+.on-dark .section-head--rule > h2::after { background: #4C9BE8; }
+
+/* --- Services: faded photo behind the header ------------------------------ */
+.svc__intro { position: relative; }
+.svc__intro .section-head { position: relative; z-index: 1; max-width: 40ch; }
+.svc__photo { display: none; }
+@media (min-width: 60rem) {
+  .svc__photo {
+    display: block; position: absolute; top: 50%; right: 0; transform: translateY(-50%);
+    width: 42%; max-width: 34rem; z-index: 0; pointer-events: none;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 55%);
+            mask-image: linear-gradient(90deg, transparent, #000 55%);
+    opacity: 0.9;
+  }
+  .svc__photo img { width: 100%; border-radius: 6px; }
+}
+
+/* --- Coverage: zone cards + custom-run callout ---------------------------- */
+.zone__region {
+  font-size: var(--t-sm); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--blue-dark); margin: 0 0 var(--r-h);
+  padding-bottom: var(--r-q); border-bottom: 1px solid var(--rule);
+}
+.zone__region + .zone__grid { margin-bottom: var(--r-2); }
+.zone__grid { display: grid; gap: var(--r-h); }
+.zone__grid--2 { grid-template-columns: repeat(2, 1fr); }
+.zone__grid--3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 26rem) { .zone__grid--3 { grid-template-columns: repeat(2, 1fr); } }
+.zone__card {
+  display: flex; align-items: center; gap: var(--r-h);
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 6px;
+  padding: var(--r-h) var(--r); min-height: 3.25rem;
+  font-weight: 700; color: var(--ink); letter-spacing: -0.01em;
+  box-shadow: 0 1px 2px rgba(11,60,93,0.05);
+}
+.zone__card .badge--sm { background: #E1EEFB; }
+.zone__cta {
+  display: flex; align-items: center; gap: var(--r);
+  background: #E9F1FB; border-radius: 8px; padding: var(--r);
+  margin-top: var(--r);
+}
+.zone__cta .badge { background: #fff; color: var(--blue); flex: none; }
+.zone__cta p { margin: 0; font-size: var(--t-sm); }
+.zone__cta strong { display: block; color: var(--ink); }
+
+/* ZIP button matches the mockup's navy "Check Coverage" */
+.zipcheck .btn { white-space: nowrap; }
+
+/* --- Compliance: compact four-column ------------------------------------- */
+.comp { position: relative; overflow: hidden; }
+.comp__watermark {
+  position: absolute; top: -3rem; right: -2rem; z-index: 0;
+  width: 22rem; height: 22rem; color: #fff; opacity: 0.05; pointer-events: none;
+}
+.comp__watermark .i { width: 100%; height: 100%; stroke-width: 1; }
+.comp .wrap { position: relative; z-index: 1; }
+.comp__grid { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--r-2); }
+@media (min-width: 52rem) { .comp__grid { grid-template-columns: repeat(4, 1fr); gap: 0; } }
+.comp__item { text-align: left; }
+@media (min-width: 52rem) {
+  .comp__item { padding-inline: var(--r); border-inline-start: 1px solid var(--on-bond-rule); }
+  .comp__item:first-child { padding-inline-start: 0; border-inline-start: 0; }
+  .comp__item:last-child { padding-inline-end: 0; }
+}
+.comp__item .badge { margin-bottom: var(--r); }
+.comp__cite {
+  display: block; font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.02em;
+  color: #7FB4E8; font-variant-numeric: tabular-nums; margin-bottom: var(--r-q);
+}
+.comp__item h3 { font-size: var(--t-h3); margin: 0 0 var(--r-q); }
+.comp__item p { font-size: var(--t-sm); color: var(--on-bond-muted); margin: 0; max-width: 34ch; }
+.comp__foot {
+  display: grid; gap: var(--r); align-items: center;
+  margin-top: var(--r-2); padding-top: var(--r); border-top: 1px solid var(--on-bond-rule);
+}
+@media (min-width: 52rem) { .comp__foot { grid-template-columns: 1fr auto; gap: var(--r-2); } }
+.comp__foot p { margin: 0; color: var(--on-bond-muted); font-size: var(--t-sm); max-width: 60ch; }

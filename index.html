@@ -142,9 +142,17 @@
   <!-- Services ========================================================== -->
   <section class="section" id="services" aria-labelledby="svc-h">
     <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-route"></use></svg>What we run</p><h2 id="svc-h">Six service lines</h2>
-        <p class="lead muted">If your run does not fit one of them, call and describe it.</p>
+      <div class="svc__intro">
+        <div class="section-head section-head--rule">
+          <p class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-route"></use></svg>What we run</p><h2 id="svc-h">Six service lines</h2>
+          <p class="lead muted">Specialized medical courier work, each line built for a different kind of run.</p>
+        </div>
+        <div class="svc__photo" aria-hidden="true">
+          <picture>
+            <source type="image/webp" srcset="/assets/img/lab-delivery-900.webp">
+            <img src="/assets/img/lab-delivery-900.jpg" width="900" height="600" loading="lazy" alt="">
+          </picture>
+        </div>
       </div>
 
       <div class="svc__grid">
@@ -240,7 +248,7 @@
       <div class="map__head">
         <div>
           <p class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-map-pin"></use></svg>Coverage area</p>
-          <h2 id="cov-h">Where we deliver</h2>
+          <h2 id="cov-h" class="has-rule">Where we deliver</h2>
           <p class="lead muted">
             Nine counties across New York City, Nassau and northern New Jersey.
             Response windows are quoted per address pair, not published as one
@@ -253,7 +261,7 @@
           <div class="zipcheck__row">
             <input type="text" id="zip" name="zip" inputmode="numeric" autocomplete="postal-code"
                    maxlength="5" placeholder="e.g. 11201" aria-describedby="zipout">
-            <button class="btn btn--solid" type="submit">Check</button>
+            <button class="btn btn--solid" type="submit">Check Coverage</button>
           </div>
           <p class="zipcheck__out" id="zipout" role="status" aria-live="polite"></p>
         </form>
@@ -269,8 +277,25 @@
         </figure>
 
         <div class="map__rail" data-verify="pending">
-          <h3 class="zrail__region">New York</h3><dl class="zrail"><div class="zrow"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><div><dt>Manhattan</dt><dd>Midtown, Upper East and Upper West Sides, Chelsea, the Financial District, Washington Heights</dd></div></div><div class="zrow"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><div><dt>Brooklyn</dt><dd>Downtown Brooklyn, Park Slope, Borough Park, Bay Ridge, Williamsburg, Flatbush</dd></div></div><div class="zrow"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><div><dt>Queens</dt><dd>Long Island City, Astoria, Flushing, Forest Hills, Jamaica, Fresh Meadows</dd></div></div><div class="zrow"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><div><dt>The Bronx</dt><dd>Norwood, Bedford Park, Pelham Parkway, Morris Park, the Concourse</dd></div></div><div class="zrow"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><div><dt>Staten Island</dt><dd>St George, Castleton Corners, Ocean Breeze, Prince's Bay</dd></div></div><div class="zrow"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><div><dt>Nassau County</dt><dd>Great Neck, Mineola, Garden City, Hempstead, Rockville Centre, Valley Stream</dd></div></div></dl>
-          <h3 class="zrail__region">New Jersey</h3><dl class="zrail"><div class="zrow"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><div><dt>Hudson County</dt><dd>Jersey City, Hoboken, Bayonne, Union City, and the Secaucus reference laboratory cluster</dd></div></div><div class="zrow"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><div><dt>Bergen County</dt><dd>Hackensack, Englewood, Teaneck, Paramus, Ridgewood, Fort Lee</dd></div></div><div class="zrow"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><div><dt>Essex County</dt><dd>Newark, Belleville, Livingston, Montclair, West Orange</dd></div></div></dl>
+          <h3 class="zone__region">New York</h3>
+          <div class="zone__grid zone__grid--2">
+            <div class="zone__card"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><span>Manhattan</span></div>
+            <div class="zone__card"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><span>Brooklyn</span></div>
+            <div class="zone__card"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><span>Queens</span></div>
+            <div class="zone__card"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><span>The Bronx</span></div>
+            <div class="zone__card"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><span>Staten Island</span></div>
+            <div class="zone__card"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><span>Nassau County</span></div>
+          </div>
+          <h3 class="zone__region">New Jersey</h3>
+          <div class="zone__grid zone__grid--3">
+            <div class="zone__card"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><span>Hudson County</span></div>
+            <div class="zone__card"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><span>Bergen County</span></div>
+            <div class="zone__card"><span class="badge badge--sm"><svg class="i" aria-hidden="true"><use href="#i-map-pin"></use></svg></span><span>Essex County</span></div>
+          </div>
+          <div class="zone__cta">
+            <span class="badge"><svg class="i" aria-hidden="true"><use href="#i-phone"></use></svg></span>
+            <p><strong>Don't see your area?</strong> <a href="#quote">Ask dispatch about a custom run.</a> Runs outside the nine counties are quoted case by case.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -356,42 +381,23 @@
     </div>
   </section>
 
-  <!-- Compliance framework ============================================== -->
-  <section class="section on-dark" id="compliance" aria-labelledby="comp-h">
+  <!-- Compliance framework (compact) ==================================== -->
+  <section class="section on-dark comp" id="compliance" aria-labelledby="comp-h">
+    <span class="comp__watermark" aria-hidden="true"><svg class="i" aria-hidden="true"><use href="#i-shield-check"></use></svg></span>
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head section-head--rule">
         <p class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-shield-check"></use></svg>Compliance and regulations</p><h2 id="comp-h">The rules this work runs under</h2>
-        <p class="lead muted">
-          Four bodies of regulation govern medical courier work here. The
-          citations are public and verifiable. What Bridgeway holds against each
-          is stated separately and plainly.
-        </p>
+        <p class="lead muted">Four bodies of federal regulation govern medical courier work. The citations are public and verifiable; the documentation showing where Bridgeway stands is in your vendor packet.</p>
       </div>
-
-      <div class="reg">
-        <div class="reg__item">
-          <div class="reg__head"><span class="badge"><svg class="i" aria-hidden="true"><use href="#i-lock"></use></svg></span><div><span class="reg__cite">45 CFR Part 164</span><h3>HIPAA Privacy and Security Rules</h3></div></div>
-          <p>A courier handling protected health information is generally a business associate, which means a signed business associate agreement, safeguards for information in transit, and breach notification duties that run back to your facility.</p>
-          <p class="reg__does" data-verify="pending"><svg class="i" aria-hidden="true"><use href="#i-circle-check"></use></svg><span>Bridgeway signs your BAA and trains every courier on PHI in transit annually.</span></p>
-        </div>
-
-        <div class="reg__item">
-          <div class="reg__head"><span class="badge"><svg class="i" aria-hidden="true"><use href="#i-biohazard"></use></svg></span><div><span class="reg__cite">29 CFR 1910.1030</span><h3>OSHA Bloodborne Pathogens Standard</h3></div></div>
-          <p>Anyone with reasonably anticipated occupational exposure to blood or other potentially infectious material needs a written exposure control plan, annual training, protective equipment, and a defined spill and exposure procedure.</p>
-          <p class="reg__does" data-verify="pending"><svg class="i" aria-hidden="true"><use href="#i-circle-check"></use></svg><span>Bridgeway maintains an exposure control plan, annual training, and a spill kit in every vehicle.</span></p>
-        </div>
-
-        <div class="reg__item">
-          <div class="reg__head"><span class="badge"><svg class="i" aria-hidden="true"><use href="#i-box"></use></svg></span><div><span class="reg__cite">49 CFR 173.199</span><h3>DOT rules for Category B infectious substances</h3></div></div>
-          <p>Diagnostic specimens moved as UN 3373 Category B require triple packaging: a leakproof primary receptacle, leakproof secondary packaging with absorbent material, and a rigid outer container marked with the UN 3373 diamond and proper shipping name.</p>
-          <p class="reg__does" data-verify="pending"><svg class="i" aria-hidden="true"><use href="#i-circle-check"></use></svg><span>Bridgeway carries compliant outer containers and will not accept a specimen that is incorrectly packaged at origin.</span></p>
-        </div>
-
-        <div class="reg__item">
-          <div class="reg__head"><span class="badge"><svg class="i" aria-hidden="true"><use href="#i-clipboard-check"></use></svg></span><div><span class="reg__cite">42 CFR Part 493</span><h3>CLIA specimen integrity</h3></div></div>
-          <p>Your laboratory's CLIA obligations include written criteria for specimen acceptance and rejection. A transport failure, whether a broken temperature range or an exceeded stability window, becomes your rejection and your redraw.</p>
-          <p class="reg__does" data-verify="pending"><svg class="i" aria-hidden="true"><use href="#i-circle-check"></use></svg><span>Bridgeway reports any temperature excursion or delay on the manifest rather than leaving you to find it at accession.</span></p>
-        </div>
+      <ul class="comp__grid">
+        <li class="comp__item"><span class="badge"><svg class="i" aria-hidden="true"><use href="#i-lock"></use></svg></span><span class="comp__cite">45 CFR 164</span><h3>HIPAA Privacy &amp; Security</h3><p>Protected health information in transit: a signed BAA, safeguards, and breach notification that runs back to your facility.</p></li>
+        <li class="comp__item"><span class="badge"><svg class="i" aria-hidden="true"><use href="#i-biohazard"></use></svg></span><span class="comp__cite">29 CFR 1910.1030</span><h3>OSHA Bloodborne Pathogens</h3><p>Written exposure control plan, annual training, protective equipment, and a defined spill and exposure procedure.</p></li>
+        <li class="comp__item"><span class="badge"><svg class="i" aria-hidden="true"><use href="#i-box"></use></svg></span><span class="comp__cite">49 CFR 173.199</span><h3>DOT Category B (UN 3373)</h3><p>Triple packaging for diagnostic specimens: leakproof primary and secondary, absorbent, and a marked rigid outer container.</p></li>
+        <li class="comp__item"><span class="badge"><svg class="i" aria-hidden="true"><use href="#i-clipboard-check"></use></svg></span><span class="comp__cite">42 CFR 493</span><h3>CLIA Specimen Integrity</h3><p>Your lab sets acceptance and rejection criteria. A broken temperature range or an exceeded stability window is a rejection.</p></li>
+      </ul>
+      <div class="comp__foot">
+        <p data-verify="pending">Training certificates, the certificate of insurance, and written procedures are provided for your vendor file on request.</p>
+        <a class="btn btn--call" href="#quote"><svg class="i" aria-hidden="true"><use href="#i-file-check"></use></svg>Request compliance documents</a>
       </div>
     </div>
   </section>
