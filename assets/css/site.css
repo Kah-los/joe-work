@@ -870,7 +870,8 @@ a:hover { color: var(--bond-800); }
     opacity: 0.85;
   }
   .svc__photo picture, .svc__photo img { width: 100%; height: 100%; }
-  .svc__photo img { object-fit: cover; object-position: 50% 30%; border-radius: 0 6px 6px 0; }
+  /* Framed on the tubes and the temperature readout, which are the subject. */
+  .svc__photo img { object-fit: cover; object-position: 50% 52%; border-radius: 0 6px 6px 0; }
 }
 
 /* --- Coverage: zone cards + custom-run callout ---------------------------- */
