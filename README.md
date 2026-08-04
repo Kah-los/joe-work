@@ -119,6 +119,8 @@ public_html/
   assets/
     css/site.css
     js/site.js
+    js/motion.js
+    js/vendor/gsap.min.js  ScrollTrigger.min.js   <- must be uploaded
     fonts/*.woff2
     img/*
 _bridgeway_leads/                        <- created automatically, above public_html
@@ -290,7 +292,30 @@ redirects, caching headers and clean URLs only take effect on the real host.
 
 ---
 
-## 9. Fonts
+## 9. Animation
+
+The site uses GSAP 3.13 with ScrollTrigger for its entrance, scroll, hover and
+click animation. Both files are **self-hosted** in `assets/js/vendor/`, so the
+site still makes zero external requests — don't swap them for a CDN link, and
+make sure that folder gets uploaded or the page falls back to static (which it
+does cleanly, but you lose the motion).
+
+Licence: GSAP core and ScrollTrigger are free under GreenSock's standard
+"no charge" licence, which covers this use. If you ever put the site behind a
+paywall or sell it as a product, re-read <https://gsap.com/community/licensing/>.
+
+**If you want the motion toned down or removed**, delete the four `<script>`
+tags for gsap/ScrollTrigger/motion.js from the four HTML files. The safety net
+takes over automatically and everything is visible and static — no CSS changes
+needed. Turning it off is a two-minute job; that was deliberate.
+
+See `DESIGN.md` for what animates and why it is calmer than a typical animated
+site: this audience is buying reliability, and showreel motion works against
+that.
+
+---
+
+## 10. Fonts
 
 One family, self-hosted, no third-party CDN, no external requests, 29KB total.
 
@@ -305,7 +330,7 @@ numbers use the family's tabular figures instead of a monospace face.
 
 ---
 
-## 10. What was verified during the build
+## 11. What was verified during the build
 
 Not assumed, actually checked:
 

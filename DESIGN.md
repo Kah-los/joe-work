@@ -214,14 +214,61 @@ slot: a generated portrait presented as Joseph would misrepresent a real person.
 
 ## Motion
 
-Section 17 of the stylesheet. One orchestrated hero moment: the eyebrow rule
-draws in, then eyebrow, headline, lead, buttons and image settle on staggered
-delays totalling roughly 600ms. Then the page is still. Nothing animates on
-scroll.
+**GSAP 3.13 + ScrollTrigger**, self-hosted in `assets/js/vendor/` (~45KB
+gzipped over the wire). Driven by `assets/js/motion.js`; the states it animates
+out of live in stylesheet section 18.
 
-Written as `@media (prefers-reduced-motion: no-preference)` so content is
-visible by default and motion is added. A reveal that gates visibility ships
-blank in headless renderers and background tabs.
+The brief was "bold and aggressive". It was built one notch back from that, on
+purpose and with the client's agreement: the buyer is hospital procurement
+deciding whether this courier will lose their specimen, and showreel motion
+reads as an agency, not a vendor. So there is real depth and choreography, but
+no pinning, no scroll-jacking, and nothing that delays the phone number.
+
+| Trigger | What happens |
+|---|---|
+| Load | Header drops in; hero photo settles from a 1.09 push-in over 1.6s; headline rises word-by-word out of clipping masks; lead and buttons follow |
+| Scroll | Hero photo drifts at 12% and the copy at -18% (two planes, two speeds); section headers, cards, steps and FAQ stagger in once |
+| Scroll | The nine served counties fill the map in sequence, then dots, leaders and labels |
+| Scroll | Step connectors draw left-to-right after each card lands |
+| Hover | Cards and buttons lift, their icons scale; map counties raise and come forward |
+| Click | FAQ height-tweens open and closed; buttons press to 0.97 |
+| State | ZIP result and form status fade up; errors shake on an elastic ease |
+
+Only `back.out` on the hero buttons and the step numbers is springy. Everything
+else is `power3.out`, and every scrubbed tween is `ease: 'none'` — an eased
+scrub fights the scrollbar.
+
+### The one ordering that must not move
+
+`gsap.from()` reads an element's *current* value as the animation's **end**
+state. The stylesheet hides elements before their entrance via `html.js-motion`,
+so while that class is on, every entrance would animate opacity 0 -> 0 and the
+page would stay blank. `motion.js` therefore drops `js-motion` at the top of
+`build()`, before any tween exists, and adds a permanent `motion-on` in its
+place to keep the CSS keyframe fallbacks switched off. This cost one debugging
+cycle; the comment in `build()` explains it so it costs zero more.
+
+The hidden-selector list is duplicated in `motion.js` (`HIDDEN`) and section 18.
+They must stay identical and there is a parity check for it — hidden in CSS but
+missing from the array means invisible forever under reduced motion.
+
+### Three ways the content survives without motion
+
+Nothing is ever gated on an animation succeeding:
+
+1. **No JavaScript / GSAP fails to load** — the inline `<head>` script clears
+   `js-motion` after 2s unless `motion.js` has confirmed it is alive.
+2. **Setup throws** — the `try/catch` around `build()` clears the class.
+3. **Ticker never advances on a visible page** — a 3s guard jumps the
+   entrances to their finished state. Background tabs are exempt: rAF is
+   *supposed* to be paused there, and GSAP plays the entrance properly on focus.
+
+### Reduced motion
+
+Everything lives inside `gsap.matchMedia()`. Under `prefers-reduced-motion:
+reduce` the inline script never adds the class, no ScrollTrigger is created and
+no transform runs — the page is simply static and complete. Verified by
+rendering with `--force-prefers-reduced-motion`.
 
 ## Print
 
