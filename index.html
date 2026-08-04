@@ -50,6 +50,22 @@
 
 <link rel="preload" href="/assets/fonts/librefranklin-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
+
+<!-- Motion boot. Adding the class here (rather than from motion.js) is what
+     prevents a flash of un-animated content: the hide rules apply on the very
+     first paint. The timeout is the safety net -- if motion.js has not
+     confirmed it is alive, the class comes off and the page is simply static
+     and complete. Content is never left depending on a script that failed. -->
+<script>
+  (function () {
+    var r = document.documentElement;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    r.classList.add('js-motion');
+    setTimeout(function () {
+      if (!window.__bwMotionReady) r.classList.remove('js-motion');
+    }, 2000);
+  })();
+</script>
 </head>
 <body>
 
@@ -498,7 +514,10 @@
   </div>
 </footer>
 
+<script src="/assets/js/vendor/gsap.min.js" defer></script>
+<script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/motion.js" defer></script>
 
 <script type="application/ld+json">
 {

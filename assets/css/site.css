@@ -927,3 +927,107 @@ a:hover { color: var(--bond-800); }
 .comp__item .badge { margin-bottom: var(--r); }
 .comp__item h3 { font-size: var(--t-h3); margin: 0 0 var(--r-q); }
 .comp__item p { font-size: var(--t-sm); color: var(--on-bond-muted); margin: 0; max-width: 34ch; }
+
+/* 18 · Motion (GSAP) =====================================================
+   Paired with assets/js/motion.js. Nothing here does any animating: it only
+   sets up the states GSAP animates out of, plus the few structures GSAP
+   cannot reach on its own (pseudo-elements, masked words).
+   ======================================================================== */
+
+/* --- Pre-entrance hide ---------------------------------------------------
+   `js-motion` is added to <html> by an inline script in <head> and removed
+   again if motion.js never boots, so this can never strand content.
+
+   WARNING: this selector list is duplicated as HIDDEN in motion.js and the
+   two must stay identical. Hidden here but missing there = invisible forever
+   under reduced motion. Listed there but not here = a flash of content before
+   its entrance. Change both or neither. */
+html.js-motion .site-head,
+html.js-motion .hero__bg,
+html.js-motion .hero__copy .display,
+html.js-motion .hero__lead,
+html.js-motion .hero__copy .btn,
+html.js-motion .section-head > *,
+html.js-motion .svc,
+html.js-motion .why__fig,
+html.js-motion .why__body > h2,
+html.js-motion .why__body > p,
+html.js-motion .why__list > li,
+html.js-motion .step,
+html.js-motion .step__num,
+html.js-motion .zone__card,
+html.js-motion .zipcheck,
+html.js-motion .comp__item,
+html.js-motion .faq__item,
+html.js-motion .quote__head > *,
+html.js-motion .form__row,
+html.js-motion .form__req,
+html.js-motion .form__note,
+html.js-motion .form__submit,
+html.js-motion .site-foot .wrap > *,
+html.js-motion .map__zone,
+html.js-motion .map__dot,
+html.js-motion .map__leader,
+html.js-motion .map__label { opacity: 0; }
+
+/* The CSS hero animation and the FAQ rise are the no-JS fallback. When GSAP
+   is driving they would fight it, so they are switched off.
+
+   This is keyed to `motion-on`, NOT `js-motion`. motion.js drops `js-motion`
+   the moment it takes over (see the handover note in build() — gsap.from()
+   would otherwise read opacity 0 as its end state) and adds `motion-on`
+   permanently in its place. Keying this rule to the class that gets removed
+   would let the old keyframe animation restart underneath GSAP. */
+html.motion-on .hero__copy > *,
+html.motion-on .hero__media,
+html.motion-on .faq__a { animation: none; }
+
+/* --- Masked words (hero headline) ---------------------------------------
+   motion.js wraps each word so it can rise out of a clipped box. Inline-block
+   is what makes the inner span transformable; the clip is what makes it read
+   as type being set rather than text sliding around. */
+.mask { display: inline-block; overflow: hidden; vertical-align: bottom; }
+.mask__i { display: inline-block; will-change: transform; }
+
+/* --- Animatable step connector -------------------------------------------
+   The connector is a ::before, which GSAP cannot target. Routing its scaleX
+   through a custom property lets motion.js animate `--line` on the step and
+   have the pseudo-element follow.
+
+   `--line` must be DECLARED here, not just used with a var() fallback. GSAP's
+   from() reads the element's current value to use as the animation's end
+   state, and an undeclared custom property reads back as an empty string —
+   which it resolves to 0, so the line animated 0 -> 0 and never appeared. The
+   declaration gives it a real end value, and doubles as the no-JS state. */
+.step { --line: 1; }
+@media (min-width: 52rem) {
+  .step::before { transform-origin: left center; transform: scaleX(var(--line, 1)); }
+}
+
+/* --- FAQ panel ----------------------------------------------------------
+   Height is tweened on open and close, so the panel has to clip its content
+   while it is mid-collapse. */
+.faq__a { overflow: hidden; }
+
+/* --- Header scrolled state ----------------------------------------------
+   Set by ScrollTrigger once the hero is behind the bar. A shadow rather than
+   a size change: resizing a sticky header reflows the page under the reader's
+   cursor, which is the kind of movement this audience should never notice. */
+.site-head { transition: box-shadow 240ms ease, border-color 240ms ease; }
+.site-head.is-stuck {
+  box-shadow: 0 1px 16px rgba(7, 42, 68, 0.13);
+  border-bottom-color: transparent;
+}
+
+/* --- Compositor hints ----------------------------------------------------
+   Only on the handful of elements that are continuously scrubbed. Applying
+   will-change broadly costs memory and can make things slower, not faster. */
+.hero__bg, .hero__copy, .svc__photo, .comp__watermark { will-change: transform; }
+
+/* Under reduced motion nothing is scrubbed, so the compositor hints are just
+   wasted memory. The hide rules need no override here: `js-motion` is removed
+   by motion.js on the reduced-motion branch, by its catch if setup throws, and
+   by the <head> timeout if the file never runs at all. */
+@media (prefers-reduced-motion: reduce) {
+  .hero__bg, .hero__copy, .svc__photo, .comp__watermark { will-change: auto; }
+}
