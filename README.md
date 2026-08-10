@@ -62,12 +62,20 @@ Nothing on the site states an insurance dollar figure, a certification number,
 a response time or a temperature reading. Those are the numbers a procurement
 file holds you to, and none of them have been confirmed.
 
-### Also replace before launch
+### Contact details
 
-- `REPLACE-WITH-YOUR-DOMAIN.com` in `index.html`, `about.html`, `robots.txt`
-  and `sitemap.xml`. It appears in the canonical tag, the Open Graph tags and
-  the structured data.
-- `josephhenry@gmail.com`, see section 7.
+The domain (`bridgewayml.com`), phone `(929) 454-5653`, email
+`Info@bridgewayml.com` and the dispatch address (178 Columbus Ave, New York,
+NY 10023) are wired in as the real values as of 2026-08-10 — canonical tags,
+Open Graph, structured data, the footer and the quote form's fallback message
+all use them. Nothing here still needs replacing before launch. If any of
+these change later:
+
+```bash
+grep -rn '9294545653\|454-5653' *.html api/*.php assets/js/site.js
+grep -rn 'Info@bridgewayml.com' *.html api/*.php assets/js/site.js
+grep -rn 'bridgewayml.com' *.html robots.txt sitemap.xml
+```
 
 ### Deliberately left out
 
@@ -209,7 +217,7 @@ learn to retry.
 structured data. Change all of them:
 
 ```bash
-grep -rn '5165541252\|554-1252' *.html api/*.php assets/js/site.js
+grep -rn '9294545653\|454-5653' *.html api/*.php assets/js/site.js
 ```
 
 **Publishing real response windows.** In `index.html`, add a line under each
@@ -239,10 +247,11 @@ include name, role and facility.
 
 ## 6. Founder photo and story
 
-The About page currently carries an operations photograph beside the founder
-text. There is no portrait of you, on purpose: a generated one presented as you
-would misrepresent a real person to buyers who are specifically trying to find
-out who you are.
+The About page carries a representative operations photograph beside the
+founder text — a courier walking a sealed cooler toward hospital reception —
+rather than a portrait, because there is no real photo of Joseph yet. A
+generated portrait presented as him would misrepresent a real person to buyers
+who are specifically trying to find out who they're dealing with.
 
 A phone photo is fine and better than a stock image. Stand near a window, plain
 background, no sunglasses, look at the camera. Save it as
@@ -255,31 +264,21 @@ Then swap the `<picture>` block inside `<figure class="founder__figure">` for:
      alt="Joseph Henry, founder of Bridgeway Medical Logistics.">
 ```
 
-The two `REPLACE THIS PARAGRAPH` blocks need your actual background. This is the
-highest-value writing on the whole site. A practice manager deciding between two
-couriers picks the one whose founder obviously understands why a specimen has a
-stability window. Plain sentences about where you worked and what you carried
-beat any marketing language.
+The founder paragraphs are filled in with real company copy, but they're
+written in company voice ("we"), not as personal background. This is the
+highest-value writing on the whole site. A practice manager deciding between
+two couriers picks the one whose founder obviously understands why a specimen
+has a stability window — plain sentences about where you worked and what you
+carried beat any marketing language, if you want to add that later.
+
+Note: the courier photograph currently on the page has "BRIDGEWAY MEDICAL
+LOGISTICS" branding rendered onto the uniform and cooler. That's generated
+imagery, not a photo of a real uniform or a container Bridgeway currently
+owns — worth knowing before a hospital contact asks about it.
 
 ---
 
-## 7. Email address
-
-`josephhenry@gmail.com` is wired in as a placeholder because it is what you
-gave me, but it will cost you deals with this audience. A practice manager
-vetting vendors reads a Gmail address as a one-person side operation, which is
-exactly the doubt this site exists to remove.
-
-Once the domain is registered, a mailbox costs a few dollars a month through
-Hostinger. Then update:
-
-```bash
-grep -rn 'josephhenry@gmail.com' *.html api/*.php assets/js/site.js
-```
-
----
-
-## 8. Local development
+## 7. Local development
 
 ```bash
 php -S 127.0.0.1:8000
@@ -291,7 +290,7 @@ redirects, caching headers and clean URLs only take effect on the real host.
 
 ---
 
-## 9. Animation
+## 8. Animation
 
 The site uses GSAP 3.13 with ScrollTrigger for its entrance, scroll, hover and
 click animation. Both files are **self-hosted** in `assets/js/vendor/`, so the
@@ -314,7 +313,7 @@ that.
 
 ---
 
-## 10. Fonts
+## 9. Fonts
 
 One family, self-hosted, no third-party CDN, no external requests, 29KB total.
 
@@ -329,7 +328,7 @@ numbers use the family's tabular figures instead of a monospace face.
 
 ---
 
-## 11. What was verified during the build
+## 10. What was verified during the build
 
 Not assumed, actually checked:
 

@@ -18,12 +18,12 @@ return [
      ------------------------------------------------------------------ */
 
   // Every quote request is emailed here. Use your real working inbox.
-  'notify_to'   => 'josephhenry@gmail.com',
+  'notify_to'   => 'Info@bridgewayml.com',
 
   // The From address on the notification. This MUST be an address on your
   // own domain or mail providers will treat it as spoofed and filter it.
   // Do not put a gmail.com address here.
-  'notify_from' => 'dispatch@REPLACE-WITH-YOUR-DOMAIN.com',
+  'notify_from' => 'dispatch@bridgewayml.com',
   'notify_name' => 'Bridgeway Website',
 
 
