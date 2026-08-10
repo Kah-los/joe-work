@@ -227,18 +227,15 @@ notes about a single seal photograph and a bleeding-column hero (from the
 first, pre-navy-pivot build) no longer apply — see "Layout" above for the
 current hero and section structure.
 
-Current photography, all client-supplied or generated to spec: `lab-delivery`
-(hero, full-bleed), `coldchain` (Services header), `equipment` (Why choose us),
-and `founder-hallway` (About) — a courier carrying a sealed cooler down a
-hospital corridor toward reception.
+Current photography: `lab-delivery` (hero, full-bleed), `coldchain` (Services
+header) and `equipment` (Why choose us) are generated to spec; `joseph-henry`
+(About) is a real, client-supplied photograph of the founder — no caveat
+needed, this is exactly what the earlier placeholder was waiting for. The
+courier-in-hallway photo that held that spot before (generated, with
+"BRIDGEWAY MEDICAL LOGISTICS" branding rendered onto a uniform and cooler
+that don't exist yet) is retired to `_src/unused/`.
 
-`founder-hallway` has "BRIDGEWAY MEDICAL LOGISTICS" branding rendered onto the
-uniform and cooler. That branding does not exist on any real garment or
-container yet — it is aspirational brand photography, same category as a
-mockup. Worth knowing if a prospect asks about it before real uniforms exist.
-
-No div-built product mockups anywhere. The founder photo is an explicit empty
-slot: a generated portrait presented as Joseph would misrepresent a real person.
+No div-built product mockups anywhere.
 
 ## Motion
 

@@ -505,6 +505,10 @@ a:hover { color: var(--bond-800); }
 .founder__prose > * + * { margin-top: var(--r); }
 .founder__figure img { width: 100%; border-radius: 2px; }
 .founder__figure figcaption { margin-top: var(--r-h); font-size: var(--t-sm); color: var(--ink-muted); }
+/* A headshot at full column width reads oversized next to body text --
+   contained and centred is the standard treatment. */
+.founder__figure--portrait { max-width: 20rem; margin-inline: auto; }
+@media (min-width: 58rem) { .founder__figure--portrait { max-width: 22rem; margin-inline: 0; } }
 
 /* Driver standards: a two-column grid of blocks with a large index numeral
    set in the same family. No rules, no numbered eyebrow scaffolding. */
@@ -765,7 +769,11 @@ a:hover { color: var(--bond-800); }
    the whole section wider than the viewport on mobile. minmax(0, ...) caps
    the track at the container's own width regardless of content. */
 .cov__layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--r-2); align-items: start; }
-@media (min-width: 62rem) { .cov__layout { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: var(--r-2); } }
+/* 1.8fr : 1fr rather than the earlier 1.3fr -- the rail only holds the ZIP
+   checker now (cards and the facility directory moved below, full width),
+   so it doesn't need much column width, and the map is the thing worth
+   spending the space on. */
+@media (min-width: 62rem) { .cov__layout { grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr); gap: var(--r-2); } }
 .cov__rail { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--r); align-content: start; }
 
 .cov__map { margin: 0; min-width: 0; }
