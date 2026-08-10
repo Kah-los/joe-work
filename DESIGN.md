@@ -197,17 +197,20 @@ container genuinely are compared across columns.
 
 ## Imagery
 
-One generated photograph, used in two crops: gloved hands applying a numbered
-security seal to a sealed transport cooler, chain-of-custody form on the lid.
-Its red seal happens to match `--seal-red`. The homepage uses the tall crop
-bleeding off the right edge; About uses a landscape band from the same frame.
+This section describes the photography as of the latest redesign; earlier
+notes about a single seal photograph and a bleeding-column hero (from the
+first, pre-navy-pivot build) no longer apply — see "Layout" above for the
+current hero and section structure.
 
-Only one source frame exists, and it is 928px wide. That is why the hero is a
-bleeding column rather than a true full-bleed banner: a full-width banner would
-need upscaling and would ship soft. Additional photography needs either
-Joseph's own images or a licensed stock budget. Unsplash was unreachable from
-this environment and generic van stock would read as cheap for this brand, so
-the site is not padded with it. One decisive photo beats five mediocre ones.
+Current photography, all client-supplied or generated to spec: `lab-delivery`
+(hero, full-bleed), `coldchain` (Services header), `equipment` (Why choose us),
+and `founder-hallway` (About) — a courier carrying a sealed cooler down a
+hospital corridor toward reception.
+
+`founder-hallway` has "BRIDGEWAY MEDICAL LOGISTICS" branding rendered onto the
+uniform and cooler. That branding does not exist on any real garment or
+container yet — it is aspirational brand photography, same category as a
+mockup. Worth knowing if a prospect asks about it before real uniforms exist.
 
 No div-built product mockups anywhere. The founder photo is an explicit empty
 slot: a generated portrait presented as Joseph would misrepresent a real person.

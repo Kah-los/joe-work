@@ -61,8 +61,8 @@ function bw_respond(bool $ok, int $status, string $message, array $fields = []):
        . '<main id="main" class="section"><div class="wrap">'
        . '<h1>That did not send.</h1>'
        . '<p class="lead">' . $safe . '</p>'
-       . '<p>Please call dispatch at <a class="mono" href="tel:+15165541252">(516) 554-1252</a>'
-       . ' or email <a href="mailto:josephhenry@gmail.com">josephhenry@gmail.com</a>.</p>'
+       . '<p>Please call dispatch at <a class="mono" href="tel:+19294545653">(929) 454-5653</a>'
+       . ' or email <a href="mailto:Info@bridgewayml.com">Info@bridgewayml.com</a>.</p>'
        . '<p><a href="/#quote">Back to the form</a></p>'
        . '</div></main></body></html>';
     exit;

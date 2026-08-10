@@ -164,13 +164,13 @@
         showStatus('ok',
           '<strong>Request received.</strong> Joseph will follow up shortly. ' +
           'If this is time-critical, call dispatch at ' +
-          '<a href="tel:+15165541252">(516) 554-1252</a>.');
+          '<a href="tel:+19294545653">(929) 454-5653</a>.');
       })
       .catch(function () {
         showStatus('err',
           '<strong>That did not send.</strong> Please call dispatch at ' +
-          '<a href="tel:+15165541252">(516) 554-1252</a> or email ' +
-          '<a href="mailto:josephhenry@gmail.com">josephhenry@gmail.com</a>.');
+          '<a href="tel:+19294545653">(929) 454-5653</a> or email ' +
+          '<a href="mailto:Info@bridgewayml.com">Info@bridgewayml.com</a>.');
       })
       .finally(function () {
         submitBtn.removeAttribute('aria-busy');
