@@ -253,22 +253,10 @@ include name, role and facility.
 
 ## 6. Founder photo and story
 
-The About page carries a representative operations photograph beside the
-founder text — a courier walking a sealed cooler toward hospital reception —
-rather than a portrait, because there is no real photo of Joseph yet. A
-generated portrait presented as him would misrepresent a real person to buyers
-who are specifically trying to find out who they're dealing with.
-
-A phone photo is fine and better than a stock image. Stand near a window, plain
-background, no sunglasses, look at the camera. Save it as
-`assets/img/joseph-henry.jpg`, roughly 800x1000.
-
-Then swap the `<picture>` block inside `<figure class="founder__figure">` for:
-
-```html
-<img src="/assets/img/joseph-henry.jpg" width="800" height="1000"
-     alt="Joseph Henry, founder of Bridgeway Medical Logistics.">
-```
+The About page carries a real photograph of Joseph — `assets/img/joseph-henry.jpg`
+(client-supplied). If you want to replace it later, keep the same portrait
+crop (roughly 2:3, the current file is 532x800) and swap the `<picture>`
+block inside `<figure class="founder__figure founder__figure--portrait">`.
 
 The founder paragraphs are filled in with real company copy, but they're
 written in company voice ("we"), not as personal background. This is the
@@ -276,11 +264,6 @@ highest-value writing on the whole site. A practice manager deciding between
 two couriers picks the one whose founder obviously understands why a specimen
 has a stability window — plain sentences about where you worked and what you
 carried beat any marketing language, if you want to add that later.
-
-Note: the courier photograph currently on the page has "BRIDGEWAY MEDICAL
-LOGISTICS" branding rendered onto the uniform and cooler. That's generated
-imagery, not a photo of a real uniform or a container Bridgeway currently
-owns — worth knowing before a hospital contact asks about it.
 
 ---
 
