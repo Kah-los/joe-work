@@ -500,6 +500,14 @@ a:hover { color: var(--bond-800); }
 
 .page-head { border-bottom: 1px solid var(--rule); padding-block: var(--r-3) var(--r-2); }
 .page-head .lead { margin-top: var(--r); color: var(--ink-muted); }
+/* Slogan. A left rule rather than quote marks: quote marks imply someone said
+   this about us, a rule just marks it as a set-off line of brand voice. */
+.tagline {
+  margin-top: var(--r-2); padding-left: var(--r); max-width: 42ch;
+  border-left: 3px solid var(--blue);
+  font-size: var(--t-h3); font-weight: 700; font-style: italic;
+  color: var(--ink); line-height: 1.4;
+}
 
 .founder { display: grid; gap: var(--r-2); align-items: start; }
 @media (min-width: 58rem) { .founder { grid-template-columns: 1.25fr 0.75fr; gap: var(--r-3); } }
