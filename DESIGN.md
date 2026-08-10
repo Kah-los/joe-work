@@ -175,25 +175,34 @@ gets dropped. A two-row header is only a defect at desktop.
 The phone number is a sibling of `<nav>`, not inside it: a contact action is not
 navigation, and it makes the two-row reflow trivial.
 
-### No map
+### Coverage: a logistics network map, not a county atlas
 
-The coverage section lists zones rather than drawing a map. An accurate map needs
-real boundary data; an inaccurate one is worse than a list to a reader who knows
-these counties better than we do. An earlier concentric-circle diagram was cut
-for exactly this reason, since the zones are not radial.
+This section went through three shapes before landing here: a table (cut --
+nine rows of wrapping cells read as an unfinished form), a plain zone
+directory (cut -- the client wanted the section to read as broad regional
+coverage rather than "a handful of counties"), and now a network map at the
+client's explicit direction: real county boundaries (US Census cartographic
+data, so the geography is still true) rendered as one gradient landmass with
+glowing hub markers at Manhattan, Brooklyn, Queens, the Bronx, Staten Island,
+Long Island, Jersey City, Newark and Bergen, connected by dashed route lines.
+The framing box crops the eastern half of Suffolk County so the NYC/NJ hub
+cluster isn't squeezed into a corner by Long Island's length; the figcaption
+says so explicitly rather than silently cutting territory from view.
 
-### Why coverage is not a table
+This is a deliberate, section-scoped exception to "no SaaS gradient" in the
+Aesthetic lane above -- the client asked for an enterprise-logistics feel
+(UPS Healthcare / FedEx Healthcare) specifically for this section, not a
+palette change for the site.
 
-It was one, and it was wrong. Nine rows of wrapping cells at 77px each, a
-bordered slab 789px tall, plus nine repeated "Confirm" placeholders that read as
-an unfinished form rather than a design. A table earns its borders when a reader
-compares values across columns; this content is place names grouped by zone, so
-there is nothing to compare. The corridors column was also the thinnest content
-on the page, and the neighbourhood runs already say where we drive. Directory
-setting: 484px, no borders, no placeholders, same nine zones.
+Ten counties are served, not nine: Suffolk County was added alongside this
+redesign (Long Island now means Nassau *and* Suffolk). That changed the real
+data, not just the visual: the ZIP checker's lookup table in `site.js` and the
+`areaServed` structured data on the homepage both carry Suffolk now.
 
-The handling-classes table stays a table, because temperature, cargo and
-container genuinely are compared across columns.
+Right rail, top to bottom: the ZIP checker (unchanged behaviour, restyled as
+its own card), three region cards (NYC / Long Island / New Jersey), a
+ten-item facility-type chip grid, a six-item feature checklist, and a
+full-width gradient CTA band for custom routes outside the standard area.
 
 ## Imagery
 
