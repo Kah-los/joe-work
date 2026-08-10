@@ -377,16 +377,7 @@ a:hover { color: var(--bond-800); }
 @media (min-width: 62rem) { .svc__grid--4 { grid-template-columns: repeat(4, 1fr); } }
 
 
-/* 11 · Coverage statement ================================================ */
-/* Full width, no columns and no list furniture. The zone names carry the
-   section at heading scale; the areas sit under them at body scale. */
-
-.cov__stmt { font-size: var(--t-h2); font-weight: 900; letter-spacing: -0.028em; line-height: 1.1; max-width: 30ch; margin: 0 0 var(--r-2); }
-.cov__zones { display: grid; gap: var(--r-2); margin: 0; padding: 0; list-style: none; }
-@media (min-width: 52rem) { .cov__zones { grid-template-columns: repeat(3, 1fr); gap: var(--r-2); } }
-.cov__zone h3 { margin-bottom: var(--r-q); }
-.cov__zone p { margin: 0; max-width: 26ch; }
-.cov__note { margin-top: var(--r-2); max-width: 58ch; }
+/* 11 · (Section removed; see "20 · Coverage" for the current Coverage rules) */
 
 /* 12 · Quote form ======================================================== */
 
@@ -736,22 +727,30 @@ a:hover { color: var(--bond-800); }
    20 · Coverage map
    ========================================================================== */
 
-.map__head { display: grid; gap: var(--r); align-items: end; margin-bottom: var(--r-2); }
-@media (min-width: 56rem) { .map__head { grid-template-columns: 1fr auto; gap: var(--r-3); } }
-.map__head h2 { margin-bottom: var(--r-q); }
-.map__head .lead { margin-bottom: 0; }
+/* Redesigned at the client's explicit direction toward an "enterprise
+   logistics platform" feel -- gradient fill, glow, route lines -- which is a
+   deliberate exception to this file's usual flat, anti-SaaS-gradient
+   language (see DESIGN.md "Aesthetic lane"). Confined to this one section. */
 
-/* ZIP check */
-.zipcheck label { display: block; font-size: var(--t-sm); font-weight: 700; margin-bottom: var(--r-q); }
+.cov__head { max-width: 46rem; margin-bottom: var(--r-2); }
+.cov__head .lead { margin-top: var(--r-q); }
+
+/* ZIP check -- unchanged behaviour, restyled as its own card at the top of
+   the rail rather than paired with the section heading. */
+.zipcheck {
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 8px;
+  padding: var(--r); box-shadow: 0 1px 2px rgba(11,60,93,0.05);
+}
+.zipcheck label { display: block; font-size: var(--t-sm); font-weight: 700; margin-bottom: var(--r-h); }
 .zipcheck__row { display: flex; gap: var(--r-h); }
 .zipcheck input {
-  width: 8.5rem; min-height: 2.875rem;
+  flex: 1; min-width: 0; min-height: 2.875rem;
   padding: 0.6rem var(--r-h);
   background: #fff; border: 1px solid var(--rule-strong); border-radius: 2px;
   font-family: inherit; font-size: 1rem; font-variant-numeric: tabular-nums;
   color: var(--ink);
 }
-.zipcheck .btn { min-height: 2.875rem; padding-inline: var(--r); }
+.zipcheck .btn { min-height: 2.875rem; padding-inline: var(--r); white-space: nowrap; }
 .zipcheck__out {
   margin: var(--r-h) 0 0; font-size: var(--t-sm); font-weight: 600;
   max-width: 34ch; min-height: 1.2em;
@@ -759,40 +758,86 @@ a:hover { color: var(--bond-800); }
 .zipcheck__out--ok   { color: var(--emerald); }
 .zipcheck__out--warn { color: var(--seal-red); }
 
-.map__grid { display: grid; gap: var(--r-2); align-items: start; }
-@media (min-width: 62rem) { .map__grid { grid-template-columns: 1.45fr 1fr; gap: var(--r-2); } }
+/* Layout: map left, rail right. Single column below 62rem. */
+/* `minmax(0, 1fr)` rather than the implicit single-column default: a bare
+   grid track sizes to its content's max-content width, and the map SVG (no
+   width/height attribute, only a viewBox) has enough intrinsic width to pull
+   the whole section wider than the viewport on mobile. minmax(0, ...) caps
+   the track at the container's own width regardless of content. */
+.cov__layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--r-2); align-items: start; }
+@media (min-width: 62rem) { .cov__layout { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: var(--r-2); } }
+.cov__rail { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--r); align-content: start; }
 
-.map__fig { margin: 0; }
+.cov__map { margin: 0; min-width: 0; }
 .map__svg {
   width: 100%; height: auto; display: block;
-  border: 1px solid var(--rule); border-radius: 4px;
-  background: #DCE8F4;
+  border-radius: 16px; box-shadow: 0 20px 48px rgba(10,60,93,0.22);
 }
-.map__fig figcaption { margin-top: var(--r-h); font-size: var(--t-xs); color: var(--ink-muted); max-width: 52ch; }
+.cov__map figcaption { margin-top: var(--r-h); font-size: var(--t-xs); color: var(--ink-muted); max-width: 52ch; }
 
-.map__water { fill: #DCE8F4; }
-.map__ctx   { fill: #E7ECF2; stroke: #C4D0DE; stroke-width: 1.1; }
-.map__zone  { fill: #0B3C5D; fill-opacity: 0.9; stroke: var(--bond-900); stroke-width: 1.3; }
-.map__dot   { fill: #fff; stroke: var(--bond-900); stroke-width: 2.5; }
-.map__leader{ stroke: var(--bond-900); stroke-width: 1.2; stroke-dasharray: 3 3; }
-.map__label {
-  font-family: var(--ff); font-size: 30px; font-weight: 700;
-  fill: #fff; paint-order: stroke; stroke: var(--bond-900); stroke-width: 6;
-  stroke-linejoin: round;
+.map__water { fill: url(#mapWater); }
+.map__ctx   { fill: #E7ECF2; stroke: #fff; stroke-width: 1; }
+.map__zone  { fill: url(#mapLand); stroke: #fff; stroke-width: 1.5; }
+.map__route { fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 1 7; opacity: 0.9; }
+.map__hub-glow { fill: #5FB4FF; opacity: 0.5; }
+.map__hub   { fill: #fff; stroke: #0A5FB0; stroke-width: 3; }
+.map__leader{ stroke: #0A5FB0; stroke-width: 1.25; opacity: 0.55; }
+.map__chip  { fill: #fff; stroke: #DCE9F7; stroke-width: 1; filter: drop-shadow(0 2px 4px rgba(10,60,93,0.18)); }
+.map__hub-label { font-family: var(--ff); font-size: 12.5px; font-weight: 800; fill: var(--bond-800); }
+
+/* Three region cards */
+.cov__cards { display: grid; gap: var(--r-h); }
+@media (min-width: 30rem) and (max-width: 61.9rem) { .cov__cards { grid-template-columns: repeat(3, 1fr); } }
+.cov__card {
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 10px;
+  padding: var(--r); box-shadow: 0 1px 2px rgba(11,60,93,0.05);
+}
+.cov__card .badge { margin-bottom: var(--r-h); }
+.cov__card h3 { margin: 0 0 var(--r-q); font-size: var(--t-h3); }
+.cov__card > p { margin: 0 0 var(--r-h); font-size: var(--t-sm); color: var(--ink-muted); }
+.cov__card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.375rem; }
+.cov__card li {
+  font-size: var(--t-sm); font-weight: 600; color: var(--ink);
+  padding-left: 1.1rem; position: relative;
+}
+.cov__card li::before {
+  content: ''; position: absolute; left: 0; top: 0.55em;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--blue);
 }
 
-/* Zone rail */
-.zrail__region {
-  font-size: var(--t-sm); font-weight: 700; letter-spacing: 0;
-  color: var(--ink-muted); margin: 0 0 var(--r-h);
-  padding-bottom: var(--r-q); border-bottom: 1px solid var(--rule);
+/* Facility chips */
+.cov__subhead { font-size: var(--t-sm); font-weight: 700; color: var(--ink-muted); margin: 0 0 var(--r-h); }
+.cov__chips {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--r-q);
 }
-.zrail__region + .zrail { margin-bottom: var(--r-2); }
-.zrail { margin: 0; display: grid; gap: var(--r-h); }
-.zrow { display: flex; align-items: flex-start; gap: var(--r-h); }
-.zrail dt { font-weight: 700; color: var(--ink); letter-spacing: -0.012em; }
-.zrail dd { margin: 0; font-size: var(--t-sm); color: var(--ink-muted); line-height: 1.5; max-width: 40ch; }
-.hand__intro .section-head { margin-bottom: 0; }
+@media (min-width: 34rem) { .cov__chips { grid-template-columns: repeat(3, 1fr); } }
+.cov__chips li {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: var(--band); border-radius: 999px;
+  padding: 0.5rem 0.75rem; font-size: var(--t-xs); font-weight: 700; color: var(--ink);
+}
+.cov__chips .i { width: 1rem; height: 1rem; color: var(--blue-dark); flex: none; }
+
+/* Feature checklist */
+.cov__check {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--r-h);
+}
+.cov__check li { display: flex; align-items: center; gap: 0.5rem; font-size: var(--t-sm); font-weight: 700; color: var(--ink); }
+.cov__check .i { width: 1.125rem; height: 1.125rem; color: var(--emerald); flex: none; }
+
+/* Bottom banner */
+.cov__cta {
+  margin-top: var(--r-2);
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--r);
+  background: linear-gradient(120deg, var(--bond-800), var(--bond-900));
+  color: #fff; border-radius: 12px; padding: var(--r-2);
+}
+.cov__cta h3 { color: #fff; margin: 0 0 0.25rem; font-size: var(--t-h3); }
+.cov__cta p { margin: 0; color: var(--on-bond-muted); font-size: var(--t-sm); max-width: 46ch; }
+.cov__cta .btn { flex: none; }
+.cov__cta .btn .i { width: 1.125rem; height: 1.125rem; margin-left: 0.4rem; }
 
 /* ==========================================================================
    22 · Why choose us / How it works / FAQ
@@ -860,7 +905,7 @@ a:hover { color: var(--bond-800); }
 /* Blue underline accent under a section heading (mockup shows it on Services
    and Compliance). */
 .section-head--rule > h2::after,
-.map__head h2.has-rule::after {
+.cov__head h2.has-rule::after {
   content: ''; display: block; width: 3rem; height: 4px; border-radius: 2px;
   background: var(--blue); margin-top: var(--r-h);
 }
@@ -884,37 +929,6 @@ a:hover { color: var(--bond-800); }
   /* Framed on the tubes and the temperature readout, which are the subject. */
   .svc__photo img { object-fit: cover; object-position: 50% 52%; border-radius: 0 6px 6px 0; }
 }
-
-/* --- Coverage: zone cards + custom-run callout ---------------------------- */
-.zone__region {
-  font-size: var(--t-sm); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
-  color: var(--blue-dark); margin: 0 0 var(--r-h);
-  padding-bottom: var(--r-q); border-bottom: 1px solid var(--rule);
-}
-.zone__region + .zone__grid { margin-bottom: var(--r-2); }
-.zone__grid { display: grid; gap: var(--r-h); }
-.zone__grid--2 { grid-template-columns: repeat(2, 1fr); }
-.zone__grid--3 { grid-template-columns: repeat(3, 1fr); }
-@media (max-width: 26rem) { .zone__grid--3 { grid-template-columns: repeat(2, 1fr); } }
-.zone__card {
-  display: flex; align-items: center; gap: var(--r-h);
-  background: var(--paper); border: 1px solid var(--rule); border-radius: 6px;
-  padding: var(--r-h) var(--r); min-height: 3.25rem;
-  font-weight: 700; color: var(--ink); letter-spacing: -0.01em;
-  box-shadow: 0 1px 2px rgba(11,60,93,0.05);
-}
-.zone__card .badge--sm { background: #E1EEFB; }
-.zone__cta {
-  display: flex; align-items: center; gap: var(--r);
-  background: #E9F1FB; border-radius: 8px; padding: var(--r);
-  margin-top: var(--r);
-}
-.zone__cta .badge { background: #fff; color: var(--blue); flex: none; }
-.zone__cta p { margin: 0; font-size: var(--t-sm); }
-.zone__cta strong { display: block; color: var(--ink); }
-
-/* ZIP button matches the mockup's navy "Check Coverage" */
-.zipcheck .btn { white-space: nowrap; }
 
 /* --- Compliance: compact four-column ------------------------------------- */
 .comp { position: relative; overflow: hidden; }
@@ -963,8 +977,10 @@ html.js-motion .why__body > p,
 html.js-motion .why__list > li,
 html.js-motion .step,
 html.js-motion .step__num,
-html.js-motion .zone__card,
+html.js-motion .cov__card,
 html.js-motion .zipcheck,
+html.js-motion .cov__chips > li,
+html.js-motion .cov__check > li,
 html.js-motion .comp__item,
 html.js-motion .faq__item,
 html.js-motion .quote__head > *,
@@ -974,9 +990,11 @@ html.js-motion .form__note,
 html.js-motion .form__submit,
 html.js-motion .site-foot .wrap > *,
 html.js-motion .map__zone,
-html.js-motion .map__dot,
+html.js-motion .map__hub,
+html.js-motion .map__hub-glow,
 html.js-motion .map__leader,
-html.js-motion .map__label { opacity: 0; }
+html.js-motion .map__chip,
+html.js-motion .map__hub-label { opacity: 0; }
 
 /* The CSS hero animation and the FAQ rise are the no-JS fallback. When GSAP
    is driving they would fight it, so they are switched off.
