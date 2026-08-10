@@ -177,32 +177,48 @@ navigation, and it makes the two-row reflow trivial.
 
 ### Coverage: a logistics network map, not a county atlas
 
-This section went through three shapes before landing here: a table (cut --
+This section went through four shapes before landing here: a table (cut --
 nine rows of wrapping cells read as an unfinished form), a plain zone
 directory (cut -- the client wanted the section to read as broad regional
-coverage rather than "a handful of counties"), and now a network map at the
-client's explicit direction: real county boundaries (US Census cartographic
-data, so the geography is still true) rendered as one gradient landmass with
-glowing hub markers at Manhattan, Brooklyn, Queens, the Bronx, Staten Island,
-Long Island, Jersey City, Newark and Bergen, connected by dashed route lines.
-The framing box crops the eastern half of Suffolk County so the NYC/NJ hub
-cluster isn't squeezed into a corner by Long Island's length; the figcaption
-says so explicitly rather than silently cutting territory from view.
+coverage rather than "a handful of counties"), a network map with New Jersey
+in scope (cut when the service area itself changed, see below), and the
+current version: real county boundaries (US Census cartographic data, so the
+geography is still true) rendered as one gradient landmass with glowing hub
+markers, connected by dashed route lines, at the client's explicit direction
+for an enterprise-logistics feel (UPS Healthcare / FedEx Healthcare).
 
 This is a deliberate, section-scoped exception to "no SaaS gradient" in the
-Aesthetic lane above -- the client asked for an enterprise-logistics feel
-(UPS Healthcare / FedEx Healthcare) specifically for this section, not a
-palette change for the site.
+Aesthetic lane above -- the client asked for this treatment specifically for
+this section, not a palette change for the site.
 
-Ten counties are served, not nine: Suffolk County was added alongside this
-redesign (Long Island now means Nassau *and* Suffolk). That changed the real
-data, not just the visual: the ZIP checker's lookup table in `site.js` and the
-`areaServed` structured data on the homepage both carry Suffolk now.
+**The service area itself changed, not just the visual.** New Jersey (Hudson,
+Bergen, Essex Counties) is no longer served -- removed entirely, not
+downplayed. In its place: Westchester, Rockland and Putnam Counties, the
+lower Hudson Valley north of the city. Combined with Suffolk County (added in
+the previous pass), the real footprint is now eight counties: the five
+boroughs, Nassau and Suffolk on Long Island, and Westchester, Rockland and
+Putnam. Every place that number or those names could appear was swept and
+updated -- the ZIP checker's lookup table in `site.js` (Hudson/Bergen/Essex
+ZIPs deleted, Westchester/Rockland/Putnam ZIPs added from the same public
+crosswalk), the `areaServed` structured data, the map geometry and hub
+markers (Jersey City/Newark/Bergen hubs replaced with White Plains/Nyack/
+Carmel), meta descriptions, the footer, and a FAQ question that only made
+sense when NJ was in scope (rewritten to ask about the Hudson Valley instead).
+NJ counties still render on the map as unshaded context, same treatment
+Connecticut gets -- geography for orientation, not a served claim.
+
+Region cards use a solid-colour circle badge with a white silhouette of the
+*actual* county union geometry (NYC boroughs / Long Island / the three
+Hudson Valley counties), not a generic pin icon -- reusing the same Census
+data and projection as the map itself, via `shapely.ops.unary_union` to merge
+each region's counties into one outline before simplifying. The shape is the
+credibility signal.
 
 Right rail, top to bottom: the ZIP checker (unchanged behaviour, restyled as
-its own card), three region cards (NYC / Long Island / New Jersey), a
-ten-item facility-type chip grid, a six-item feature checklist, and a
-full-width gradient CTA band for custom routes outside the standard area.
+its own card), three region cards, a bordered facility-type directory
+(twelve items, three columns, hairline row separators -- not a chip/pill
+grid, at the client's specific design reference), and a full-width gradient
+CTA band for custom routes outside the standard area.
 
 ## Imagery
 

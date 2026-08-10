@@ -124,7 +124,7 @@
       '.hero__copy .btn', '.section-head > *', '.svc', '.why__fig',
       '.why__body > h2', '.why__body > p', '.why__list > li',
       '.step', '.step__num', '.cov__card', '.zipcheck',
-      '.cov__chips > li', '.cov__check > li', '.comp__item',
+      '.cov__served-grid > li', '.comp__item',
       '.faq__item', '.quote__head > *', '.form__row', '.form__req',
       '.form__note', '.form__submit', '.site-foot .wrap > *',
       '.map__zone', '.map__hub', '.map__hub-glow', '.map__leader',
@@ -452,16 +452,10 @@
         stagger: { each: 0.07, from: 'start' }
       });
 
-      reveal('.cov__chips > li', {
-        trigger: '.cov__chips',
-        y: 14, duration: 0.45,
+      reveal('.cov__served-grid > li', {
+        trigger: '.cov__served-grid',
+        y: 14, duration: 0.4,
         stagger: { each: 0.03, from: 'start', grid: 'auto' }
-      });
-
-      reveal('.cov__check > li', {
-        trigger: '.cov__check',
-        y: 14, duration: 0.45,
-        stagger: { each: 0.04, from: 'start', grid: 'auto' }
       });
 
       reveal('.zipcheck', { trigger: '.zipcheck', y: 24 });
@@ -514,7 +508,7 @@
         }
 
         lift('.svc', { y: -6, icon: '.badge' });
-        lift('.cov__card', { y: -3, icon: '.badge' });
+        lift('.cov__card', { y: -3, icon: '.cov__silhouette-wrap' });
         lift('.comp__item', { y: -4, icon: '.badge' });
         lift('.step', { y: -4, icon: '.step__num' });
         lift('.btn', { y: -3, scale: 1.025 });
