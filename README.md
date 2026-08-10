@@ -28,7 +28,7 @@ Find them all:
 grep -rn 'data-verify' index.html about.html
 ```
 
-There are 17. (A plain `grep` also matches the two instruction comments in
+There are 15. (A plain `grep` also matches the two instruction comments in
 each `<head>`; those are not claims.) For each one:
 
 - **True?** Delete the `data-verify="pending"` attribute. Nothing else changes.
@@ -48,7 +48,6 @@ each `<head>`; those are not claims.) For each one:
 | Home, FAQ | Can issue a certificate of insurance to the facility | ☐ |
 | Home, FAQ | Temperature ranges carried (frozen / dry ice on confirmation) | ☐ |
 | Home + About | "Dispatch line, seven days a week" | ☐ |
-| About, founder | Two placeholder paragraphs, see section 6 | ☐ |
 | About, Driver standards | All six items | ☐ |
 
 ### What is NOT a claim, and needs no confirmation
