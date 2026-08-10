@@ -48,11 +48,13 @@ each `<head>`; those are not claims.) For each one:
 | Home, FAQ | Temperature ranges carried (frozen / dry ice on confirmation) | ☐ |
 | About, Driver standards | All six items | ☐ |
 
-Confirmed and no longer tagged: 24/7 dispatch (both "Dispatch line" lines),
-HIPAA-compliant handling and GPS tracking (Coverage section checklist), and
-the Long Island / New Jersey coverage area and facility list (Coverage
-section cards and chips) -- all confirmed directly by the client in the
-session that added the Coverage redesign.
+Confirmed and no longer tagged: 24/7 dispatch (both "Dispatch line" lines)
+and the coverage area and facility list (Coverage section cards and
+directory) -- confirmed directly by the client across the two sessions that
+built and then revised the Coverage redesign. The service area itself
+changed between those sessions: New Jersey was dropped entirely and
+Westchester, Rockland and Putnam Counties were added. See DESIGN.md
+"Coverage" for the full list of what that touched.
 
 ### What is NOT a claim, and needs no confirmation
 

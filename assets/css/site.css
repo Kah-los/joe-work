@@ -785,47 +785,57 @@ a:hover { color: var(--bond-800); }
 .map__chip  { fill: #fff; stroke: #DCE9F7; stroke-width: 1; filter: drop-shadow(0 2px 4px rgba(10,60,93,0.18)); }
 .map__hub-label { font-family: var(--ff); font-size: 12.5px; font-weight: 800; fill: var(--bond-800); }
 
-/* Three region cards */
-.cov__cards { display: grid; gap: var(--r-h); }
-@media (min-width: 30rem) and (max-width: 61.9rem) { .cov__cards { grid-template-columns: repeat(3, 1fr); } }
+/* Section micro-label. A thin rule fills the remaining row width so the
+   label reads as a divider, not a heading competing with the H2 above it. */
+.cov__section-label {
+  display: flex; align-items: center; gap: var(--r);
+  margin: var(--r-3) 0 var(--r); font-size: var(--t-sm); font-weight: 800;
+  letter-spacing: 0.02em; color: var(--blue-dark);
+}
+.cov__section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+/* Three region cards: solid-colour circle badge with a white silhouette of
+   the actual county geometry, not a generic pin -- the shape itself is the
+   proof the coverage claim is specific. */
+.cov__cards { display: grid; gap: var(--r); }
+@media (min-width: 34rem) { .cov__cards { grid-template-columns: repeat(3, 1fr); } }
 .cov__card {
-  background: var(--paper); border: 1px solid var(--rule); border-radius: 10px;
-  padding: var(--r); box-shadow: 0 1px 2px rgba(11,60,93,0.05);
+  background: var(--band); border: 1px solid var(--rule); border-radius: 12px;
+  padding: var(--r-2) var(--r);
 }
-.cov__card .badge { margin-bottom: var(--r-h); }
-.cov__card h3 { margin: 0 0 var(--r-q); font-size: var(--t-h3); }
-.cov__card > p { margin: 0 0 var(--r-h); font-size: var(--t-sm); color: var(--ink-muted); }
-.cov__card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.375rem; }
-.cov__card li {
-  font-size: var(--t-sm); font-weight: 600; color: var(--ink);
-  padding-left: 1.1rem; position: relative;
+.cov__silhouette-wrap {
+  width: 4.5rem; height: 4.5rem; border-radius: 50%;
+  background: var(--blue); display: grid; place-items: center;
+  margin: 0 auto var(--r);
 }
-.cov__card li::before {
-  content: ''; position: absolute; left: 0; top: 0.55em;
-  width: 5px; height: 5px; border-radius: 50%; background: var(--blue);
-}
+.cov__silhouette { width: 62%; height: 62%; fill: #fff; }
+.cov__card h3 { margin: 0 0 var(--r-q); font-size: var(--t-h3); text-align: center; color: var(--blue-dark); }
+.cov__card > p { margin: 0; font-size: var(--t-sm); color: var(--ink-muted); text-align: center; }
 
-/* Facility chips */
-.cov__subhead { font-size: var(--t-sm); font-weight: 700; color: var(--ink-muted); margin: 0 0 var(--r-h); }
-.cov__chips {
+/* Facility list: one bordered card, three columns of icon + label rows with
+   hairline separators -- a directory, not a badge wall. */
+.cov__served {
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 12px;
+  padding: var(--r-h) var(--r);
+}
+.cov__served-grid {
   list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--r-q);
+  display: grid; grid-template-columns: 1fr; gap: 0;
 }
-@media (min-width: 34rem) { .cov__chips { grid-template-columns: repeat(3, 1fr); } }
-.cov__chips li {
-  display: flex; align-items: center; gap: 0.5rem;
-  background: var(--band); border-radius: 999px;
-  padding: 0.5rem 0.75rem; font-size: var(--t-xs); font-weight: 700; color: var(--ink);
+@media (min-width: 34rem) { .cov__served-grid { grid-template-columns: repeat(3, 1fr); column-gap: var(--r); } }
+.cov__served-grid li {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: var(--r-h) 0; font-size: var(--t-sm); font-weight: 700; color: var(--ink);
+  border-bottom: 1px solid var(--rule);
 }
-.cov__chips .i { width: 1rem; height: 1rem; color: var(--blue-dark); flex: none; }
-
-/* Feature checklist */
-.cov__check {
-  list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--r-h);
+/* Hairline only between rows, not under the last row of each column. */
+@media (min-width: 34rem) {
+  .cov__served-grid li:nth-last-child(-n+3) { border-bottom: 0; }
 }
-.cov__check li { display: flex; align-items: center; gap: 0.5rem; font-size: var(--t-sm); font-weight: 700; color: var(--ink); }
-.cov__check .i { width: 1.125rem; height: 1.125rem; color: var(--emerald); flex: none; }
+@media (max-width: 33.9rem) {
+  .cov__served-grid li:last-child { border-bottom: 0; }
+}
+.cov__served-grid .i { width: 1.25rem; height: 1.25rem; color: var(--blue-dark); flex: none; }
 
 /* Bottom banner */
 .cov__cta {
@@ -979,8 +989,7 @@ html.js-motion .step,
 html.js-motion .step__num,
 html.js-motion .cov__card,
 html.js-motion .zipcheck,
-html.js-motion .cov__chips > li,
-html.js-motion .cov__check > li,
+html.js-motion .cov__served-grid > li,
 html.js-motion .comp__item,
 html.js-motion .faq__item,
 html.js-motion .quote__head > *,
