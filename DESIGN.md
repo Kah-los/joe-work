@@ -175,25 +175,50 @@ gets dropped. A two-row header is only a defect at desktop.
 The phone number is a sibling of `<nav>`, not inside it: a contact action is not
 navigation, and it makes the two-row reflow trivial.
 
-### No map
+### Coverage: a logistics network map, not a county atlas
 
-The coverage section lists zones rather than drawing a map. An accurate map needs
-real boundary data; an inaccurate one is worse than a list to a reader who knows
-these counties better than we do. An earlier concentric-circle diagram was cut
-for exactly this reason, since the zones are not radial.
+This section went through four shapes before landing here: a table (cut --
+nine rows of wrapping cells read as an unfinished form), a plain zone
+directory (cut -- the client wanted the section to read as broad regional
+coverage rather than "a handful of counties"), a network map with New Jersey
+in scope (cut when the service area itself changed, see below), and the
+current version: real county boundaries (US Census cartographic data, so the
+geography is still true) rendered as one gradient landmass with glowing hub
+markers, connected by dashed route lines, at the client's explicit direction
+for an enterprise-logistics feel (UPS Healthcare / FedEx Healthcare).
 
-### Why coverage is not a table
+This is a deliberate, section-scoped exception to "no SaaS gradient" in the
+Aesthetic lane above -- the client asked for this treatment specifically for
+this section, not a palette change for the site.
 
-It was one, and it was wrong. Nine rows of wrapping cells at 77px each, a
-bordered slab 789px tall, plus nine repeated "Confirm" placeholders that read as
-an unfinished form rather than a design. A table earns its borders when a reader
-compares values across columns; this content is place names grouped by zone, so
-there is nothing to compare. The corridors column was also the thinnest content
-on the page, and the neighbourhood runs already say where we drive. Directory
-setting: 484px, no borders, no placeholders, same nine zones.
+**The service area itself changed, not just the visual.** New Jersey (Hudson,
+Bergen, Essex Counties) is no longer served -- removed entirely, not
+downplayed. In its place: Westchester, Rockland and Putnam Counties, the
+lower Hudson Valley north of the city. Combined with Suffolk County (added in
+the previous pass), the real footprint is now eight counties: the five
+boroughs, Nassau and Suffolk on Long Island, and Westchester, Rockland and
+Putnam. Every place that number or those names could appear was swept and
+updated -- the ZIP checker's lookup table in `site.js` (Hudson/Bergen/Essex
+ZIPs deleted, Westchester/Rockland/Putnam ZIPs added from the same public
+crosswalk), the `areaServed` structured data, the map geometry and hub
+markers (Jersey City/Newark/Bergen hubs replaced with White Plains/Nyack/
+Carmel), meta descriptions, the footer, and a FAQ question that only made
+sense when NJ was in scope (rewritten to ask about the Hudson Valley instead).
+NJ counties still render on the map as unshaded context, same treatment
+Connecticut gets -- geography for orientation, not a served claim.
 
-The handling-classes table stays a table, because temperature, cargo and
-container genuinely are compared across columns.
+Region cards use a solid-colour circle badge with a white silhouette of the
+*actual* county union geometry (NYC boroughs / Long Island / the three
+Hudson Valley counties), not a generic pin icon -- reusing the same Census
+data and projection as the map itself, via `shapely.ops.unary_union` to merge
+each region's counties into one outline before simplifying. The shape is the
+credibility signal.
+
+Right rail, top to bottom: the ZIP checker (unchanged behaviour, restyled as
+its own card), three region cards, a bordered facility-type directory
+(twelve items, three columns, hairline row separators -- not a chip/pill
+grid, at the client's specific design reference), and a full-width gradient
+CTA band for custom routes outside the standard area.
 
 ## Imagery
 
@@ -202,18 +227,15 @@ notes about a single seal photograph and a bleeding-column hero (from the
 first, pre-navy-pivot build) no longer apply — see "Layout" above for the
 current hero and section structure.
 
-Current photography, all client-supplied or generated to spec: `lab-delivery`
-(hero, full-bleed), `coldchain` (Services header), `equipment` (Why choose us),
-and `founder-hallway` (About) — a courier carrying a sealed cooler down a
-hospital corridor toward reception.
+Current photography: `lab-delivery` (hero, full-bleed), `coldchain` (Services
+header) and `equipment` (Why choose us) are generated to spec; `joseph-henry`
+(About) is a real, client-supplied photograph of the founder — no caveat
+needed, this is exactly what the earlier placeholder was waiting for. The
+courier-in-hallway photo that held that spot before (generated, with
+"BRIDGEWAY MEDICAL LOGISTICS" branding rendered onto a uniform and cooler
+that don't exist yet) is retired to `_src/unused/`.
 
-`founder-hallway` has "BRIDGEWAY MEDICAL LOGISTICS" branding rendered onto the
-uniform and cooler. That branding does not exist on any real garment or
-container yet — it is aspirational brand photography, same category as a
-mockup. Worth knowing if a prospect asks about it before real uniforms exist.
-
-No div-built product mockups anywhere. The founder photo is an explicit empty
-slot: a generated portrait presented as Joseph would misrepresent a real person.
+No div-built product mockups anywhere.
 
 ## Motion
 

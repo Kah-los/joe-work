@@ -28,7 +28,7 @@ Find them all:
 grep -rn 'data-verify' index.html about.html
 ```
 
-There are 15. (A plain `grep` also matches the two instruction comments in
+There are 13. (A plain `grep` also matches the two instruction comments in
 each `<head>`; those are not claims.) For each one:
 
 - **True?** Delete the `data-verify="pending"` attribute. Nothing else changes.
@@ -43,12 +43,18 @@ each `<head>`; those are not claims.) For each one:
 | Home, Services | Cold-chain and biologics line exists | ☐ |
 | Home, Services | Pharmacy and infusion delivery line exists | ☐ |
 | Home, Why choose us | Bonded and insured, certificate issued to the facility | ☐ |
-| Home, Coverage | Every area listed, all nine zones | ☐ |
 | Home, FAQ | Will sign a BAA, annual PHI training | ☐ |
 | Home, FAQ | Can issue a certificate of insurance to the facility | ☐ |
 | Home, FAQ | Temperature ranges carried (frozen / dry ice on confirmation) | ☐ |
-| Home + About | "Dispatch line, seven days a week" | ☐ |
 | About, Driver standards | All six items | ☐ |
+
+Confirmed and no longer tagged: 24/7 dispatch (both "Dispatch line" lines)
+and the coverage area and facility list (Coverage section cards and
+directory) -- confirmed directly by the client across the two sessions that
+built and then revised the Coverage redesign. The service area itself
+changed between those sessions: New Jersey was dropped entirely and
+Westchester, Rockland and Putnam Counties were added. See DESIGN.md
+"Coverage" for the full list of what that touched.
 
 ### What is NOT a claim, and needs no confirmation
 
@@ -247,22 +253,10 @@ include name, role and facility.
 
 ## 6. Founder photo and story
 
-The About page carries a representative operations photograph beside the
-founder text — a courier walking a sealed cooler toward hospital reception —
-rather than a portrait, because there is no real photo of Joseph yet. A
-generated portrait presented as him would misrepresent a real person to buyers
-who are specifically trying to find out who they're dealing with.
-
-A phone photo is fine and better than a stock image. Stand near a window, plain
-background, no sunglasses, look at the camera. Save it as
-`assets/img/joseph-henry.jpg`, roughly 800x1000.
-
-Then swap the `<picture>` block inside `<figure class="founder__figure">` for:
-
-```html
-<img src="/assets/img/joseph-henry.jpg" width="800" height="1000"
-     alt="Joseph Henry, founder of Bridgeway Medical Logistics.">
-```
+The About page carries a real photograph of Joseph — `assets/img/joseph-henry.jpg`
+(client-supplied). If you want to replace it later, keep the same portrait
+crop (roughly 2:3, the current file is 532x800) and swap the `<picture>`
+block inside `<figure class="founder__figure founder__figure--portrait">`.
 
 The founder paragraphs are filled in with real company copy, but they're
 written in company voice ("we"), not as personal background. This is the
@@ -270,11 +264,6 @@ highest-value writing on the whole site. A practice manager deciding between
 two couriers picks the one whose founder obviously understands why a specimen
 has a stability window — plain sentences about where you worked and what you
 carried beat any marketing language, if you want to add that later.
-
-Note: the courier photograph currently on the page has "BRIDGEWAY MEDICAL
-LOGISTICS" branding rendered onto the uniform and cooler. That's generated
-imagery, not a photo of a real uniform or a container Bridgeway currently
-owns — worth knowing before a hospital contact asks about it.
 
 ---
 

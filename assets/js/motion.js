@@ -123,10 +123,12 @@
       '.site-head', '.hero__bg', '.hero__copy .display', '.hero__lead',
       '.hero__copy .btn', '.section-head > *', '.svc', '.why__fig',
       '.why__body > h2', '.why__body > p', '.why__list > li',
-      '.step', '.step__num', '.zone__card', '.zipcheck', '.comp__item',
+      '.step', '.step__num', '.cov__card', '.zipcheck',
+      '.cov__served-grid > li', '.comp__item',
       '.faq__item', '.quote__head > *', '.form__row', '.form__req',
       '.form__note', '.form__submit', '.site-foot .wrap > *',
-      '.map__zone', '.map__dot', '.map__leader', '.map__label'
+      '.map__zone', '.map__hub', '.map__hub-glow', '.map__leader',
+      '.map__chip', '.map__hub-label'
     ];
 
     /* --- 02 · Helpers ---------------------------------------------------- */
@@ -418,7 +420,10 @@
           ease: 'power2.out'
         }, 0);
 
-        mapTl.from(map.querySelectorAll('.map__dot'), {
+        /* Hub markers pop, including their glow twin, then the leader lines
+           and label chips settle in behind them -- a route map lighting up
+           its own network rather than a static image appearing. */
+        mapTl.from(map.querySelectorAll('.map__hub, .map__hub-glow'), {
           scale: 0, transformOrigin: 'center center',
           duration: 0.4, stagger: 0.06, ease: 'back.out(2.4)'
         }, 0.3);
@@ -427,15 +432,30 @@
           opacity: 0, duration: 0.3, stagger: 0.06
         }, 0.42);
 
-        mapTl.from(map.querySelectorAll('.map__label'), {
+        mapTl.from(map.querySelectorAll('.map__chip, .map__hub-label'), {
           opacity: 0, y: 6, duration: 0.35, stagger: 0.06
         }, 0.48);
+
+        /* Route lines draw last, dash by dash, so the network reads as
+           connections being made rather than lines that were just always there. */
+        var routes = map.querySelectorAll('.map__route');
+        if (routes.length) {
+          mapTl.from(routes, {
+            opacity: 0, duration: 0.3, stagger: 0.05
+          }, 0.55);
+        }
       }
 
-      reveal('.zone__card', {
-        trigger: '.zone__grid',
+      reveal('.cov__card', {
+        trigger: '.cov__cards',
         y: 26, duration: 0.6,
-        stagger: { each: 0.045, from: 'start', grid: 'auto' }
+        stagger: { each: 0.07, from: 'start' }
+      });
+
+      reveal('.cov__served-grid > li', {
+        trigger: '.cov__served-grid',
+        y: 14, duration: 0.4,
+        stagger: { each: 0.03, from: 'start', grid: 'auto' }
       });
 
       reveal('.zipcheck', { trigger: '.zipcheck', y: 24 });
@@ -488,7 +508,7 @@
         }
 
         lift('.svc', { y: -6, icon: '.badge' });
-        lift('.zone__card', { y: -3, scale: 1.03, icon: '.badge' });
+        lift('.cov__card', { y: -3, icon: '.cov__silhouette-wrap' });
         lift('.comp__item', { y: -4, icon: '.badge' });
         lift('.step', { y: -4, icon: '.step__num' });
         lift('.btn', { y: -3, scale: 1.025 });
@@ -496,13 +516,18 @@
 
         /* Map counties raise slightly and brighten under the cursor. Uses the
            SVG's own transform box so the shape scales about itself rather than
-           about the viewBox origin. */
+           about the viewBox origin. Reordered to just before the routes/hubs
+           groups, not appended to the very end of the SVG -- appending to the
+           end would raise the hovered county above the hub markers and route
+           lines too, hiding whichever one sits over it. */
+        var mapOverlay = q('.map__routes') || q('.map__hubs');
         qa('.map__zone').forEach(function (zone) {
           var to = gsap.quickTo(zone, 'scale', { duration: 0.35, ease: 'power3.out' });
           gsap.set(zone, { transformOrigin: 'center center' });
           zone.addEventListener('mouseenter', function () {
             to(1.035);
-            zone.parentNode.appendChild(zone); // raise above its neighbours
+            if (mapOverlay) zone.parentNode.insertBefore(zone, mapOverlay);
+            else zone.parentNode.appendChild(zone);
           });
           zone.addEventListener('mouseleave', function () { to(1); });
         });
@@ -558,7 +583,7 @@
 
       /* Press feedback. Pointer events rather than mousedown so it also fires
          under touch, where there is no hover state to carry the feedback. */
-      qa('.btn, .zone__card, .faq__item summary, .comp__item summary, .zipcheck__drawer summary, .site-foot__group summary').forEach(function (el) {
+      qa('.btn, .cov__card, .faq__item summary, .comp__item summary, .zipcheck__drawer summary, .site-foot__group summary').forEach(function (el) {
         var to = gsap.quickTo(el, 'scale', { duration: 0.18, ease: 'power2.out' });
         el.addEventListener('pointerdown', function () { to(0.97); });
         ['pointerup', 'pointerleave', 'pointercancel'].forEach(function (evt) {
