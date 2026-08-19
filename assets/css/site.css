@@ -1093,38 +1093,48 @@ html.motion-on .faq__a { animation: none; }
    .why__text before overflow:hidden/min-width:0 landed on the hero and
    why-list (see git history) — omit it here and the same bug returns.
 
-   Deliberately NOT edge-to-edge (no negative-margin bleed): the four
-   carousels sit at different nesting depths under `.wrap` (Services/Steps
-   are direct children; Why-list is inside `.why__body`; the coverage zone
-   grid is three levels down, inside `.map__rail`). A bleed technique that
+   Deliberately NOT edge-to-edge (no negative-margin bleed): the carousels
+   sit at different nesting depths under `.wrap` (Services/Steps are direct
+   children; Why-list is inside `.why__body`). A bleed technique that
    assumes "parent has padding-inline: var(--gutter)" only holds for a
    direct child — nested one, it just shifts the overflow outward instead
    of to the viewport edge, and for a flex/grid ancestor without an explicit
    track size it can blow the whole ancestor chain out to page-level
    horizontal scroll. Cards scroll within the existing padded column
-   instead; `min-width: 0` on every card is still required regardless. */
+   instead; `min-width: 0` on every card is still required regardless.
+   (Coverage's own `.cov__layout`/`.cov__map` already guard against this
+   same grid-blowout via `minmax(0, 1fr)` — see section 20 — so its
+   carousels below don't need an extra min-width:0 patch.) */
 .carousel__dots { display: none; }
 @media (max-width: 39.99rem) {
-  #services .svc__grid, #coverage .zone__grid, #why .why__list, #how .steps {
+  #services .svc__grid, #coverage .cov__cards, #coverage .cov__served-grid, #why .why__list, #how .steps {
     display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch; padding-bottom: 0.25rem;
   }
   #services .svc__grid { gap: 0.875rem; }
   #services .svc__grid .svc { flex: 0 0 85%; min-width: 0; scroll-snap-align: start; }
 
-  #coverage .zone__grid { gap: var(--r-h); }
-  #coverage .zone__grid .zone__card { flex: 0 0 auto; min-width: 9rem; scroll-snap-align: start; }
-  /* .map__rail is a CSS Grid item (of .map__grid, single-column below
-     62rem). Grid items default to min-width:auto, which is content-based —
-     without this, the zone__grid carousel's un-scrolled content width
-     drags the whole single-column grid track (and .map__fig beside it)
-     wider than the viewport, regardless of the carousel's own overflow. */
-  #coverage .map__rail { min-width: 0; }
+  /* Coverage region cards (NYC / Long Island / Hudson Valley) -- only 3, so
+     a slightly wider peek than the 6-card Services row reads better. */
+  #coverage .cov__cards { gap: var(--r-h); }
+  #coverage .cov__cards .cov__card { flex: 0 0 78%; min-width: 0; scroll-snap-align: start; }
+
+  /* "We serve" facility directory (12 short icon+label rows) -- reads
+     better as a horizontal chip strip on mobile than a divided list users
+     have to scroll the whole page to get through. */
+  #coverage .cov__served-grid { gap: 0.625rem; list-style: none; }
+  #coverage .cov__served-grid li {
+    flex: 0 0 auto; min-width: 0; scroll-snap-align: start;
+    border-bottom: 0; border: 1px solid var(--rule); border-radius: 999px;
+    padding: 0.5rem 0.9rem; white-space: nowrap;
+  }
 
   #why .why__list { gap: var(--r); }
   #why .why__list > li { flex: 0 0 88%; min-width: 0; scroll-snap-align: start; }
-  /* Same CSS Grid min-width:auto footgun as .map__rail above, one level up
-     the tree: .why__body is the grid item of .why__grid. */
+  /* .why__body is a CSS Grid item (of .why__grid, single-column below
+     56rem) with no minmax(0, ...) guard, so it needs its own min-width:0 --
+     same grid-blowout risk described above, just without Coverage's fix
+     already in place upstream. */
   #why .why__body { min-width: 0; }
 
   #how .steps { gap: var(--r); }
@@ -1176,9 +1186,14 @@ html.motion-on .faq__a { animation: none; }
   .comp__item .comp__a { padding-top: var(--r-h); margin: 0; }
   .comp__item .badge { margin-bottom: 0; }
 
-  .zipcheck__drawer { border: 1px solid var(--rule); border-radius: 6px; padding: var(--r-h) var(--r); }
+  /* .zipcheck (section 20) is already styled as its own bordered card --
+     the drawer becomes the single outer card instead of wrapping a second
+     one around it: summary is the header row, and .zipcheck's own
+     border/shadow are suppressed in favour of one divider between them. */
+  .zipcheck__drawer { border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
   .zipcheck__drawer summary {
     display: flex; align-items: center; justify-content: space-between; gap: var(--r-h);
+    padding: var(--r) var(--r);
     font-weight: 700; color: var(--ink);
   }
   .zipcheck__drawer summary::after {
@@ -1187,7 +1202,10 @@ html.motion-on .faq__a { animation: none; }
     transform: rotate(45deg); transition: transform 200ms var(--ease-out);
   }
   .zipcheck__drawer[open] summary::after { transform: rotate(-135deg); }
-  .zipcheck__drawer .zipcheck { margin-top: var(--r-h); }
+  .zipcheck__drawer .zipcheck {
+    margin: 0; border: 0; border-radius: 0; box-shadow: none;
+    border-top: 1px solid var(--rule);
+  }
 
   .site-foot { padding-block: var(--r) var(--r-h); }
   .site-foot__group { border-top: 1px solid var(--rule); padding-block: var(--r-h); }
@@ -1211,9 +1229,9 @@ html.motion-on .faq__a { animation: none; }
      scale() transform push document scrollWidth past the viewport — the
      same failure mode the hero's overflow:hidden fix (see git history)
      guards against. */
-  #coverage .map__grid { overflow-x: hidden; }
-  .map__fig { position: relative; transition: transform 260ms var(--ease-out); }
-  .map__fig.is-expanded { transform: scale(1.35); transform-origin: center top; z-index: 1; }
+  #coverage .cov__layout { overflow-x: hidden; }
+  .cov__map { position: relative; transition: transform 260ms var(--ease-out); }
+  .cov__map.is-expanded { transform: scale(1.35); transform-origin: center top; z-index: 1; }
   .map__zone { transition: fill 160ms var(--ease); cursor: pointer; }
   .map__zone.is-active { fill: var(--blue); }
   .map__expand {
@@ -1229,7 +1247,7 @@ html.motion-on .faq__a { animation: none; }
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .map__fig.is-expanded { transform: none; }
+  .cov__map.is-expanded { transform: none; }
 }
 
 /* --- 3-step quote form -----------------------------------------------------
@@ -1285,4 +1303,14 @@ html.motion-on .faq__a { animation: none; }
   }
   .sticky-cta.is-hidden { transform: translateY(100%); }
   body:has(.sticky-cta) { padding-bottom: 4.75rem; }
+
+  /* Same nowrap-button overflow as the sticky CTA above: .cov__cta .btn is
+     `flex: none` (section 20), so it never shrinks below its full "Request
+     custom route" text width -- at 320px that's wider than the space left
+     beside the banner copy. Drop it to its own full-width row instead;
+     .cov__cta already has flex-wrap: wrap. */
+  .cov__cta .btn {
+    flex: 1 1 100%; justify-content: center; text-align: center;
+    white-space: normal; padding-inline: var(--r);
+  }
 }

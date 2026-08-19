@@ -12,7 +12,7 @@
      Tap-to-highlight is the touch counterpart to the existing hover-only
      highlight in motion.js (canHover-gated). Expand is a dedicated button
      rather than tap-anywhere, so it never competes with a zone tap. */
-  var mapFig = document.querySelector('.map__fig');
+  var mapFig = document.querySelector('.cov__map');
   var mapOut = document.getElementById('map-tap-out');
   if (mapFig) {
     var activeZone = null;
