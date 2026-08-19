@@ -328,7 +328,7 @@ a:hover { color: var(--bond-800); }
    is opaque enough on the left that legibility does not depend on the photo,
    which matters because the left of this photo is a white van. */
 
-.hero { position: relative; isolation: isolate; background: var(--bond-900); }
+.hero { position: relative; isolation: isolate; overflow: hidden; background: var(--bond-900); }
 .hero__bg { position: absolute; inset: 0; z-index: 0; }
 .hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; }
 /* Scrim: near-opaque navy on the left, clearing toward the right where the
@@ -870,6 +870,7 @@ a:hover { color: var(--bond-800); }
 .why__list { list-style: none; margin: var(--r) 0 0; padding: 0; display: grid; gap: var(--r); }
 .why__list li { display: flex; gap: var(--r-h); align-items: flex-start; }
 .why__list .i { color: var(--blue-dark); width: 1.5rem; height: 1.5rem; flex: none; margin-top: 0.15em; }
+.why__list .why__text { min-width: 0; }
 .why__list h3 { margin: 0 0 0.15rem; font-size: var(--t-h3); }
 .why__list p { margin: 0; font-size: var(--t-sm); color: var(--ink-muted); max-width: 44ch; }
 
