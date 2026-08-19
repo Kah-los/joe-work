@@ -274,7 +274,7 @@ a:hover { color: var(--bond-800); }
    is two rows and pinning it would eat too much of a phone viewport. Keeping
    the dispatch number permanently reachable is the point: it is the
    conversion, and a buyer should never have to scroll back up for it. */
-.site-head { border-bottom: 1px solid var(--rule); background: var(--paper); }
+.site-head { position: relative; border-bottom: 1px solid var(--rule); background: var(--paper); }
 @media (min-width: 48rem) {
   .site-head { position: sticky; top: 0; z-index: var(--z-nav); }
 }
@@ -282,9 +282,10 @@ a:hover { color: var(--bond-800); }
   display: flex; flex-wrap: wrap; align-items: center;
   column-gap: var(--r); padding-block: var(--r-q);
 }
-.site-head__inner > .brand   { order: 1; margin-inline-end: auto; }
-.site-head__inner > .headtel { order: 2; }
-.site-head__inner > .nav     { order: 3; width: 100%; }
+.site-head__inner > .brand      { order: 1; margin-inline-end: auto; }
+.site-head__inner > .headtel    { order: 2; }
+.site-head__inner > .nav-toggle { order: 3; }
+.site-head__inner > .nav        { order: 4; width: 100%; }
 
 .brand {
   display: inline-flex; align-items: center; min-height: 2.75rem;
@@ -292,6 +293,24 @@ a:hover { color: var(--bond-800); }
   color: var(--ink); text-decoration: none; white-space: nowrap;
 }
 .brand em { font-style: normal; color: var(--bond-800); }
+
+/* Hamburger toggle -- mobile only (below the 48rem row where the header
+   becomes one line and the nav is always inline). Drawn in CSS, not an SVG
+   icon, since no menu/close glyph exists in the sprite and three bars need
+   nothing more. */
+.nav-toggle {
+  display: none;
+  width: 2.75rem; height: 2.75rem; padding: 0; margin-inline-start: var(--r-h);
+  background: transparent; border: 0; cursor: pointer;
+  flex-direction: column; align-items: center; justify-content: center; gap: 0.3125rem;
+}
+.nav-toggle__bar {
+  width: 1.375rem; height: 2px; background: var(--ink); border-radius: 2px;
+  transition: transform 200ms var(--ease-out), opacity 150ms var(--ease-out);
+}
+.nav-toggle[aria-expanded='true'] .nav-toggle__bar:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.nav-toggle[aria-expanded='true'] .nav-toggle__bar:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded='true'] .nav-toggle__bar:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
 .nav {
   display: flex; align-items: center; gap: 0 var(--r);
@@ -316,8 +335,27 @@ a:hover { color: var(--bond-800); }
 }
 .headtel:hover { color: var(--seal-red); }
 
+/* Below 48rem: nav collapses into a dropdown panel behind the hamburger,
+   closed by default. JS toggles `.is-open` on `.nav` and `aria-expanded` on
+   `.nav-toggle`; with JS disabled the toggle never appears (progressive
+   enhancement -- see mobile-ux.js) and .nav falls back to its old always-
+   visible wrapped-row layout below, so the site stays fully navigable. */
+@media (max-width: 47.99rem) {
+  .nav-toggle { display: flex; }
+  .js-nav .nav {
+    display: none;
+    position: absolute; top: 100%; left: 0; right: 0; z-index: var(--z-nav);
+    flex-direction: column; align-items: stretch; gap: 0;
+    border-top: 1px solid var(--rule); margin-top: 0;
+    background: var(--paper); box-shadow: 0 8px 20px rgba(11, 60, 93, 0.1);
+  }
+  .js-nav .nav.is-open { display: flex; }
+  .js-nav .nav a { min-height: 3rem; padding-inline: var(--gutter); border-bottom: 1px solid var(--rule); }
+}
+
 @media (min-width: 48rem) {
   .site-head__inner { flex-wrap: nowrap; padding-block: 0; min-height: 4.5rem; }
+  .site-head__inner > .nav-toggle { display: none; }
   .site-head__inner > .nav   { order: 2; width: auto; border-top: 0; margin-top: 0; margin-inline-end: var(--r-2); }
   .site-head__inner > .headtel { order: 3; }
 }
