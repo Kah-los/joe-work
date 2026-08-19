@@ -32,14 +32,16 @@
 
 <header class="site-head">
   <div class="wrap site-head__inner">
-    <a class="brand" href="/"><em>Bridgeway</em>&nbsp;Medical Logistics</a>
-    <a class="headtel" href="tel:+19294545653" aria-label="Call dispatch at (929) 454-5653">(929) 454-5653</a>
-    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu" hidden>
-      <span class="nav-toggle__bar"></span>
-      <span class="nav-toggle__bar"></span>
-      <span class="nav-toggle__bar"></span>
+    <a class="brand" href="/">
+      <img class="brand__logo" src="/assets/img/logo-header.png" width="167" height="48" alt="Bridgeway Medical Logistics">
+    </a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+      <svg class="nav-toggle__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
     </button>
     <nav class="nav" id="site-nav" aria-label="Main">
+      <a class="nav__call" href="tel:+19294545653" aria-label="Call dispatch at (929) 454-5653"><svg class="i" aria-hidden="true"><use href="#i-phone"></use></svg>(929) 454-5653</a>
       <a href="/#services">Services</a>
       <a href="/#coverage">Coverage</a>
       <a href="/about.html">About</a>
@@ -76,6 +78,5 @@
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/site.js" defer></script>
 <script src="/assets/js/motion.js" defer></script>
-<script src="/assets/js/mobile-ux.js" defer></script>
 </body>
 </html>
