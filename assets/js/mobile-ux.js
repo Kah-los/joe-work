@@ -1,70 +1,12 @@
 /* Bridgeway Medical Logistics
    Mobile-only interaction glue that isn't form/data logic (site.js) and
-   isn't GSAP animation (motion.js): the hamburger nav toggle, the
-   interactive coverage map, the sticky bottom CTA, and carousel dot
-   indicators. Plain class-toggling, no GSAP dependency, no side effects
-   if any target element is absent (this file loads on every page, most
-   of which have none of these). */
+   isn't GSAP animation (motion.js): the interactive coverage map, the
+   sticky bottom CTA, and carousel dot indicators. Plain class-toggling,
+   no GSAP dependency, no side effects if any target element is absent
+   (this file loads on every page, most of which have none of these). */
 
 (function () {
   'use strict';
-
-  /* Hamburger nav toggle -----------------------------------------------
-     Present on every page (shared header). The button is `hidden` by
-     default in the HTML and only revealed here: if this file fails to
-     load, no dead button appears, and `.nav` falls back to its old
-     always-visible wrapped-row layout -- the `.js-nav` class is what the
-     CSS gates the collapsed/dropdown behaviour on, so nothing changes
-     for a no-JS visitor. */
-  var navToggle = document.getElementById('nav-toggle');
-  var siteNav = document.getElementById('site-nav');
-  if (navToggle && siteNav) {
-    document.documentElement.classList.add('js-nav');
-    navToggle.hidden = false;
-
-    var closeNav = function () {
-      navToggle.setAttribute('aria-expanded', 'false');
-      siteNav.classList.remove('is-open');
-    };
-    var openNav = function () {
-      navToggle.setAttribute('aria-expanded', 'true');
-      siteNav.classList.add('is-open');
-    };
-
-    navToggle.addEventListener('click', function () {
-      if (siteNav.classList.contains('is-open')) closeNav();
-      else openNav();
-    });
-
-    /* A tap on any nav link should close the panel, not leave it open
-       over the section the link just jumped to. */
-    siteNav.addEventListener('click', function (event) {
-      if (event.target.tagName === 'A') closeNav();
-    });
-
-    document.addEventListener('click', function (event) {
-      if (!siteNav.classList.contains('is-open')) return;
-      if (siteNav.contains(event.target) || navToggle.contains(event.target)) return;
-      closeNav();
-    });
-
-    document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape' && siteNav.classList.contains('is-open')) {
-        closeNav();
-        navToggle.focus();
-      }
-    });
-
-    /* Rotating to landscape or resizing past the header's own 48rem
-       breakpoint (where the CSS drops the dropdown entirely and shows the
-       nav inline) should not leave aria-expanded/is-open stuck true. */
-    var headerBreak = window.matchMedia && window.matchMedia('(min-width: 48rem)');
-    if (headerBreak) {
-      var onHeaderBreak = function (e) { if (e.matches) closeNav(); };
-      if (headerBreak.addEventListener) headerBreak.addEventListener('change', onHeaderBreak);
-      else if (headerBreak.addListener) headerBreak.addListener(onHeaderBreak);
-    }
-  }
 
   /* Interactive coverage map ---------------------------------------------
      Tap-to-highlight is the touch counterpart to the existing hover-only
